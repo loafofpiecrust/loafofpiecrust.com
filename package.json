@@ -47,8 +47,8 @@
     "develop": "gatsby develop",
     "start": "npm run develop",
     "format": "prettier --write \"src/**/*.js\"",
-    "deploy": "npm run build && npm run just-deploy",
-    "just-deploy": "surge public"
+    "deploy": "surge public",
+    "publish": "npm run build && npm run deploy"
   },
   "devDependencies": {
     "@emotion/core": "^10.0.2",

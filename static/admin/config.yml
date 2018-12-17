@@ -1,7 +1,9 @@
 backend:
-  name: github
-  repo: loafofpiecrust/loafofpiecrust.github.io
-  branch: gatsby
+  name: gitlab
+  repo: loafofpiecrust/loafofpiecrust.com
+  branch: master
+  auth_type: implicit
+  app_id: 676164035782addc07ffd3af42ec256b8206f502f1cf458dd577f318b462f338
   squash_merges: true
 
 media_folder: static/assets
@@ -10,9 +12,9 @@ public_folder: assets
 collections:
   - name: "stories"
     label: "Stories"
-    folder: "src/content/test/stories"
+    folder: "src/content/stories"
     create: true
-    extension: mdx
+    extension: md
     format: frontmatter
     fields:
       - name: title
