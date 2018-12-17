@@ -32,9 +32,10 @@ export default Header
 const SiteTitleLink = styled(Link)(mq({
   color: "snow",
   textDecoration: "none",
-  marginLeft: 15,
+  marginLeft: 3,
 }))
 
 const HeaderBox = styled(Flex)(hideOnPrint, mq({
-  alignItems: ["center", "flex-start"]
+  alignItems: ["center", "flex-start"],
+  paddingLeft: 3,
 }))

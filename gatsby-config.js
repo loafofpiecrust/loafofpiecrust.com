@@ -51,6 +51,8 @@ module.exports = {
       resolve: "gatsby-plugin-netlify-cms",
       options: {
         enableIdentityWidget: false,
+        // Register custom widgets in the module specified
+        modulePath: require.resolve("./src/cms/cms.ts"),
       }
     },
 

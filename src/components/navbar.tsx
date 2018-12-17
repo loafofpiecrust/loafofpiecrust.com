@@ -23,7 +23,7 @@ const styles = {
   link: (isActive: boolean) => css(mq({
     backgroundColor: isActive ? theme.linkColor : "transparent",
     color: "snow",
-    padding: "15px 15px",
+    padding: 3,
     transition: "all 0.2s",
     textDecorationLine: "none",
     "&:hover": {
