@@ -1,4 +1,4 @@
-image: node:10
+image: mhart/alpine-node:10
 publish:
   stage: deploy
   only:

@@ -4,10 +4,11 @@ backend:
   branch: master
   auth_type: implicit
   app_id: 676164035782addc07ffd3af42ec256b8206f502f1cf458dd577f318b462f338
+  site_domain: loafofpiecrust.com
   squash_merges: true
 
 media_folder: static/assets
-public_folder: assets
+public_folder: /assets
 
 collections:
   - name: "stories"

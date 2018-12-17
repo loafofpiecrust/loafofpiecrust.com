@@ -7,20 +7,17 @@ const folderNamed = (name, path) => ({
   }
 })
 
-const folders = (names) => names.map(name => folderNamed(name))
+const folders = (...names) => names.map(name => folderNamed(name))
 
 module.exports = {
   siteMetadata: {},
   plugins: [
-    ...folders(["images", "pages", "content"]),
-    "gatsby-plugin-react-helmet",
-    "gatsby-transformer-sharp",
-    "gatsby-plugin-sharp",
+    // configuration & SEO
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: "gatsby-starter-default",
-        short_name: "starter",
+        name: "loafofpiecrust.com",
+        short_name: "loafofpiecrust",
         start_url: "/",
         background_color: "#663399",
         theme_color: "#663399",
@@ -28,8 +25,21 @@ module.exports = {
         icon: "src/images/gatsby-icon.png", // This path is relative to the root of the site.
       },
     },
-    "gatsby-plugin-typescript",
-    "gatsby-plugin-sass",
+    "gatsby-plugin-react-helmet",
+    // this (optional) plugin enables Progressive Web App + Offline functionality
+    // To learn more, visit: https://gatsby.app/offline
+    // 'gatsby-plugin-offline',
+
+    // sources
+    ...folders("images", "pages", "content"),
+    {
+      resolve: "gatsby-plugin-netlify-cms",
+      options: {
+        enableIdentityWidget: false,
+      }
+    },
+
+    // transforms
     {
       resolve: "gatsby-mdx",
       options: {
@@ -42,19 +52,21 @@ module.exports = {
         gatsbyRemarkPlugins: [],
       },
     },
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp",
+    "gatsby-plugin-typescript",
+    "gatsby-plugin-sass",
     "gatsby-transformer-yaml",
     "gatsby-plugin-emotion",
     "gatsby-plugin-styled-components",
+    "gatsby-plugin-catch-links",
+
+    // styling
     {
       resolve: "gatsby-plugin-typography",
       options: {
         pathToConfigModule: "src/styles/typography.ts",
       },
     },
-    "gatsby-plugin-catch-links",
-    "gatsby-plugin-netlify-cms",
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.app/offline
-    // 'gatsby-plugin-offline',
   ],
 }
