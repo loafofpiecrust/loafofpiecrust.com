@@ -11,7 +11,7 @@ export const NavBar = (props: {
     {props.items.map(item => {
       const isActive = props.activeUrl.startsWith(item.url)
       return (
-        <Link key={item.url} to={item.url} css={styles.link(isActive)}>
+        <Link key={item.url} to={item.url} className={styles.link(isActive)}>
           {item.label}
         </Link>
       )

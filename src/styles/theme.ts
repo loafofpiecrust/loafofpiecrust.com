@@ -43,6 +43,6 @@ const theme = {
 const mediaQueries = theme.breakpoints.map(w => `@media(min-width: ${w})`)
 const mqBase = facepaint(mediaQueries)
 export const mq = (style: CSSObject & CSSShortcuts): ClassInterpolation => 
-  (props) => mqBase(themed(props ? props.theme : theme, expandShortcuts(style)))
+  mqBase(themed(theme, expandShortcuts(style)))
 
 export default theme

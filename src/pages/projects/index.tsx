@@ -15,12 +15,12 @@ const ProjectDetails = ({ project }) => {
 
     return (
       <>
-        <h2 css={styles.projectTitle}>{header}</h2>
+        <h2 className={styles.projectTitle}>{header}</h2>
         <p>{project.desc}</p>
       </>
     )
   } else {
-    return (<h2 css={styles.projectTitle}>Select a project</h2>)
+    return (<h2 className={styles.projectTitle}>Select a project</h2>)
   }
 }
 
@@ -34,7 +34,7 @@ export default class extends React.Component {
       <Row justifyAround as="article">
         <ProjectPie width={600} height={600} onSelect={this.selectProject}/>
 
-        <Card css={styles.selectedPage}>
+        <Card className={styles.selectedPage}>
           <ProjectDetails project={this.state.selected} />
         </Card>
       </Row>
