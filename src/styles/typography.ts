@@ -9,12 +9,12 @@ export default new Typography({
   baseLineHeight: 1.45,
   blockMarginBottom: 0.8,
   // scaleRatio: 2,
-  googleFonts: [
-    { name: "Arvo", styles: ["400", "700"] },
-    { name: "Cabin", styles: ["400", "400i", "700", "700i"] },
-    { name: "Merriweather", styles: ["400", "400i", "700", "700i"] },
-    { name: "PT Mono", styles: ["400", "700"] },
-  ],
+  // googleFonts: [
+  //   { name: "Arvo", styles: ["400", "700"] },
+  //   { name: "Cabin", styles: ["400", "400i", "700", "700i"] },
+  //   { name: "Merriweather", styles: ["400", "400i", "700", "700i"] },
+  //   { name: "PT Mono", styles: ["400", "700"] },
+  // ],
   headerFontFamily: ["Arvo", "sans-serif"],
   bodyFontFamily: ["Cabin", "serif"],
   headerColor: "hsla(0,0%,0%,0.9)",

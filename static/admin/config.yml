@@ -7,13 +7,15 @@ backend:
   site_domain: loafofpiecrust.com
   squash_merges: true
 
-media_folder: static/assets
-public_folder: /assets
+media_folder: static/media
+public_folder: /media
+display_url: https://loafofpiecrust.com
 
 collections:
-  - name: "stories"
-    label: "Stories"
-    folder: "src/content/stories"
+  - name: stories
+    label: Stories
+    label_singular: Story
+    folder: src/content/stories
     create: true
     extension: md
     format: frontmatter
@@ -25,4 +27,20 @@ collections:
         widget: date
       - name: body
         label: Body
+        widget: markdown
+  - name: projects
+    label: Projects
+    label_singular: Project
+    folder: src/content/projects
+    create: true
+    extension: md
+    format: frontmatter
+    fields:
+      - name: title
+        label: Title
+      - name: externalUrl
+        label: External URL
+        required: false
+      - name: body
+        label: Description
         widget: markdown

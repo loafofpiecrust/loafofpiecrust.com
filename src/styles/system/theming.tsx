@@ -2,7 +2,7 @@
 const themeMappings = [
   { keys: ["color", "backgroundColor", "borderColor"], themeKey: "colors" },
   { keys: ["boxShadow"], themeKey: "shadows" },
-  { keys: ["borderRadius"], themeKey: "radii" },
+  { keys: ["borderRadius", "borderTopRightRadius", "borderTopLeftRadius"], themeKey: "radii" },
 ].reduce((acc, mapping) => {
   for (const propKey of mapping.keys) {
     acc[propKey] = mapping.themeKey

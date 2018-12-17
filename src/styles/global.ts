@@ -1,8 +1,8 @@
 import { injectGlobal, css } from "emotion"
 import theme from "./theme"
 
-// import "typeface-arvo"
-// import "typeface-cabin"
+import "typeface-arvo"
+import "typeface-cabin"
 // import "typeface-pt-mono"
 
 injectGlobal({
@@ -27,13 +27,15 @@ injectGlobal({
     size: "auto",
     margin: 0,
   },
-  a: {
-    color: theme.linkColor,
+  "main a": {
+    // color: theme.linkColor,
+    color: "inherit",
     textDecoration: "none",
     borderBottom: `2px dashed ${theme.linkColor}`,
     transition: `all ${theme.transitionTime}`,
     "&:hover, &:active": {
-      borderBottomColor: "transparent",
+      // borderBottomColor: "transparent",
+      color: theme.linkColor,
     },
     "header &": {
       borderBottom: "none",

@@ -31,6 +31,21 @@ module.exports = {
     // 'gatsby-plugin-offline',
 
     // sources
+    {
+      resolve: "gatsby-mdx",
+      options: {
+        extensions: [".mdx", ".md"],
+        defaultLayouts: {
+          content: require.resolve("./src/components/story.tsx"),
+          default: require.resolve("./src/components/layout.tsx"),
+        },
+        mdPlugins: [
+          require("remark-attr"),
+          require("remark-normalize-headings"),
+        ],
+        gatsbyRemarkPlugins: [],
+      },
+    },
     ...folders("images", "pages", "content"),
     {
       resolve: "gatsby-plugin-netlify-cms",
@@ -40,18 +55,6 @@ module.exports = {
     },
 
     // transforms
-    {
-      resolve: "gatsby-mdx",
-      options: {
-        extensions: [".mdx", ".md"],
-        defaultLayouts: {
-          content: require.resolve("./src/components/story.tsx"),
-          default: require.resolve("./src/components/page.tsx"),
-        },
-        mdPlugins: [require("remark-attr")],
-        gatsbyRemarkPlugins: [],
-      },
-    },
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     "gatsby-plugin-typescript",

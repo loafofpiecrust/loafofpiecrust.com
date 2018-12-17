@@ -93,6 +93,8 @@
     "react-typography": "^0.16.18",
     "remark-attr": "^0.8.0",
     "remark-bracketed-spans": "^3.0.0",
+    "remark-normalize-headings": "^1.0.1",
+    "remark-toc": "^5.1.1",
     "surge": "^0.20.1",
     "tslint": "^5.11.0",
     "typescript": "^3.2.2",

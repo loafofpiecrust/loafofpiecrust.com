@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import { css } from "emotion"
-import theme from "styles/theme"
+import theme, { mq } from "styles/theme"
 
 export const NavBar = (props: {
   items: { url: string; label: string }[]
@@ -20,15 +20,14 @@ export const NavBar = (props: {
 )
 
 const styles = {
-  link: isActive => css({
+  link: (isActive: boolean) => css(mq({
     backgroundColor: isActive ? theme.linkColor : "transparent",
     color: "snow",
     padding: "15px 15px",
     transition: "all 0.2s",
-    border: "none",
     textDecorationLine: "none",
     "&:hover": {
       backgroundColor: theme.linkColor,
     },
-  }),
+  })),
 }

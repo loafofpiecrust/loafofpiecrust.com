@@ -4,7 +4,7 @@ import Helmet from "react-helmet"
 import Header from "./header"
 import siteConfig from "config"
 import { css, cx } from "emotion"
-import styled, { ThemeProvider } from "styled-components"
+import { ThemeProvider } from "styled-components"
 import { ThemeProvider as EmotionTheme } from "emotion-theming"
 import { Footer } from "./footer"
 import { MuiThemeProvider, Paper } from "@material-ui/core"
@@ -13,6 +13,7 @@ import theme, { mq } from "styles/theme"
 import { Column, Flex } from "styles/system/flex"
 import { Card } from "styles/system/text"
 import { withProps, defaultProps } from "recompose";
+import styled from "react-emotion";
 
 export const Layout = (props: {
   title?: string
@@ -38,7 +39,7 @@ export const Layout = (props: {
         <MuiThemeProvider theme={materialTheme}>
           <ThemeProvider theme={theme}>
           <EmotionTheme theme={theme}>
-            <ContentCard
+            <ContentCard as="main"
               p={props.unpadded ? null : 4}
             >{props.children}</ContentCard>
             </EmotionTheme>
@@ -54,17 +55,14 @@ export const Layout = (props: {
 
 const mx = value => ({ marginRight: value, marginLeft: value })
 
-const ContentCard = props => <Card
-  {...props}
-  mx="auto"
-  css={mq({
-    overflow: "hidden",
-    "@media screen": {
-      width: theme.fullWidth,
-      backgroundColor: "snow",
-      borderRadius: 2,
-    },
-  })}
-/>
+const ContentCard = styled(Card)(mq({
+  ...mx("auto"),
+  overflow: "hidden",
+  "@media screen": {
+    width: theme.fullWidth,
+    backgroundColor: "snow",
+    borderRadius: 2,
+  },
+}))
 
 export default Layout

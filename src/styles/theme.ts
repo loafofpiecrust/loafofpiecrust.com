@@ -7,7 +7,8 @@ import { expandShortcuts, CSSShortcuts } from "./system/shortcuts";
 
 const theme = {
   pageWidth: 960,
-  linkColor: "#dd0060",
+  // linkColor: "#dd0060",
+  linkColor: "coral",
   transitionTime: "160ms",
   fullWidth: ["100%", 600, 800, 960],
   space: [0, 4, 8, 16, 32, 48, 64, 128],

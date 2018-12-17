@@ -5,7 +5,7 @@ export default {
   keywords: ['programming', 'code', 'design'],
   navbar: [
     { url: '/projects', label: 'projects' },
-    { url: '/stories', label: 'stories' },
+    // { url: '/stories', label: 'stories' },
     { url: "/about", label: "about" },
   ],
 }

@@ -106,10 +106,10 @@ const inset = [3, 4, 5]
 const verticalInset = 3
 
 const coloredLink = (color) => ({
-  color: color,
+  color: "inherit",
   borderColor: color,
   "&:hover": {
-    borderColor: "transparent",
+    color: color,
   }
 })
 
@@ -122,14 +122,14 @@ const ResumeHeader = withProps({
   px: inset,
   py: 4,
   marginBottom: 4,
-  a: coloredLink("mediumspringgreen"),
+  a: coloredLink("navy"),
 })))
 
 const SectionHeader = withProps({
   as: "h3",
-  bg: "mediumseagreen",
   boxShadow: 1,
 })(styled(Card)(mq({
+  backgroundColor: "background",
   fontWeight: "normal",
   color: "whiteText",
   py: verticalInset,

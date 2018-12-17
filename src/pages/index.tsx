@@ -1,11 +1,17 @@
+
 import React from "react"
-import { Link } from "gatsby"
-import { Layout } from "components/layout"
+import Layout from "components/layout"
 
-import "styles/global"
-
-export default () => (
+export default (props) => (
   <Layout>
-    <h1>Hi people</h1>
+    <h1>What I'm Up To</h1>
+
+    Recent wood project?
+    (Digital) Design => Result
+
+    Current job
+
+    current programming project: Roundware, turntable, Autodesk.
+
   </Layout>
 )

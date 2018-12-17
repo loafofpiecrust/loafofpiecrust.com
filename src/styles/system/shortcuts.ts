@@ -11,7 +11,7 @@ const shortcuts = {
 }
 
 export const expandShortcuts = (style): CSSObject => {
-  const result = { ...style }
+  const result = {}
   Object.entries(style).forEach(([key, value]) => {
     const shortcut = shortcuts[key]
     if (shortcut) {
@@ -20,6 +20,8 @@ export const expandShortcuts = (style): CSSObject => {
       }
     } else if (typeof value === "object" && !Array.isArray(value)) {
       result[key] = expandShortcuts(value)
+    } else {
+      result[key] = value
     }
   })
   return result
