@@ -1,4 +1,6 @@
+image: node:10
 publish:
+  only: master
   stage: deploy
   script:
     - npm install
