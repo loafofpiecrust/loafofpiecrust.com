@@ -1,0 +1,14 @@
+
+# Battle Royale Extreme
+_________
+
+So there was a competition like a battle royale where everyone got something to start with and were then pitted against each other to see who is the last one standing. it consists of about everyone in the school that I know and others that I don't. It seems to be some televised event like they usually are but i don't know that really until afterwards.
+
+I start out only with a big thing of keys but i survive long into the end. There was one point in an office room where daisy was trying to grab for my keys like they were an important weapon, and she was very aggressive about it all. There were a few others in the same room watching that occur as well. I don't remember if they also tried to steal my keys or not.
+
+I'm running out into a parking lot, trees to one side, unsure of who is left or if I will survive or not. I run across this big parking lot towards a building. I suddenly see `Claire`{:.text-teal} and some other [white girl][] come out of the building, tearing at each other and tripping over many times. this is on the scene of a sidewalk behind a fast-food type place. Could be one of the places near the school.
+
+The goal i think, remembering from that point, is to knock each person over onto their stomach where they cant get up. thats when they lose. So i seize the opportunity and run up, knocking both of them over. I thought there would still be plenty left to fight, but it turns out that they were the last of the people alive. Someone behind me on another sidewalk curb in a `green`{:.green} shirt says "Wow, I didn't think someone would actually win." I was relieved to know that he wasnt a competitor. "I won? really? wow that doesn't make much sense." then the host of the show, some black dude, comes and picks me up in his smart car, and i can tell that theres a camera somewhere in the car. families are waiting in a nearby cafe. it's a coffee-shop type place with glass tables, two couches, and a big vintage rug on the floor. the host congratulates me but looks solemn, and tells me that theres also bad news. just before the royale, i had heard that claire was in the hospital, but i was told it was minor and that she would be alright. She did fight viciously *in the royale*, after all. The bad news he gave me though, was "Well...... Claire is dead. She died three hours ago." (this was more than three hours after the royale ended). I am outraged, "WHAT?! SHE'S DEAD?! CLAIRE'S DEAD?!" i'm instantly pouring tears, gushing. muttering no, no, no, no, no. the camera on tv sees this all. minds eye pans out of the car to see the spiralling, infinite, circles of the interstate rolling in on themselves, ramping automobiles up and down, right and around. On the Chicago highways of life, you never know what's past the next turnpike.
+
+
+[white girl]: https://en.wikipedia.org/wiki/Starbucks
