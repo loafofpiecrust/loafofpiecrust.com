@@ -26,7 +26,12 @@ exports.onCreateNode = params => {
 }
 
 exports.createPages = async params => {
-  await mdx.createPages("/stories", ["fields.slug"])(params)
+  await mdx.createPages(
+    "/stories",
+    ["fields.slug"],
+    require.resolve("./src/components/story.tsx"),
+  )(params)
+  // await mdx.createPages("/blog", ["frontmatter.date"])(params)
 }
 
 

@@ -1,3 +1,4 @@
+const componentWithMDXScope = require("gatsby-mdx/component-with-mdx-scope")
 const path = require("path")
 const { createFilePath } = require("gatsby-source-filesystem")
 
@@ -26,8 +27,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 }
 
 // basePath: string, sortBy: string[]
-exports.createPages = (basePath, sortBy) => async ({ graphql, actions }) => {
-  // console.log("creating mdx pages")
+exports.createPages = (basePath, sortBy, component) => async ({ graphql, actions }) => {
   const sortParams = sortBy.map(field => field.replace(".", "___"))
   const result = await graphql(`
     {
@@ -36,12 +36,6 @@ exports.createPages = (basePath, sortBy) => async ({ graphql, actions }) => {
         sort: { fields: ${sortParams} }
       ) {
         edges {
-          next {
-            fields { slug }
-          }
-          previous {
-            fields { slug }
-          }
           node {
             id
             fields { slug }
@@ -65,17 +59,27 @@ exports.createPages = (basePath, sortBy) => async ({ graphql, actions }) => {
     throw result.errors
   }
 
-  result.data.allMdx.edges.forEach(({ node, next, previous }) => {
+  const entries = result.data.allMdx.edges
+
+  entries.forEach(({ node }, index) => {
+    const prev = index > 0 ? entries[index - 1].node : null
+    const next = index < entries.length - 1 ? entries[index + 1].node : null
+
     actions.createPage({
       path: node.fields.slug,
-      // component: componentWithMDXScope(
-      //   path.resolve("./src/components/mdxStory.tsx"),
-      //   node.code.scope
-      // ),
-      component: node.parent.absolutePath,
+      component: componentWithMDXScope(
+        component,
+        node.code.scope
+      ),
+
+      // Defers picking the rendering component to gatsby
+      // check [gatsby-config.js] for defaults per folder
+      // component: node.parent.absolutePath,
       context: {
         next: next ? next.fields.slug : null,
-        previous: previous ? previous.fields.slug : null,
+        previous: prev ? prev.fields.slug : null,
+        id: node.id,
+        // frontmatter: node.frontmatter,
       }
     })
   })

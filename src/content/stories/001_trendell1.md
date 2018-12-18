@@ -1,6 +1,4 @@
-
 # One Nation, Under Love
----
 
 I was visiting my good friend in his new home of a country. He had lived in the country that I take residence, but at some point he discovered that this country was his true home. He moved there just with the intent of discovering a new place, looking at things in maybe a new way. But he didn't expect the full-body spiritual shift that occurred. He just found a place that he felt welcome in, unlike the scathing uneventfulness of our birth country. Well, that is how he tells it to me anyway.
 
