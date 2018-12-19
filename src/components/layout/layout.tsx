@@ -17,8 +17,6 @@ export const Layout = (props: {
   children: any
   unpadded?: boolean
 }) => <>
-  <Global styles={globalStyles} />
-
   <Helmet
     title={(props.title ? `${props.title} - ` : "") + siteConfig.title}
     meta={[
@@ -26,7 +24,7 @@ export const Layout = (props: {
       { name: "keywords", content: siteConfig.keywords.join(", ") },
     ]}
   >
-    <html lang="en" />
+    <html lang="en"/>
   </Helmet>
 
   <EmotionTheme theme={theme}>
@@ -35,7 +33,10 @@ export const Layout = (props: {
 
   <MuiThemeProvider theme={materialTheme}>
     <EmotionTheme theme={theme}>
-      <main css={styles.content(props.unpadded)}>{props.children}</main>
+      <main css={styles.content(props.unpadded)}>
+        <Global styles={globalStyles} />
+        {props.children}
+      </main>
     </EmotionTheme>
   </MuiThemeProvider>
 
@@ -52,7 +53,7 @@ const styles = {
       overflow: "hidden",
       "@media screen": {
         width: theme.fullWidth,
-        backgroundColor: "snow",
+        backgroundColor: "lightBackground",
         borderRadius: 2,
       },
     })

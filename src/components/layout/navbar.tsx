@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import { css } from "@emotion/core"
 import theme, { mq } from "styles/theme"
+import { contrastBackground } from "styles/system/shortcuts";
 
 export const NavBar = (props: {
   items: { url: string; label: string }[]
@@ -21,13 +22,16 @@ export const NavBar = (props: {
 
 const styles = {
   link: (isActive: boolean) => css(mq({
-    backgroundColor: isActive ? theme.linkColor : "transparent",
-    color: "snow",
+    ...contrastBackground(isActive ? theme.colors.link : theme.colors.background),
+    // backgroundColor: isActive ? theme.colors.link : "transparent",
+    // color: "lightText",
     padding: 3,
     transition: "all 0.2s",
     textDecorationLine: "none",
+    fontWeight: "bold",
     "&:hover": {
-      backgroundColor: theme.linkColor,
+      ...contrastBackground(theme.colors.link),
+      // backgroundColor: theme.colors.link,
     },
   })),
 }

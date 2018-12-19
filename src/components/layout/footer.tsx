@@ -1,15 +1,15 @@
 import React from "react"
 import { mq, fullWidthClass } from "styles/theme"
-import { hideOnPrint } from "styles/global"
+import { hideOnPrint, globalStyles } from "styles/global"
 import { paddingX, paddingY, marginX } from "styles/system/shortcuts"
-import { css } from "@emotion/core"
+import { css, Global } from "@emotion/core"
 
 export const Footer = () => (
   <footer css={styles.container}>
     <span>Powered by MAGIC</span>
     <span>
       Made with
-      <span css={{ color: "red" }}>{" <3 "}</span>
+      <b css={{ color: "red" }}> ❤ </b>
       in New Orleans
     </span>
   </footer>
@@ -25,7 +25,8 @@ const styles = {
       ...marginX("auto"),
       display: "flex",
       justifyContent: "space-between",
-      color: "snow",
+      color: "lightText",
+      fontWeight: "bold",
     })
   ),
 }

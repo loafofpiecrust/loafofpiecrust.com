@@ -2,14 +2,14 @@ import React from "react"
 import Layout from "components/layout/layout"
 import styled from "@emotion/styled"
 import theme, { mq } from "styles/theme";
-import { flex, paddingX, paddingY } from "styles/system/shortcuts";
-
+import { flex, paddingX, paddingY, contrastBackground } from "styles/system/shortcuts";
+import color from "color"
 
 export default () => (
   <Layout unpadded title="Resume">
     <ResumeHeader>
       <div css={[flex.row, flex.alignCenter]}>
-        <h2 css={{ color: "white", flex: 1, margin: 0 }}>
+        <h2 css={{ flex: 1, margin: 0 }}>
           Taylor Snead
         </h2>
         
@@ -103,7 +103,6 @@ const inset = [3, 4, 5]
 const verticalInset = 3
 
 const coloredLink = (color) => ({
-  color: "inherit",
   borderColor: color,
   "&:hover": {
     color: color,
@@ -113,18 +112,15 @@ const coloredLink = (color) => ({
 const ResumeHeader = styled("div")(mq({
   ...paddingX(inset),
   ...paddingY(4),
+  ...contrastBackground(theme.colors.link),
   marginBottom: 4,
-  a: coloredLink("navy"),
-  backgroundColor: "coral",
-  color: "whiteText",
+  a: coloredLink(color(theme.colors.background).darken(0.25).string()),
 }))
 
 const SectionHeader = styled("h3")(mq({
   ...paddingX(inset),
   ...paddingY(verticalInset),
-  backgroundColor: "background",
-  fontWeight: "normal",
-  color: "whiteText",
+  ...contrastBackground(theme.colors.background),
   boxShadow: theme.shadows[1],
 }))
 

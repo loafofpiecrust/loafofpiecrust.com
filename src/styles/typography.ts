@@ -11,7 +11,7 @@ const marginX = (value: number | string) => (
 )
 
 export default new Typography({
-  baseFontSize: "17px",
+  baseFontSize: "18px",
   baseLineHeight: 1.45,
   blockMarginBottom: 0.8,
   scaleRatio: 2,
@@ -25,7 +25,7 @@ export default new Typography({
   bodyFontFamily: ["Cabin", "serif"],
   // headerColor: gray(10),
   // bodyColor: gray(20),
-  headerWeight: 600,
+  headerWeight: 700,
   bodyWeight: 400,
   boldWeight: 700,
   // headerFontFamily: ['Josefin Sans', 'sans'],

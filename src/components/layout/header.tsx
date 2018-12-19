@@ -36,7 +36,7 @@ const styles = {
     })
   ),
   titleLink: css(mq({
-    color: "snow",
+    color: "lightText",
     textDecoration: "none",
     marginLeft: 3,
   })),

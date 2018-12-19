@@ -1,5 +1,7 @@
-import { CSSObject } from "create-emotion";
-import { css } from "@emotion/core";
+import { CSSObject } from "create-emotion"
+import { css } from "@emotion/core"
+import color from "color"
+import theme from "styles/theme";
 
 export interface CSSShortcuts {
   px?: any,
@@ -45,6 +47,15 @@ export const marginY = (value: number | string | any[]) => (
 export const size = (value: number | string | any[]) => (
   { width: value, height: value }
 )
+
+export const contrastBackground = (value: string) => {
+  const bg = color(value)
+  let fg = bg.isDark() ? theme.colors.lightText : theme.colors.darkText
+  return {
+    backgroundColor: value,
+    color: fg,
+  }
+}
 
 export const fillParent = css(size("100%"))
 

@@ -3,6 +3,8 @@ import { css } from "@emotion/core"
 import { themed } from "./system/theming"
 import { expandShortcuts, CSSShortcuts } from "./system/shortcuts"
 import { CSSProperties, CSSPropertiesWithMultiValues, Interpolation } from "@emotion/serialize"
+import gray from "gray-percentage"
+import color from "color"
 
 import "typeface-arvo"
 import "typeface-cabin"
@@ -11,8 +13,6 @@ import "typeface-pt-mono"
 
 const theme = {
   pageWidth: 960,
-  // linkColor: "#dd0060",
-  linkColor: "coral",
   transitionTime: "160ms",
   fullWidth: ["100%", 600, 800, 960],
   space: [0, 4, 8, 16, 32, 48, 64, 128],
@@ -22,7 +22,7 @@ const theme = {
     bold: 700,
   },
   radii: [0, 2, 4, 8],
-  shadows: ["none", "0 2px 16px rgba(0, 0, 0, 0.25)"],
+  shadows: ["none", `0 2px 16px ${gray(75)}`],
   fonts: {
     body: "Cabin",
     sans: "Cabin",
@@ -31,10 +31,12 @@ const theme = {
     mono: "PT Mono",
   },
   colors: {
-    link: "#dd0060",
-    background: "mediumseagreen",
-    whiteText: "rgba(255,255,255,1)",
-    blackText: "rgba(0,0,0,1)",
+    link: "indianred",
+    background: color("mediumseagreen").darken(0.1).string(),
+    lightBackground: "snow",
+    darkBackground: "darkslategray",
+    lightText: "snow",
+    darkText: color("darkslategray").darken(0.5).fade(0.15).string(),
     teal: "rgb(0, 190, 166)",
   },
   from(key: string, values: any[]): any {

@@ -1,7 +1,8 @@
 import { css } from "@emotion/core"
 
-import gray from "gray-percentage"
+import color from "color"
 import theme from "./theme"
+import { contrastBackground } from "./system/shortcuts";
 
 export const globalStyles = css({
   html: {
@@ -13,7 +14,7 @@ export const globalStyles = css({
       backgroundColor: theme.colors.background,
     },
     fontFamily: theme.fonts.body,
-    color: theme.colors.blackText,
+    color: theme.colors.darkText,
   },
   "h1,h2,h3,h4,h5,header": {
     fontFamily: theme.fonts.header,
@@ -26,32 +27,28 @@ export const globalStyles = css({
     margin: 0,
   },
   "main a": {
-    // color: theme.linkColor,
     color: "inherit",
     textDecoration: "none",
-    borderBottom: `2px dashed ${theme.linkColor}`,
+    borderBottom: `2px dashed ${theme.colors.link}`,
     transition: `all ${theme.transitionTime}`,
     "&:hover, &:active": {
       // borderBottomColor: "transparent",
-      color: theme.linkColor,
+      color: theme.colors.link,
     },
   },
   blockquote: {
-    borderLeftColor: theme.linkColor,
+    borderLeftColor: theme.colors.link,
     borderLeftStyle: "solid",
     fontStyle: "italic",
-    backgroundColor: "lavender",
-    color: gray(30),
+    backgroundColor: "lavenderblush",
+    color: color(theme.colors.darkText).fade(0.1).string(),
   },
   code: {
-    border: `1px solid ${theme.linkColor}`,
+    border: `1px solid ${theme.colors.link}`,
     padding: 5,
     borderRadius: 3,
-    backgroundColor: "seashell",
-    "&.dark": {
-      backgroundColor: 'black',
-      color: 'snow',
-    }
+    ...contrastBackground("seashell"),
+    "&.dark": contrastBackground(theme.colors.darkText),
   }
 })
 
