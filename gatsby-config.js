@@ -3,7 +3,7 @@ const folderNamed = (name, path) => ({
   resolve: `gatsby-source-filesystem`,
   options: {
     name,
-    path: `${__dirname}/src/${path || name}`,
+    path: `${__dirname}/${path || name}`,
   }
 })
 
@@ -55,7 +55,9 @@ module.exports = {
         ],
       },
     },
-    ...folders("images", "pages", "content"),
+    folderNamed("images", "src/images"),
+    folderNamed("pages", "src/pages"),
+    folderNamed("stories", "content/stories"),
     {
       resolve: "gatsby-plugin-netlify-cms",
       options: {

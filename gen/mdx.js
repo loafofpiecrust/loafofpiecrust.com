@@ -2,26 +2,34 @@ const componentWithMDXScope = require("gatsby-mdx/component-with-mdx-scope")
 const path = require("path")
 const { createFilePath } = require("gatsby-source-filesystem")
 
+const projectDir = path.dirname(__dirname)
+
 // TODO: Pull this out into a generic fileNodeAddSlug or something
 exports.onCreateNode = ({ node, getNode, actions }) => {
-  let fullPath = createFilePath({
-    node,
-    getNode,
-    basePath: "src/content",
-    trailingSlash: false,
-  })
+  const parent = getNode(node.parent)
+  const pathInProject = "/" + path.relative(projectDir, parent.absolutePath)
+    .replace(/\.[^/.]+$/, "")
+  
+  // Remove base-paths from the final URL
+  const pathOnline = pathInProject.replace(/^(\/src)?\/(content|pages)/, "")
+
   // If content specifies 'slug', use that for the last part of generated path
   let slug = node.frontmatter.slug
   if (!slug) {
     // Remove an initial number in the filename
     // As this is used purely for ordering
-    slug = path.basename(fullPath)//.replace(/^(\d+)[\-_]/, "")
+    slug = path.basename(pathOnline)//.replace(/^(\d+)[\-_]/, "")
   }
 
   actions.createNodeField({
     node,
     name: "slug",
-    value: path.join(path.dirname(fullPath), slug),
+    value: path.join(path.dirname(pathOnline), slug),
+  })
+  actions.createNodeField({
+    node,
+    name: "pathInProject",
+    value: pathInProject,
   })
 }
 
@@ -30,7 +38,7 @@ exports.createPages = (basePath, sortBy, component) => async ({ graphql, actions
   const sortParams = sortBy.map(field => field.replace(".", "___"))
   const result = await graphql(`{
     allMdx(
-      filter: { fields: { slug: { regex: "^${basePath}/" }}}
+      filter: { fields: { pathInProject: { regex: "^${basePath}/" }}}
       sort: { fields: ${sortParams} }
     ) {
       edges {
@@ -63,10 +71,6 @@ exports.createPages = (basePath, sortBy, component) => async ({ graphql, actions
         component,
         node.code.scope
       ),
-
-      // Defers picking the rendering component to gatsby
-      // check [gatsby-config.js] for defaults per folder
-      // component: node.parent.absolutePath,
       context: {
         next: next ? next.fields.slug : null,
         previous: prev ? prev.fields.slug : null,

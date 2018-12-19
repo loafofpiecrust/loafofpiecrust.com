@@ -15,7 +15,7 @@ collections:
   - name: projects
     label: Projects
     label_singular: Project
-    folder: src/content/projects
+    folder: content/projects
     create: true
     extension: md
     format: frontmatter
@@ -32,7 +32,7 @@ collections:
   - name: blog
     label: Blog Posts
     label_singular: Post
-    folder: src/content/blog
+    folder: content/blog
     create: true
     extension: md
     format: frontmatter
@@ -53,7 +53,7 @@ collections:
   - name: stories
     label: Stories
     label_singular: Story
-    folder: src/content/stories
+    folder: content/stories
     create: true
     extension: md
     format: frontmatter

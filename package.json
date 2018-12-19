@@ -43,6 +43,8 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "clean": "rm -rf .cache public",
+    "rebuild": "yarn run clean && yarn run build",
     "serve": "gatsby build && gatsby serve",
     "develop": "gatsby develop",
     "start": "yarn run develop",
