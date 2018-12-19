@@ -1,5 +1,5 @@
 import React from "react"
-import { mq, fullWidthClass } from "styles/theme"
+import theme, { mq, fullWidthClass } from "styles/theme"
 import { hideOnPrint, globalStyles } from "styles/global"
 import { paddingX, paddingY, marginX } from "styles/system/shortcuts"
 import { css, Global } from "@emotion/core"
@@ -20,7 +20,7 @@ const styles = {
     hideOnPrint,
     fullWidthClass,
     mq({
-      ...paddingX(3),
+      ...paddingX(4),
       ...paddingY(4),
       ...marginX("auto"),
       display: "flex",
