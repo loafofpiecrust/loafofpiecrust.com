@@ -1,4 +1,5 @@
 import { CSSObject } from "create-emotion";
+import { css } from "@emotion/core";
 
 export interface CSSShortcuts {
   px?: any,
@@ -25,4 +26,41 @@ export const expandShortcuts = (style): CSSObject => {
     }
   })
   return result
+}
+
+export const paddingX = (value: number | string | any[]) => (
+  { paddingRight: value, paddingLeft: value }
+)
+export const paddingY = (value: number | string | any[]) => (
+  { paddingTop: value, paddingBottom: value }
+)
+
+export const marginX = (value: number | string | any[]) => (
+  { marginRight: value, marginLeft: value }
+)
+export const marginY = (value: number | string | any[]) => (
+  { marginTop: value, marginBottom: value }
+)
+
+export const size = (value: number | string | any[]) => (
+  { width: value, height: value }
+)
+
+export const fillParent = css(size("100%"))
+
+export const flex = {
+  box: css({ display: "flex" }),
+  column: css({
+    display: "flex",
+    flexDirection: "column",
+  }),
+  row: css({
+    display: "flex",
+    flexDirection: "row",
+  }),
+  wrap: css({ flexWrap: "wrap" }),
+  alignCenter: css({ alignItems: "center" }),
+  alignEnd: css({ alignItems: "flex-end" }),
+  justifyBetween: css({ justifyContent: "space-between" }),
+  justifyAround: css({ justifyContent: "space-around" }),
 }

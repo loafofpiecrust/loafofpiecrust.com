@@ -1,47 +1,44 @@
 import React from "react"
-import Layout from "components/layout"
-import styled from "react-emotion"
-import { Box, Text, Card } from "styles/system/text"
-import { Flex, Column, Row } from "styles/system/flex"
-import withProps from "recompose/withProps"
-import { mq } from "styles/theme";
-import { themed } from "styles/system/theming";
+import Layout from "components/layout/layout"
+import styled from "@emotion/styled"
+import theme, { mq } from "styles/theme";
+import { flex, paddingX, paddingY } from "styles/system/shortcuts";
 
 
 export default () => (
   <Layout unpadded title="Resume">
     <ResumeHeader>
-      <Flex alignCenter>
-        <Text as="h2" color="white" flex={1} m={0}>
+      <div css={[flex.row, flex.alignCenter]}>
+        <h2 css={{ color: "white", flex: 1, margin: 0 }}>
           Taylor Snead
-        </Text>
+        </h2>
         
-        <Flex column alignEnd>
+        <div css={[flex.column, flex.alignEnd]}>
           {/* <span>275 Lamartine St #1, Jamaica Plain, MA 02130</span> */}
           <span>taylorsnead@gmail.com</span>
           <span>Cell: 504-442-0219</span>
           <span><a href="/">loafofpiecrust.com</a></span>
           <span>GitHub: <a href="https://github.com/loafofpiecrust">loafofpiecrust</a></span>
-        </Flex>
-      </Flex>
+        </div>
+      </div>
     </ResumeHeader>
 
-    <Flex wrap>
-      <Flex column flex={1} mr={[2, 4]}>
+    <div css={[flex.row, flex.wrap]}>
+      <div css={[flex.column, mq({ flex: 1, marginRight: [2, 4] })]}>
         <LeftSection>
           <SectionHeader>Education</SectionHeader>
-          <Flex justifyBetween>
-            <Text as="p" flex={1}>
+          <div css={[flex.row, flex.justifyBetween]}>
+            <p css={{ flex: 1 }}>
               <b>Northeastern University</b><br />
               Candidate for Bachelor of Science<br />
               in Computer Science
-            </Text>
-            <Text as="i" textAlign="right">
+            </p>
+            <i css={{ textAlign: "right" }}>
               Boston, MA<br />
               GPA: 3.4<br />
               Graduation: 2021
-            </Text>
-          </Flex>
+            </i>
+          </div>
           <p>
             <i>
               <b>Honors:</b>
@@ -51,29 +48,29 @@ export default () => (
             <i>
               <b>Relevant Coursework:</b>
             </i>
-            <Flex wrap justifyBetween>
+            <div css={[flex.column, flex.wrap, flex.justifyBetween]}>
               {courses.map(name => <span key={name}>{name}</span>)}
-            </Flex>
+            </div>
           </p>
         </LeftSection>
 
         <LeftSection>
           <SectionHeader>Freelance Projects</SectionHeader>
           {freelanceProjects.map(proj => (
-            <Flex column key={proj.timeFrame}>
+            <div css={flex.column} key={proj.timeFrame}>
               <span><b>{proj.title}</b></span>
               <span><b>{proj.organization}</b> - {proj.location}</span>
               {proj.desc}
-            </Flex>
+            </div>
           ))}
         </LeftSection>
-      </Flex>
+      </div>
 
-      <Flex column flex={1}>
+      <div css={[flex.column, { flex: 1 }]}>
         <RightSection>
           <SectionHeader>Work Experience</SectionHeader>
           {workExperience.filter(j => !j.hidden).map(job => (
-            <Flex column key={job.timeFrame}>
+            <div css={flex.column} key={job.timeFrame}>
               <span>
                 <b>{job.position}</b>
                 <i style={{ float: "right" }}>{job.timeFrame}</i>
@@ -84,21 +81,21 @@ export default () => (
               </span>
 
               {job.desc}
-            </Flex>
+            </div>
           ))}
         </RightSection>
 
         <RightSection>
           <SectionHeader>Personal Projects</SectionHeader>
           {personalProjects.map(proj => (
-            <Flex column key={proj.title}>
+            <div css={flex.column} key={proj.title}>
               <span><b>{proj.title}</b></span>
               <p>{proj.desc}</p>
-            </Flex>
+            </div>
           ))}
         </RightSection>
-      </Flex>
-    </Flex>
+      </div>
+    </div>
   </Layout>
 )
 
@@ -113,33 +110,27 @@ const coloredLink = (color) => ({
   }
 })
 
-const ResumeHeader = withProps({
-  mb: 4,
-  color: "whiteText",
-  // bg: "rgb(255, 12, 70)",
-  bg: "coral",
-})(styled(Text)(mq({
-  px: inset,
-  py: 4,
+const ResumeHeader = styled("div")(mq({
+  ...paddingX(inset),
+  ...paddingY(4),
   marginBottom: 4,
   a: coloredLink("navy"),
-})))
+  backgroundColor: "coral",
+  color: "whiteText",
+}))
 
-const SectionHeader = withProps({
-  as: "h3",
-  boxShadow: 1,
-})(styled(Card)(mq({
+const SectionHeader = styled("h3")(mq({
+  ...paddingX(inset),
+  ...paddingY(verticalInset),
   backgroundColor: "background",
   fontWeight: "normal",
   color: "whiteText",
-  py: verticalInset,
-  px: inset,
-})))
+  boxShadow: theme.shadows[1],
+}))
 
-const ResumeSection = (side: "left" | "right") => withProps({
-  as: "section",
-  mb: 4
-})(styled(Box)(mq({
+
+const ResumeSection = (side: "left" | "right") => styled("section")(mq({
+  marginBottom: 4,
   "& > *": {
     paddingLeft: side === "left" ? inset : 2,
     paddingRight: side === "left" ? 2 : inset,
@@ -148,7 +139,7 @@ const ResumeSection = (side: "left" | "right") => withProps({
     textAlign: side,
     borderRadius: side === "left" ? "0 3px 3px 0" : "3px 0 0 3px",
   }
-})))
+}))
 
 const LeftSection = ResumeSection("left")
 const RightSection = ResumeSection("right")

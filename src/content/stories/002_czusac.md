@@ -7,7 +7,6 @@ import { SongPlayer } from "components/song-player"
 Charles grows up to be a bartender, as per his destiny, since he can really look like one. He isn't just the bartender, though, he owns the bar. This cool hole-in-the-wall in Serbia. He had gone to Eastern Europe to try being a weird sex-jiggalo. It didn't really end up being how he thought it would be. There were a lot of strange people with strange fetishes, and Swiss swingers. Oh man, those Swiss swingers; that was a fuckin odd-ass couple.
 
 Swiss German:
-
 > “I don't know if I can make an objective choice about whether we should do this or not...”
 
 He was just wearing his normal green shirt and some shorts. He didn't really think he needed to change clothes for this.

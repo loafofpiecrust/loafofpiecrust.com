@@ -2,7 +2,7 @@ import React from "react"
 
 import BaseFlex from "styled-flex-component"
 
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import { flex, space, width, color, FlexProps, SpaceProps, WidthProps, ColorProps, fontSize, FontSizeProps } from "styled-system";
 import { withProps, defaultProps } from "recompose";
 

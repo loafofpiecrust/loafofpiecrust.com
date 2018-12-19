@@ -1,8 +1,9 @@
 
 const themeMappings = [
-  { keys: ["color", "backgroundColor", "borderColor"], themeKey: "colors" },
+  { keys: ["color", "backgroundColor", "background", "borderColor"], themeKey: "colors" },
   { keys: ["boxShadow"], themeKey: "shadows" },
   { keys: ["borderRadius", "borderTopRightRadius", "borderTopLeftRadius"], themeKey: "radii" },
+  { keys: ["flex", "flex-grow", "flex-shrink"], themeKey: " " },
 ].reduce((acc, mapping) => {
   for (const propKey of mapping.keys) {
     acc[propKey] = mapping.themeKey
@@ -10,7 +11,7 @@ const themeMappings = [
   return acc
 }, {})
 
-const mapTheme = (theme, style) => {
+function mapTheme(theme, style) {
   Object.entries(style).forEach(([key, value]) => {
     const themePart = theme[themeMappings[key] || "space"]
     if (themePart && !Array.isArray(themePart)) {
@@ -38,4 +39,6 @@ const mapTheme = (theme, style) => {
   return style
 }
 
-export const themed = (theme, style) => mapTheme(theme, style)
+export function themed(theme, style) {
+  return mapTheme(theme, style)
+}

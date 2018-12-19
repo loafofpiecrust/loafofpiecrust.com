@@ -4,7 +4,6 @@ const { createFilePath } = require("gatsby-source-filesystem")
 
 // TODO: Pull this out into a generic fileNodeAddSlug or something
 exports.onCreateNode = ({ node, getNode, actions }) => {
-  // console.log({ ...node, rawBody: "", internal: null })
   let fullPath = createFilePath({
     node,
     getNode,
@@ -29,31 +28,22 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 // basePath: string, sortBy: string[]
 exports.createPages = (basePath, sortBy, component) => async ({ graphql, actions }) => {
   const sortParams = sortBy.map(field => field.replace(".", "___"))
-  const result = await graphql(`
-    {
-      allMdx(
-        filter: { fields: { slug: { glob: "${basePath}/*" }}}
-        sort: { fields: ${sortParams} }
-      ) {
-        edges {
-          node {
-            id
-            fields { slug }
-            parent {
-              ... on File {
-                name
-                absolutePath
-                sourceInstanceName
-              }
-            }
-            code {
-              scope
-            }
+  const result = await graphql(`{
+    allMdx(
+      filter: { fields: { slug: { regex: "^${basePath}/" }}}
+      sort: { fields: ${sortParams} }
+    ) {
+      edges {
+        node {
+          id
+          fields { slug }
+          code {
+            scope
           }
         }
       }
     }
-  `)
+  }`)
   if (result.errors) {
     console.log(result.errors)
     throw result.errors
@@ -61,9 +51,11 @@ exports.createPages = (basePath, sortBy, component) => async ({ graphql, actions
 
   const entries = result.data.allMdx.edges
 
-  entries.forEach(({ node }, index) => {
-    const prev = index > 0 ? entries[index - 1].node : null
-    const next = index < entries.length - 1 ? entries[index + 1].node : null
+  for (let idx = 0; idx < entries.length; idx++) {
+    const { node } = entries[idx]
+    const prev = idx > 0 ? entries[idx - 1].node : null
+    const next = idx < entries.length - 1 ? entries[idx + 1].node : null
+
 
     actions.createPage({
       path: node.fields.slug,
@@ -82,5 +74,5 @@ exports.createPages = (basePath, sortBy, component) => async ({ graphql, actions
         // frontmatter: node.frontmatter,
       }
     })
-  })
+  }
 }

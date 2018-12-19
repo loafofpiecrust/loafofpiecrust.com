@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import { css } from "emotion"
+import { css } from "@emotion/core"
 import theme, { mq } from "styles/theme"
 
 export const NavBar = (props: {
@@ -8,10 +8,10 @@ export const NavBar = (props: {
   activeUrl: string
 }) => (
   <nav style={{ display: "flex" }}>
-    {props.items.map(item => {
+    {props.items.map((item) => {
       const isActive = props.activeUrl.startsWith(item.url)
       return (
-        <Link key={item.url} to={item.url} className={styles.link(isActive)}>
+        <Link key={item.url} to={item.url} css={styles.link(isActive)}>
           {item.label}
         </Link>
       )

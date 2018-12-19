@@ -1,14 +1,20 @@
 import Typography from "typography"
 import gray from "gray-percentage"
-import { MOBILE_MEDIA_QUERY } from "typography-breakpoint-constants"
+import theme from "./theme"
 
-const monoFont = ["PT Mono", "monospace"]
+const paddingY = (value: number | string) => (
+  { paddingTop: value, paddingBottom: value }
+)
+
+const marginX = (value: number | string) => (
+  { marginRight: value, marginLeft: value }
+)
 
 export default new Typography({
   baseFontSize: "17px",
   baseLineHeight: 1.45,
   blockMarginBottom: 0.8,
-  // scaleRatio: 2,
+  scaleRatio: 2,
   // googleFonts: [
   //   { name: "Arvo", styles: ["400", "700"] },
   //   { name: "Cabin", styles: ["400", "400i", "700", "700i"] },
@@ -17,8 +23,8 @@ export default new Typography({
   // ],
   headerFontFamily: ["Arvo", "sans-serif"],
   bodyFontFamily: ["Cabin", "serif"],
-  headerColor: "hsla(0,0%,0%,0.9)",
-  bodyColor: "hsla(0,0%,0%,0.8)",
+  // headerColor: gray(10),
+  // bodyColor: gray(20),
   headerWeight: 600,
   bodyWeight: 400,
   boldWeight: 700,
@@ -35,12 +41,10 @@ export default new Typography({
     // Blockquote styles.
     blockquote: {
       ...scale(1 / 5),
+      ...paddingY(rhythm(6/16)),
+      ...marginX(0),
       borderLeftWidth: rhythm(6 / 16),
-      color: gray(35),
       paddingLeft: rhythm(10 / 16),
-      fontStyle: "italic",
-      marginLeft: 0,
-      marginRight: 0,
     },
     "blockquote > :last-child": {
       marginBottom: 0,
@@ -52,12 +56,13 @@ export default new Typography({
       fontWeight: options.bodyWeight,
     },
     "blockquote cite:before": {
-      content: '"— "',
+      content: '"&emdash; "',
     },
     code: {
-      fontFamily: monoFont.join(","),
+      ...scale(-0.15),
+      // fontFamily: theme.fonts.mono,
     },
-    [MOBILE_MEDIA_QUERY]: {
+    [`@media(max-width: ${theme.breakpoints[0]})`]: {
       blockquote: {
         borderLeftWidth: rhythm(3 / 16),
         paddingLeft: rhythm(9 / 16),

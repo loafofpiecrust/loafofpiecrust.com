@@ -3,6 +3,7 @@ backend:
   repo: loafofpiecrust/loafofpiecrust.com
   branch: master
   site_domain: loafofpiecrust.com
+  publish_mode: editorial_workflow
   squash_merges: true
 
 media_folder: static/media

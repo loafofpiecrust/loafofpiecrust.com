@@ -7,7 +7,7 @@
   ],
   "compilerOptions": {
     "lib": ["es2017", "dom"],
-    "types": [],
+    "types": ["@emotion/core"],
     "plugins": [
       { "name": "typescript-tslint-plugin" }
     ],
@@ -22,7 +22,7 @@
     },
     "jsx": "react",
     "target": "esnext",
-    "module": "es6",
+    "module": "es2015",
     "esModuleInterop": true,
     "moduleResolution": "node",
     "noEmit": true,

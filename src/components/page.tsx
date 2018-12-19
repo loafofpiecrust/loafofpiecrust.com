@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "./layout"
+import Layout from "./layout/layout"
 
 export default ({ children, pageContext }) => (
   <Layout>

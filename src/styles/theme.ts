@@ -1,9 +1,13 @@
 import facepaint from "facepaint"
-import { util } from "styled-system";
-import { themed } from "./system/theming";
-import { Interpolation } from "emotion";
-import { ClassInterpolation, CSSObject } from "create-emotion";
-import { expandShortcuts, CSSShortcuts } from "./system/shortcuts";
+import { css } from "@emotion/core"
+import { themed } from "./system/theming"
+import { expandShortcuts, CSSShortcuts } from "./system/shortcuts"
+import { CSSProperties, CSSPropertiesWithMultiValues, Interpolation } from "@emotion/serialize"
+
+import "typeface-arvo"
+import "typeface-cabin"
+// import "typeface-aleo"
+import "typeface-pt-mono"
 
 const theme = {
   pageWidth: 960,
@@ -13,20 +17,18 @@ const theme = {
   fullWidth: ["100%", 600, 800, 960],
   space: [0, 4, 8, 16, 32, 48, 64, 128],
   breakpoints: ["40em", "52em", "64em"],
+  mediaQueries: [],
   fontWeights: {
     bold: 700,
   },
   radii: [0, 2, 4, 8],
-  shadows: [
-    "none",
-    "0 2px 16px rgba(0, 0, 0, 0.25)"
-  ],
+  shadows: ["none", "0 2px 16px rgba(0, 0, 0, 0.25)"],
   fonts: {
     body: "Cabin",
     sans: "Cabin",
     header: "Arvo",
     serif: "Arvo",
-    mono: "Menlo",
+    mono: "PT Mono",
   },
   colors: {
     link: "#dd0060",
@@ -36,13 +38,15 @@ const theme = {
     teal: "rgb(0, 190, 166)",
   },
   from(key: string, values: any[]): any {
-    return values.map(x => theme[key][x])
+    return values.map((x) => theme[key][x])
   },
 }
 
-const mediaQueries = theme.breakpoints.map(w => `@media(min-width: ${w})`)
-const mqBase = facepaint(mediaQueries)
-export const mq = (style: CSSObject & CSSShortcuts): ClassInterpolation => 
-  mqBase(themed(theme, expandShortcuts(style)))
+theme.mediaQueries = theme.breakpoints.map((w) => `@media(min-width: ${w})`)
+const mqBase = facepaint(theme.mediaQueries)
+export const mq = (style: Interpolation) =>
+  mqBase(themed(theme, style))
+
+export const fullWidthClass = css(mq({ width: theme.fullWidth }))
 
 export default theme

@@ -10,8 +10,7 @@ In this case, we really don’t know them at all and shouldn’t, in fact, be wo
 
 The alarm fucks my ears in their anuses. It has to be the loudest shittery they’ve ever encountered in their entire lives. I moan, yell even, at the mindless device shrieking into my throbbing head. Today, I have short hair. It’s the kind that you get when you cut it yourself, let your best friend’s girlfriend try to cut it, then have to cut it even shorter yourself. Lastly, it’s the kind where you vow to never let anyone else near your head with scissors again. Then, you eat ice cream and forget all about how much you hate your friends sometimes. It ended up alright, though. I smack the useless, bloody clock until I have to throw it on the floor for hope that it shatters into a trillion shards of shrapnel. Luckily, it simply stops shouting at me.
 
-    `Pow Pow - LCD Soundsystem`
-    <SongPlayer title="pow pow" artist="lcd soundsystem" />
+<SongPlayer title="pow pow" artist="lcd soundsystem" />
 
 The first words I heard that day from a real human being were from my conveniently placed roommate, who said: “Wanna go see the dolphins today?” My shuffled brain could only conjure up memories of the girl with blue and orange hair.
 

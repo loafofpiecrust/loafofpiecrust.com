@@ -1,6 +1,6 @@
-import SkillMeter from "components/skill-meter"
+import {SkillMeter} from "components/skill-meter"
 import { Row } from "styles/system/flex"
-import Layout from "components/layout"
+import Layout from "components/layout/layout"
 
 export default props => <Layout title="About" {...props}/>
 
@@ -16,12 +16,13 @@ I want to find meaning in producing software that, rather than simply increasing
 In my free time, I enjoy cooking and baking and crafting things from wood and fabric. Sometimes, I even like to [write](/stories).
 
 
-Denominations | 
+### Denominations
+  | 
 ------------- | -----
 Hometown | New Orleans, LA
 Religion | Church of the Flying Spaghetti Monster
 Food | 包子
-Pie Flavor | Ricotta (if you happen to be in New Orleans, eat at [my family's bakery](https://shakesugary.com))
+Pie Flavor | Ricotta (if you happen to be in New Orleans, eat at [my family's bakery](//shakesugary.com))
 Diplomacy | [Polish Empire](https://upload.wikimedia.org/wikipedia/commons/7/77/LIVONIA_vulgo_Lyefland-Joan_Blaeu%2C_1662.jpg)
 
 
@@ -29,12 +30,12 @@ Diplomacy | [Polish Empire](https://upload.wikimedia.org/wikipedia/commons/7/77/
 <Row gap={15}>
   <SkillMeter title="English"
     color="seagreen"
-    value={6} max={6}
+    value={1}
     format={() => "Native"}
   />
   <SkillMeter title="Mandarin"
     color="firebrick"
-    value={2} max={6}
+    value={2/6}
     format={() => "HSK II"}
   />
 </Row>

@@ -38,13 +38,21 @@ module.exports = {
         extensions: [".mdx", ".md"],
         defaultLayouts: {
           content: require.resolve("./src/components/story.tsx"),
-          default: require.resolve("./src/components/layout.tsx"),
+          default: require.resolve("./src/components/layout/layout.tsx"),
         },
         mdPlugins: [
           require("remark-attr"),
-          require("remark-normalize-headings"),
+          require("remark-breaks"),
+          // require("remark-normalize-headings"),
         ],
-        gatsbyRemarkPlugins: [],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: "gatsby-remark-smartypants",
+            options: {
+              dashes: "oldschool",
+            }
+          },
+        ],
       },
     },
     ...folders("images", "pages", "content"),
@@ -53,7 +61,7 @@ module.exports = {
       options: {
         enableIdentityWidget: false,
         // Register custom widgets in the module specified
-        modulePath: require.resolve("./src/cms/cms.ts"),
+        // modulePath: require.resolve("./src/cms/cms.ts"),
       }
     },
 
@@ -63,8 +71,8 @@ module.exports = {
     "gatsby-plugin-typescript",
     "gatsby-plugin-sass",
     "gatsby-transformer-yaml",
-    "gatsby-plugin-emotion",
-    "gatsby-plugin-styled-components",
+    // "gatsby-plugin-emotion",
+    // "gatsby-plugin-styled-components",
     "gatsby-plugin-catch-links",
 
     // styling
