@@ -7,9 +7,9 @@ I was visiting my good friend in his new home of a country. He had lived in the 
 I am white, he is black. This is of little importance, but I mention it just to give you some idea of how to imagine the people in this story.
 He was a cab driver here, and taking me somewhere in his yellow-ish thingy of a vehicle.
 
-> "How are you doing here? It's boring back home." - American accent
+> "How are you doing here? It's boring back home." --American accent
 
-> “Really? But for you it is home.” - He had gained some sort of Caribbean or South American accent from the local peoples here in the past few years.
+> “Really? But for you it is home.” --He had gained some sort of Caribbean or South American accent from the local peoples here in the past few years.
 
 > He chuckled. “You know what the Russians say, my friend”
 
@@ -22,7 +22,7 @@ At this point in our conversation, he was weaving between cars through traffic l
 
 We flew out of the throng of vehicles and into a less trafficked area, pulling over and parking on a bridge. Yeah, I know, a bridge with parking. What a strange place. We stepped out of his bright yellow ol' cab, onto the new and old cobblestone sidewalk.
 
-> “Oh! Are you familiar with the word 'carrot cake'?” -inquired he, with that something-accent.
+> “Oh! Are you familiar with the word 'carrot cake'?” --inquired he, with that something-accent.
 
 > “Well, yeah”
 

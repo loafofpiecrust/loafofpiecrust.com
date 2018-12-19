@@ -6,7 +6,7 @@ import { Flex } from "styles/system/flex";
 
 export default ({ pageContext, data: { mdx }, ...props }) => {
   const firstHeading = mdx.headings && mdx.headings.length ? mdx.headings[0] : null
-  const title = mdx.frontmatter.title || firstHeading.value
+  const title = mdx.frontmatter.title || (firstHeading && firstHeading.value)
 
   return <Layout title={title}>
     <article>
