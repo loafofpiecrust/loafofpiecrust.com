@@ -7,7 +7,7 @@ import { css, Global } from "@emotion/core"
 export const Footer = () => (
   <footer css={styles.container}>
     <span>Powered by MAGIC</span>
-    <span>
+    <span css={{ textAlign: "right" }}>
       Made with
       <b css={{ color: "red" }}> ❤ </b>
       in New Orleans

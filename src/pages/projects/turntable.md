@@ -1,0 +1,14 @@
+
+import MusicPlayer from "./music-player"
+
+# Turntable
+----------
+
+Open source music player app for Android allowing users to search online for music and listen in sync with other users online. This means that two people on distant reaches of the Earth from one another can listen to the same song at the same time, rhythms marching as one (with slight latency). If you don't like simultaneous listening, Turntable also supports sending other users recommendations and managing the recommendations you receive.
+
+[Browse source code](https://github.com/loafofpiecrust/turntable)
+[Download latest release](https://github.com/loafofpiecrust/turntable/releases)
+
+
+Until then, jam with some tunes right here: (you can send the current URL to show someone else a song)
+<MusicPlayer/>

@@ -4,7 +4,7 @@ const materialTheme = createMuiTheme({
   typography: {
     useNextVariants: true,
     fontFamily: "inherit",
-  },
+  }
 })
 
 export default materialTheme

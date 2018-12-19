@@ -10,7 +10,7 @@ import { MuiThemeProvider, Paper } from "@material-ui/core"
 import materialTheme from "styles/material-theme"
 import theme, { mq } from "styles/theme"
 import { globalStyles } from "styles/global"
-import { marginX } from "styles/system/shortcuts"
+import { marginX, paddingX, paddingY } from "styles/system/shortcuts"
 
 export const Layout = (props: {
   title?: string
@@ -49,7 +49,8 @@ const styles = {
   content: (unpadded?: boolean) => css(
     marginX("auto"),
     mq({
-      padding: unpadded ? 0 : 4,
+      ...paddingX(unpadded ? 0 : theme.contentPadding),
+      ...paddingY(unpadded ? 0 : 4),
       overflow: "hidden",
       "@media screen": {
         width: theme.fullWidth,

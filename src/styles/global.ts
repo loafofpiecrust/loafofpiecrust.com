@@ -21,6 +21,9 @@ export const globalStyles = css({
     "&:first-of-type": {
       marginTop: 0,
     },
+    "&:only-child": {
+      marginBottom: 0,
+    }
   },
   "@page": {
     size: "auto",

@@ -75,3 +75,7 @@ export const flex = {
   justifyBetween: css({ justifyContent: "space-between" }),
   justifyAround: css({ justifyContent: "space-around" }),
 }
+
+export const grid = {
+  box: css({ display: "grid" }),
+}

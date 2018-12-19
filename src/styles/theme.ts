@@ -14,6 +14,7 @@ import "typeface-pt-mono"
 const theme = {
   pageWidth: 960,
   transitionTime: "160ms",
+  contentPadding: [4, 4, 5],
   fullWidth: ["100%", 600, 800, 960],
   space: [0, 4, 8, 16, 32, 48, 64, 128],
   breakpoints: ["40em", "52em", "64em"],
@@ -44,7 +45,9 @@ const theme = {
   },
 }
 
-theme.mediaQueries = theme.breakpoints.map((w) => `@media(min-width: ${w})`)
+theme.mediaQueries = theme.breakpoints.map((w) => 
+  w === "40em" ? `@media print, (min-width: ${w})` : `@media(min-width: ${w})`
+)
 const mqBase = facepaint(theme.mediaQueries)
 export const mq = (style: Interpolation) =>
   mqBase(themed(theme, style))

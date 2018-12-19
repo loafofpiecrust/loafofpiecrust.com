@@ -6,8 +6,11 @@ import { css } from "@emotion/core"
 import { SongPlayer } from "components/song-player"
 import QueryString from "query-string"
 import { navigate } from "gatsby"
+import { Location } from "@reach/router"
 
-export default (props: { location: Location }) => {
+let shouldAutoplay = false
+
+export default () => <Location children={(props) => {
   const query = QueryString.parse(props.location.search)
   let title = query.title || ""
   let album = query.album || ""
@@ -20,61 +23,60 @@ export default (props: { location: Location }) => {
       album: album || undefined,
       artist: artist,
     })
+    shouldAutoplay = true
     navigate(`${props.location.pathname}?${query}`, { replace: true })
   }
 
-  return (
-    <Layout title="Music Player">
-      <SongPlayer
-        autoPlay
-        hideTitle
-        title={title}
-        artist={artist}
-        album={album}
-      />
+  return <>
+    <SongPlayer
+      autoPlay={shouldAutoplay}
+      hideTitle
+      title={title}
+      artist={artist}
+      album={album}
+    />
 
-      <form onSubmit={play} className={styles.form}>
-        <div className={styles.inputs}>
-          <TextField
-            id="title"
-            label="Song Title"
-            required
-            defaultValue={title}
-            margin="normal"
-            onChange={evt => {
-              title = evt.target.value
-            }}
-          />
-          <span>by</span>
-          <TextField
-            id="artist"
-            label="Artist"
-            required
-            defaultValue={artist}
-            margin="normal"
-            onChange={evt => {
-              artist = evt.target.value
-            }}
-          />
-          <span>on</span>
-          <TextField
-            id="album"
-            margin="normal"
-            label="Album"
-            defaultValue={album}
-            onChange={evt => {
-              album = evt.target.value
-            }}
-          />
-        </div>
+    <form onSubmit={play} css={styles.form}>
+      <div css={styles.inputs}>
+        <TextField
+          id="song"
+          label="Song Title"
+          required
+          defaultValue={title}
+          margin="normal"
+          onChange={evt => {
+            title = evt.target.value
+          }}
+        />
+        <span>by</span>
+        <TextField
+          id="artist"
+          label="Artist"
+          required
+          defaultValue={artist}
+          margin="normal"
+          onChange={evt => {
+            artist = evt.target.value
+          }}
+        />
+        <span>on</span>
+        <TextField
+          id="album"
+          margin="normal"
+          label="Album"
+          defaultValue={album}
+          onChange={evt => {
+            album = evt.target.value
+          }}
+        />
+      </div>
 
-        <Button type="submit" size="large" variant="contained">
-          Load Stream
-        </Button>
-      </form>
-    </Layout>
-  )
-}
+      <Button type="submit" size="large" variant="contained">
+        Play
+      </Button>
+    </form>
+  </>
+}}/>
 
 const styles = {
   form: css({
@@ -85,7 +87,7 @@ const styles = {
   inputs: css({
     width: "100%",
     display: "flex",
-    flexFlow: "row nowrap",
+    flexFlow: "row wrap",
     alignItems: "baseline",
     "& > *": {
       flexGrow: 1,

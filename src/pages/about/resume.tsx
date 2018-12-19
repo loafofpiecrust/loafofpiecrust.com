@@ -24,22 +24,17 @@ export default () => (
     </ResumeHeader>
 
     <div css={[flex.row, flex.wrap]}>
-      <div css={[flex.column, mq({ flex: 1, marginRight: [2, 4] })]}>
+      <div css={[flex.column, mq({ flex: ["1 0 100%", 1], marginRight: [2, 4] })]}>
         <LeftSection>
           <SectionHeader>Education</SectionHeader>
           <div css={[flex.row, flex.justifyBetween]}>
             <p css={{ flex: 1 }}>
-              <b>Northeastern University</b><br />
+              <b>Northeastern University</b> (Boston, MA)<br />
               Candidate for Bachelor of Science<br />
               in Computer Science
             </p>
-            <i css={{ textAlign: "right" }}>
-              Boston, MA<br />
-              GPA: 3.4<br />
-              Graduation: 2021
-            </i>
           </div>
-          <p>
+          <div>
             <i>
               <b>Honors:</b>
             </i>{" "}
@@ -48,10 +43,10 @@ export default () => (
             <i>
               <b>Relevant Coursework:</b>
             </i>
-            <div css={[flex.column, flex.wrap, flex.justifyBetween]}>
+            <div css={mq({ display: "grid", gridTemplateColumns: "1fr 1fr", gridColumnGap: 2 })}>
               {courses.map(name => <span key={name}>{name}</span>)}
             </div>
-          </p>
+          </div>
         </LeftSection>
 
         <LeftSection>
@@ -66,7 +61,7 @@ export default () => (
         </LeftSection>
       </div>
 
-      <div css={[flex.column, { flex: 1 }]}>
+      <div css={[flex.column, mq({ flex: ["1 0", 1] })]}>
         <RightSection>
           <SectionHeader>Work Experience</SectionHeader>
           {workExperience.filter(j => !j.hidden).map(job => (
@@ -141,18 +136,20 @@ const LeftSection = ResumeSection("left")
 const RightSection = ResumeSection("right")
 
 const courses: string[] = [
-  "Programming Languages",
+  "Software Development",
   "Algorithms & Data",
-  "Logic & Computation",
+  "Programming Languages",
   "Computer Systems",
-  "Object-Oriented Design",
+  "Logic & Computation",
   "Linear Algebra",
+  "Object-Oriented Design",
+  "Embedded Design",
   "Machine Structure & x86 Assembly",
 ]
 
 const workExperience: {
   position: string
-  organization: string
+  organization: any
   location?: string
   timeFrame: string
   desc: any
@@ -170,9 +167,9 @@ const workExperience: {
     </p>
   },
   {
-    position: "Junior iOS Developer (Remote)",
-    organization: "Roundware",
-    location: null,
+    position: "iOS Developer",
+    organization: <a href="https://roundware.org">Roundware</a>,
+    location: "Remote",
     timeFrame: "12/2017 - Now",
     desc: <p>
       Integrate new server features into iOS Swift applications
@@ -219,12 +216,11 @@ const personalProjects: {
   desc: any
 }[] = [
   {
-    title: "Turntable",
+    title: <a href="/projects/turntable">Turntable</a>,
     desc: `
     Music player for Android that allows users to sync their
     listening sessions over the internet, playing the music from
-    accessible free sources: the device itself, YouTube, and P2P
-    transfer from the other user themselves.
+    accessible free sources: the device itself, YouTube, and hopefully more.
     `,
   },
 ]
