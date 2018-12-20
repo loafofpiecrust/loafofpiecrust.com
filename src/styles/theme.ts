@@ -32,8 +32,8 @@ const theme = {
     mono: "PT Mono",
   },
   colors: {
-    link: "indianred",
-    background: color("mediumseagreen").darken(0.1).string(),
+    link: "coral",
+    background: color("mediumseagreen").darken(0.07).string(),
     lightBackground: "snow",
     darkBackground: "darkslategray",
     lightText: "snow",

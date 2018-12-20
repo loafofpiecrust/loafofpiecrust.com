@@ -1,5 +1,5 @@
 
-import MusicPlayer from "./music-player"
+import MusicPlayer from "pages/projects/music-player"
 
 # Turntable
 ----------

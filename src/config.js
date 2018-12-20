@@ -1,5 +1,6 @@
 
-export default {
+module.exports = {
+  siteUrl: "https://loafofpiecrust.com",
   title: 'loafofpiecrust',
   description: 'Something or another',
   keywords: ['programming', 'code', 'design'],

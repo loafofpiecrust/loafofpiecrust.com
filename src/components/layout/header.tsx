@@ -32,7 +32,7 @@ const styles = {
       flexFlow: "column nowrap",
       alignItems: ["center", "flex-start"],
       paddingTop: 4,
-      paddingLeft: 3,
+      paddingLeft: [3, 3, 4],
     })
   ),
   titleLink: css(mq({

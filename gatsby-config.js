@@ -1,16 +1,21 @@
+const fs = require("fs")
+const yaml = require("js-yaml")
+const cmsConfig = yaml.load(fs.readFileSync("./static/admin/config.yml"))
 
-const folderNamed = (name, path) => ({
-  resolve: `gatsby-source-filesystem`,
-  options: {
-    name,
-    path: `${__dirname}/${path || name}`,
+function folderNamed(name, path) {
+  return {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name,
+      path: `${__dirname}/${path || name}`,
+    }
   }
-})
+}
 
 const folders = (...names) => names.map(name => folderNamed(name))
 
 module.exports = {
-  siteMetadata: {},
+  siteMetadata: require("./src/config"),
   plugins: [
     // configuration & SEO
     {
@@ -25,8 +30,10 @@ module.exports = {
         icon: "src/images/pie/pie-svgrepo-com (4).svg", // This path is relative to the root of the site.
       },
     },
+    "gatsby-plugin-sitemap",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-netlify",
+    "gatsby-plugin-netlify-cache",
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
@@ -57,7 +64,8 @@ module.exports = {
     },
     folderNamed("images", "src/images"),
     folderNamed("pages", "src/pages"),
-    folderNamed("stories", "content/stories"),
+    // register nodes for all content collections
+    ...cmsConfig.collections.map(col => folderNamed(col.name, col.folder)),
     {
       resolve: "gatsby-plugin-netlify-cms",
       options: {

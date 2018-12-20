@@ -12,42 +12,42 @@ display_url: https://loafofpiecrust.com
 
 collections:
   # Project pages? Maybe these can be static rather than CMS-based?
-  - name: projects
-    label: Projects
-    label_singular: Project
-    folder: content/projects
-    create: true
-    extension: md
-    format: frontmatter
-    fields:
-      - name: title
-        label: Title
-      - name: externalUrl
-        label: External URL
-        required: false
-      - name: body
-        label: Description
-        widget: markdown
+  # - name: projects
+  #   label: Projects
+  #   label_singular: Project
+  #   folder: content/projects
+  #   create: true
+  #   extension: md
+  #   format: frontmatter
+  #   fields:
+  #     - name: title
+  #       label: Title
+  #     - name: externalUrl
+  #       label: External URL
+  #       required: false
+  #     - name: body
+  #       label: Description
+  #       widget: markdown
     
-  - name: blog
-    label: Blog Posts
-    label_singular: Post
-    folder: content/blog
-    create: true
-    extension: md
-    format: frontmatter
-    fields:
-      - name: title
-        label: Title
-      - name: date
-        label: Publish Date
-        widget: date
-      - name: tags
-        label: Tags
-        widget: list
-      - name: body
-        label: Body
-        widget: markdown
+  # - name: blog
+  #   label: Blog Posts
+  #   label_singular: Post
+  #   folder: content/blog
+  #   create: true
+  #   extension: md
+  #   format: frontmatter
+  #   fields:
+  #     - name: title
+  #       label: Title
+  #     - name: date
+  #       label: Publish Date
+  #       widget: date
+  #     - name: tags
+  #       label: Tags
+  #       widget: list
+  #     - name: body
+  #       label: Body
+  #       widget: markdown
   
   # WIP: Story chapters linked in sequence
   - name: stories
@@ -57,6 +57,8 @@ collections:
     create: true
     extension: md
     format: frontmatter
+    sort_by: [fields.slug]
+    component: components/story.tsx
     fields:
       - name: title
         label: Title

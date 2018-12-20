@@ -5,19 +5,27 @@
  */
 
 const path = require("path")
+const fs = require("fs")
+const yaml = require("js-yaml")
 
-// You can delete this file if you're not using it
+const mdx = require("./gen/mdx")
+const cmsConfig = yaml.load(fs.readFileSync("./static/admin/config.yml"))
+
+// extra webpack config
 exports.onCreateWebpackConfig = ({ stage, actions }) => {
   actions.setWebpackConfig({
     resolve: {
-      modules: [path.resolve(__dirname, "src"), "node_modules"],
+      modules: [
+        // search for modules within ./src
+        // this allows imports like: "components/song-player"
+        "src",
+        "node_modules",
+      ],
     },
   })
 }
 
-
-const mdx = require("./gen/mdx")
-
+// Register extra data for nodes
 exports.onCreateNode = params => {
   const type = params.node.internal.type
   if (type === "Mdx") {
@@ -25,13 +33,19 @@ exports.onCreateNode = params => {
   }
 }
 
+// Create pages for relevant nodes
 exports.createPages = async params => {
-  await mdx.createPages(
-    "/content/stories",
-    ["fields.slug"],
-    require.resolve("./src/components/story.tsx"),
-  )(params)
-  // await mdx.createPages("/blog", ["frontmatter.date"])(params)
+  // For each collection in the CMS, make pages for that folder.
+  for (const col of cmsConfig.collections) {
+    if (col.component) {
+      console.log(`registering collection ${col.label}`)
+      await mdx.createPages(
+        col.folder,
+        col.sort_by,
+        require.resolve(`./src/${col.component}`),
+      )(params)
+    }
+  }
 }
 
 

@@ -38,7 +38,7 @@ exports.createPages = (basePath, sortBy, component) => async ({ graphql, actions
   const sortParams = sortBy.map(field => field.replace(".", "___"))
   const result = await graphql(`{
     allMdx(
-      filter: { fields: { pathInProject: { regex: "^${basePath}/" }}}
+      filter: { fields: { pathInProject: { regex: "^/\/${basePath}/" }}}
       sort: { fields: ${sortParams} }
     ) {
       edges {
@@ -66,7 +66,7 @@ exports.createPages = (basePath, sortBy, component) => async ({ graphql, actions
 
 
     actions.createPage({
-      path: node.fields.slug,
+      path: node.fields.slug + "/",
       component: componentWithMDXScope(
         component,
         node.code.scope

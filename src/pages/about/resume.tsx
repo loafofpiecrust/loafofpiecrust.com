@@ -85,7 +85,7 @@ export default () => (
           {personalProjects.map(proj => (
             <div css={flex.column} key={proj.title}>
               <span><b>{proj.title}</b></span>
-              <p>{proj.desc}</p>
+              {proj.desc}
             </div>
           ))}
         </RightSection>
@@ -161,8 +161,8 @@ const workExperience: {
     location: "Boston, MA",
     timeFrame: "7/2018 - 12/2018",
     desc: <p>
-      Worked as a member of Team Goldmine on the Autodesk
-      content delivery project, pushing production code and
+      Worked on the Autodesk cloud content delivery project,
+      pushing production code and
       participating in major decision-making every day.
     </p>
   },
@@ -217,11 +217,11 @@ const personalProjects: {
 }[] = [
   {
     title: <a href="/projects/turntable">Turntable</a>,
-    desc: `
-    Music player for Android that allows users to sync their
-    listening sessions over the internet, playing the music from
-    accessible free sources: the device itself, YouTube, and hopefully more.
-    `,
+    desc: <p>
+      Music player for Android that allows users to sync their
+      listening sessions over the internet, playing the music from
+      accessible free sources: the device itself, YouTube, and hopefully more.
+    </p>,
   },
 ]
 

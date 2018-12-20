@@ -91,6 +91,7 @@ const styles = {
     alignItems: "baseline",
     "& > *": {
       flexGrow: 1,
+      maxWidth: 220,
     },
     "& > span": {
       textAlign: "center",

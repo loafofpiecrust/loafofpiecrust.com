@@ -3,7 +3,11 @@ import { Row } from "styles/system/flex"
 import Layout from "components/layout/layout"
 import { PageHeader } from "components/layout/page-header"
 
-export default props => <PageHeader title="About" header={<h2>Taylor Snead</h2>} {...props}/>
+export default (props) => <PageHeader
+  title="About"
+  header={<h2>Taylor Snead</h2>}
+  {...props}
+/>
 
 You know that feeling when you eat a slice of pie?
 That feeling that maybe there's going to be delight at the end of the next bite?
