@@ -2,9 +2,9 @@ import React from "react"
 
 import BaseFlex from "styled-flex-component"
 
-import styled from "@emotion/styled";
-import { flex, space, width, color, FlexProps, SpaceProps, WidthProps, ColorProps, fontSize, FontSizeProps } from "styled-system";
-import { withProps, defaultProps } from "recompose";
+import styled from "@emotion/styled"
+import { flex, space, width, color, FlexProps, SpaceProps, WidthProps, ColorProps, fontSize, FontSizeProps } from "styled-system"
+import { withProps, defaultProps } from "recompose"
 
 interface FlexBoxProps {
   wrap?: boolean
@@ -45,6 +45,6 @@ export const Row = styled(Flex)((props: { gap?: number }) => ({
   "& > *": {
     marginRight: props.gap / 2,
     marginLeft: props.gap / 2,
-  }
+  },
 }))
 export const Column = defaultProps({ column: true })(Flex)

@@ -5,6 +5,12 @@ backend:
   site_domain: loafofpiecrust.com
   publish_mode: editorial_workflow
   squash_merges: true
+  commit_messages:
+    create: ":memo: Create {{collection}} \"{{slug}}\""
+    update: ":memo: Update {{collection}} \"{{slug}}\""
+    delete: ":fire: Delete {{collection}} \"{{slug}}\""
+    uploadMedia: ":bento: Upload \"{{path}}\""
+    deleteMedia: ":bento: Delete \"{{path}}\""
 
 media_folder: static/media
 public_folder: /media
@@ -58,13 +64,7 @@ collections:
     extension: md
     format: frontmatter
     sort_by: [fields.slug]
-    component: components/story.tsx
+    component: templates/story.tsx
     fields:
-      - name: title
-        label: Title
-      - name: date
-        label: Publish Date
-        widget: date
-      - name: body
-        label: Body
-        widget: markdown
+      - { name: title, label: Title }
+      - { name: body, label: Body, widget: markdown }

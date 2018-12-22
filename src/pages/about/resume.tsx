@@ -1,107 +1,119 @@
 import React from "react"
 import Layout from "components/layout/layout"
 import styled from "@emotion/styled"
-import theme, { mq } from "styles/theme";
-import { flex, paddingX, paddingY, contrastBackground } from "styles/system/shortcuts";
-import color from "color"
+import theme, { mq } from "styles/theme"
+import { flex, paddingX, paddingY, contrastBackground } from "styles/system/shortcuts"
 
-export default () => (
-  <Layout unpadded title="Resume">
-    <ResumeHeader>
-      <div css={[flex.row, flex.alignCenter]}>
-        <h2 css={{ flex: 1, margin: 0 }}>
-          Taylor Snead
-        </h2>
-        
-        <div css={[flex.column, flex.alignEnd]}>
-          {/* <span>275 Lamartine St #1, Jamaica Plain, MA 02130</span> */}
-          <span>taylorsnead@gmail.com</span>
-          <span>Cell: 504-442-0219</span>
-          <span><a href="/">loafofpiecrust.com</a></span>
-          <span>GitHub: <a href="https://github.com/loafofpiecrust">loafofpiecrust</a></span>
-        </div>
-      </div>
-    </ResumeHeader>
+export default () => <Layout unpadded title="Resume">
+  <ResumeHeader>
+    <div css={[flex.row, flex.alignCenter]}>
+      <h2 css={{ flex: 1, margin: 0 }}>
+        Taylor Snead
+      </h2>
 
-    <div css={[flex.row, flex.wrap]}>
-      <div css={[flex.column, mq({ flex: ["1 0 100%", 1], marginRight: [2, 4] })]}>
-        <LeftSection>
-          <SectionHeader>Education</SectionHeader>
-          <div css={[flex.row, flex.justifyBetween]}>
-            <p css={{ flex: 1 }}>
-              <b>Northeastern University</b> (Boston, MA)<br />
-              Candidate for Bachelor of Science<br />
-              in Computer Science
-            </p>
-          </div>
-          <div>
-            <i>
-              <b>Honors:</b>
-            </i>{" "}
-            University Scholar, Honors Program
-            <br />
-            <i>
-              <b>Relevant Coursework:</b>
-            </i>
-            <div css={mq({ display: "grid", gridTemplateColumns: "1fr 1fr", gridColumnGap: 2 })}>
-              {courses.map(name => <span key={name}>{name}</span>)}
-            </div>
-          </div>
-        </LeftSection>
-
-        <LeftSection>
-          <SectionHeader>Freelance Projects</SectionHeader>
-          {freelanceProjects.map(proj => (
-            <div css={flex.column} key={proj.timeFrame}>
-              <span><b>{proj.title}</b></span>
-              <span><b>{proj.organization}</b> - {proj.location}</span>
-              {proj.desc}
-            </div>
-          ))}
-        </LeftSection>
-      </div>
-
-      <div css={[flex.column, mq({ flex: ["1 0", 1] })]}>
-        <RightSection>
-          <SectionHeader>Work Experience</SectionHeader>
-          {workExperience.filter(j => !j.hidden).map(job => (
-            <div css={flex.column} key={job.timeFrame}>
-              <span>
-                <b>{job.position}</b>
-                <i style={{ float: "right" }}>{job.timeFrame}</i>
-              </span>
-              <span>
-                <b>{job.organization}</b>
-                {job.location ? ` - ${job.location}` : null}
-              </span>
-
-              {job.desc}
-            </div>
-          ))}
-        </RightSection>
-
-        <RightSection>
-          <SectionHeader>Personal Projects</SectionHeader>
-          {personalProjects.map(proj => (
-            <div css={flex.column} key={proj.title}>
-              <span><b>{proj.title}</b></span>
-              {proj.desc}
-            </div>
-          ))}
-        </RightSection>
+      <div css={[flex.column, flex.alignEnd]}>
+        {/* <span>275 Lamartine St #1, Jamaica Plain, MA 02130</span> */}
+        <span>taylorsnead@gmail.com</span>
+        <span>Cell: 504-442-0219</span>
+        <span><a href="/">loafofpiecrust.com</a></span>
+        <span>GitHub: <a href="https://github.com/loafofpiecrust">loafofpiecrust</a></span>
       </div>
     </div>
-  </Layout>
+  </ResumeHeader>
+
+  <div css={[flex.row, flex.wrap]}>
+    <LeftColumn>
+      <LeftSection>
+        <SectionHeader>Education</SectionHeader>
+        <div css={[flex.row, flex.justifyBetween]}>
+          <p css={{ flex: 1 }}>
+            <b>Northeastern University</b> (Boston, MA)<br />
+            Candidate for Bachelor of Science<br />
+            in Computer Science
+          </p>
+        </div>
+        <div>
+          <i>
+            <b>Honors:</b>
+          </i>{" "}
+          University Scholar, Honors Program
+          <br />
+          <i>
+            <b>Relevant Coursework:</b>
+          </i>
+          <div css={[flex.row, flex.wrap, flex.justifyBetween]}>
+            {courses.map((name) => <span key={name}>{name}</span>)}
+          </div>
+        </div>
+      </LeftSection>
+
+      <LeftSection>
+        <SectionHeader>Freelance Projects</SectionHeader>
+        {freelanceProjects.map((proj) => (
+          <div css={flex.column} key={proj.timeFrame}>
+            <span><b>{proj.title}</b></span>
+            <span><b>{proj.organization}</b> - {proj.location}</span>
+            {proj.desc}
+          </div>
+        ))}
+      </LeftSection>
+    </LeftColumn>
+
+    <RightColumn>
+      <RightSection>
+        <SectionHeader>Work Experience</SectionHeader>
+        {workExperience.filter((j) => !j.hidden).map((job) => (
+          <div css={flex.column} key={job.timeFrame}>
+            <span>
+              <b>{job.position}</b>
+              <i style={{ float: "right" }}>{job.timeFrame}</i>
+            </span>
+            <span>
+              <b>{job.organization}</b>
+              {job.location ? ` - ${job.location}` : null}
+            </span>
+
+            {job.desc}
+          </div>
+        ))}
+      </RightSection>
+
+      <RightSection>
+        <SectionHeader>Personal Projects</SectionHeader>
+        {personalProjects.map((proj) => (
+          <div css={flex.column} key={proj.title}>
+            <span><b>{proj.title}</b></span>
+            {proj.desc}
+          </div>
+        ))}
+      </RightSection>
+    </RightColumn>
+  </div>
+</Layout>
+
+const LeftColumn = styled("div")(
+  flex.column,
+  mq({
+    flex: ["1 0 100%", 1],
+    marginRight: [2, 4]
+  }),
+)
+
+const RightColumn = styled("div")(
+  flex.column,
+  mq({
+    flex: ["1 0", 1]
+  }),
 )
 
 const inset = [3, 4, 5]
 const verticalInset = 3
 
-const coloredLink = (color) => ({
-  borderColor: color,
+const coloredLink = (activeColor) => ({
+  borderColor: activeColor,
   "&:hover": {
-    color: color,
-  }
+    color: activeColor,
+  },
 })
 
 const ResumeHeader = styled("div")(mq({
@@ -109,7 +121,7 @@ const ResumeHeader = styled("div")(mq({
   ...paddingY(4),
   ...contrastBackground(theme.colors.link),
   marginBottom: 4,
-  a: coloredLink(color(theme.colors.background).darken(0.25).string()),
+  a: coloredLink("navy"),
 }))
 
 const SectionHeader = styled("h3")(mq({
@@ -118,7 +130,6 @@ const SectionHeader = styled("h3")(mq({
   ...contrastBackground(theme.colors.background),
   boxShadow: theme.shadows[1],
 }))
-
 
 const ResumeSection = (side: "left" | "right") => styled("section")(mq({
   marginBottom: 4,
@@ -129,7 +140,7 @@ const ResumeSection = (side: "left" | "right") => styled("section")(mq({
   h3: {
     textAlign: side,
     borderRadius: side === "left" ? "0 3px 3px 0" : "3px 0 0 3px",
-  }
+  },
 }))
 
 const LeftSection = ResumeSection("left")
@@ -147,14 +158,14 @@ const courses: string[] = [
   "Machine Structure & x86 Assembly",
 ]
 
-const workExperience: {
+const workExperience: Array<{
   position: string
   organization: any
   location?: string
   timeFrame: string
   desc: any
   hidden?: boolean
-}[] = [
+}> = [
   {
     position: "Software Developer",
     organization: "Autodesk",
@@ -164,7 +175,7 @@ const workExperience: {
       Worked on the Autodesk cloud content delivery project,
       pushing production code and
       participating in major decision-making every day.
-    </p>
+    </p>,
   },
   {
     position: "iOS Developer",
@@ -173,8 +184,8 @@ const workExperience: {
     timeFrame: "12/2017 - Now",
     desc: <p>
       Integrate new server features into iOS Swift applications
-      that use location and gyroscope data. 
-    </p>
+      that use location and gyroscope data.
+    </p>,
   },
   {
     position: "Laser Technician",
@@ -184,7 +195,7 @@ const workExperience: {
     desc: <p>
       Operate Makerspace laser cutters and assist students
       with fabrication projects.
-    </p>
+    </p>,
   },
   {
     hidden: true,
@@ -195,7 +206,7 @@ const workExperience: {
     desc: <p>
       Edited and assembled footage and created digital stop-motion
       animation in the Adobe suite.
-    </p>
+    </p>,
   },
   {
     position: "Software Development Intern",
@@ -203,18 +214,18 @@ const workExperience: {
     location: "New Orleans, LA",
     timeFrame: "1/2015 - 8/2015",
     desc: <p>
-      Implemented and tested user interfaces in C++ and 
+      Implemented and tested user interfaces in C++ and
       Scaleform as a main member of the programming team for a
       mobile game project.
     </p>,
   },
 ]
 
-const personalProjects: {
+const personalProjects: Array<{
   title: any
   subtitle?: string
   desc: any
-}[] = [
+}> = [
   {
     title: <a href="/projects/turntable">Turntable</a>,
     desc: <p>
@@ -225,13 +236,13 @@ const personalProjects: {
   },
 ]
 
-const freelanceProjects: {
+const freelanceProjects: Array<{
   title: any
   organization: string
   location: string
   timeFrame?: string
   desc: any
-}[] = [
+}> = [
   {
     title: <a href="https://paletteapp.city">City Palette</a>,
     organization: "Chloe Bass & Antenna",
@@ -242,7 +253,7 @@ const freelanceProjects: {
       dominant colors from photos, geotagged to where the photo was taken. Developed on my own, natively for both iOS
       (Swift) and Android (Java and Kotlin), using a
       MongoDB instance to track colors and palettes.
-    </p>
+    </p>,
   },
   {
     title: <a href="https://antenna.works">Antenna.works</a>,
@@ -253,7 +264,7 @@ const freelanceProjects: {
       Built the new website for Antena, "antenna.works."
       Reorganized and integrated the MySQL database from
       their old website.
-    </p>
+    </p>,
   },
   {
     title: "You Belong Here",
@@ -265,6 +276,6 @@ const freelanceProjects: {
       belonging through photos and videos on Instagram. Wrote
       companion software that tracked a barge involved in the
       project.
-    </p>
+    </p>,
   },
 ]

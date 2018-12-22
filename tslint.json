@@ -2,31 +2,57 @@
   "defaultSeverity": "error",
   "extends": [
     "tslint:latest",
-    "tslint-react",
-    "tslint-config-prettier"
+    "tslint-react"
   ],
-  "jsRules": {},
   "rules": {
     "interface-name": false,
+    "trailing-comma": [
+      true,
+      {
+        "multiline": {
+          // "arrays": "always",
+          "exports": "always",
+          // "functions": "always",
+          // "objects": "always",
+          "typeLiterals": "never"
+        },
+        "singleline": "never"
+      }
+    ],
     "semicolon": [
       true,
       "never"
     ],
-    "member-access": [
-      false
-    ],
+    "member-access": false,
     "ordered-imports": [
-      true
+      false,
+      {
+        "grouped-imports": true,
+        "module-source-path": "full",
+        "named-imports-order": "case-insensitive",
+        "import-sources-order": "any"
+      }
     ],
-    "no-console": [
-      false
-    ],
+    "no-console": [true, "log"],
     "no-var-requires": true,
+    "jsx-no-multiline-js": false,
+    "jsx-wrap-multiline": false,
+    "jsx-boolean-value": false,
+    "jsx-no-lambda": false,
+    "object-literal-sort-keys": [
+      true,
+      "shorthand-first",
+      "match-declaration-order"
+    ],
+    "object-literal-key-quotes": false,
+    "no-implicit-dependencies": false,
+    "no-submodule-imports": false,
     "quotemark": [
       true,
       "double",
       "jsx-double"
     ]
   },
-  "rulesDirectory": []
+  "rulesDirectory": [],
+  "jsRules": true
 }

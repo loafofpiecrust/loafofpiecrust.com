@@ -1,6 +1,7 @@
-const fs = require("fs")
-const yaml = require("js-yaml")
-const cmsConfig = yaml.load(fs.readFileSync("./static/admin/config.yml"))
+
+require("ts-node").register()
+const { collections } = require("./src/config/collections")
+const { siteMeta } = require("./src/config/metadata")
 
 function folderNamed(name, path) {
   return {
@@ -8,14 +9,14 @@ function folderNamed(name, path) {
     options: {
       name,
       path: `${__dirname}/${path || name}`,
-    }
+    },
   }
 }
 
 const folders = (...names) => names.map(name => folderNamed(name))
 
 module.exports = {
-  siteMetadata: require("./src/config"),
+  siteMetadata: siteMeta,
   plugins: [
     // configuration & SEO
     {
@@ -44,12 +45,12 @@ module.exports = {
       options: {
         extensions: [".mdx", ".md"],
         defaultLayouts: {
-          content: require.resolve("./src/components/story.tsx"),
-          default: require.resolve("./src/components/layout/layout.tsx"),
+          default: require.resolve("./src/templates/page"),
         },
         mdPlugins: [
           require("remark-attr"),
           require("remark-breaks"),
+          require("remark-emoji"),
           // require("remark-normalize-headings"),
         ],
         gatsbyRemarkPlugins: [
@@ -57,7 +58,7 @@ module.exports = {
             resolve: "gatsby-remark-smartypants",
             options: {
               dashes: "oldschool",
-            }
+            },
           },
         ],
       },
@@ -65,15 +66,15 @@ module.exports = {
     folderNamed("images", "src/images"),
     folderNamed("pages", "src/pages"),
     // register nodes for all content collections
-    ...cmsConfig.collections.map(col => folderNamed(col.name, col.folder)),
-    {
-      resolve: "gatsby-plugin-netlify-cms",
-      options: {
-        enableIdentityWidget: false,
-        // Register custom widgets in the module specified
-        // modulePath: require.resolve("./src/cms/cms.ts"),
-      }
-    },
+    ...collections.map(col => folderNamed(col.name, col.folder)),
+    // {
+    //   resolve: "gatsby-plugin-netlify-cms",
+    //   options: {
+    //     enableIdentityWidget: false,
+    //     // Register custom widgets in the module specified
+    //     // modulePath: require.resolve("./src/cms/cms.ts"),
+    //   }
+    // },
 
     // transforms
     "gatsby-transformer-sharp",
@@ -81,8 +82,6 @@ module.exports = {
     "gatsby-plugin-typescript",
     "gatsby-plugin-sass",
     "gatsby-transformer-yaml",
-    // "gatsby-plugin-emotion",
-    // "gatsby-plugin-styled-components",
     "gatsby-plugin-catch-links",
 
     // styling

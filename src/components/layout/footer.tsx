@@ -1,8 +1,10 @@
 import React from "react"
+import styled from "@emotion/styled"
+import css from "@emotion/css"
+
 import theme, { mq, fullWidthClass } from "styles/theme"
-import { hideOnPrint, globalStyles } from "styles/global"
+import { hideOnPrint } from "styles/global"
 import { paddingX, paddingY, marginX } from "styles/system/shortcuts"
-import { css, Global } from "@emotion/core"
 
 export const Footer = () => (
   <footer css={styles.container}>
@@ -25,8 +27,8 @@ const styles = {
       ...marginX("auto"),
       display: "flex",
       justifyContent: "space-between",
-      color: "lightText",
+      color: theme.colors.lightText,
       fontWeight: "bold",
-    })
-  ),
+    }),
+  )
 }

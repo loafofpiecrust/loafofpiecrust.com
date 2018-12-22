@@ -1,7 +1,6 @@
-import { CSSObject } from "create-emotion"
-import { css } from "@emotion/core"
+import { css, Interpolation } from "@emotion/core"
 import color from "color"
-import theme from "styles/theme";
+import theme from "styles/theme"
 
 export interface CSSShortcuts {
   px?: any,
@@ -13,7 +12,7 @@ const shortcuts = {
   py: ["paddingTop", "paddingBottom"],
 }
 
-export const expandShortcuts = (style): CSSObject => {
+export const expandShortcuts = (style: Interpolation): Interpolation => {
   const result = {}
   Object.entries(style).forEach(([key, value]) => {
     const shortcut = shortcuts[key]
@@ -50,7 +49,7 @@ export const size = (value: number | string | any[]) => (
 
 export const contrastBackground = (value: string) => {
   const bg = color(value)
-  let fg = bg.isDark() ? theme.colors.lightText : theme.colors.darkText
+  const fg = bg.isDark() ? theme.colors.lightText : theme.colors.darkText
   return {
     backgroundColor: value,
     color: fg,

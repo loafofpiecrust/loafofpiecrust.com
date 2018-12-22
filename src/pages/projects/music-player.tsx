@@ -10,21 +10,21 @@ import { Location } from "@reach/router"
 
 let shouldAutoplay = false
 
-export default () => <Location children={(props) => {
-  const query = QueryString.parse(props.location.search)
+export default () => <Location>{({ location }) => {
+  const query = QueryString.parse(location.search)
   let title = query.title || ""
   let album = query.album || ""
   let artist = query.artist || ""
 
   const play = async (evt: FormEvent) => {
     evt.preventDefault()
-    const query = QueryString.stringify({
-      title: title,
+    const newQuery = QueryString.stringify({
+      title,
+      artist,
       album: album || undefined,
-      artist: artist,
     })
     shouldAutoplay = true
-    navigate(`${props.location.pathname}?${query}`, { replace: true })
+    navigate(`${location.pathname}?${newQuery}`, { replace: true })
   }
 
   return <>
@@ -44,7 +44,7 @@ export default () => <Location children={(props) => {
           required
           defaultValue={title}
           margin="normal"
-          onChange={evt => {
+          onChange={(evt) => {
             title = evt.target.value
           }}
         />
@@ -55,7 +55,7 @@ export default () => <Location children={(props) => {
           required
           defaultValue={artist}
           margin="normal"
-          onChange={evt => {
+          onChange={(evt) => {
             artist = evt.target.value
           }}
         />
@@ -65,7 +65,7 @@ export default () => <Location children={(props) => {
           margin="normal"
           label="Album"
           defaultValue={album}
-          onChange={evt => {
+          onChange={(evt) => {
             album = evt.target.value
           }}
         />
@@ -76,7 +76,7 @@ export default () => <Location children={(props) => {
       </Button>
     </form>
   </>
-}}/>
+}}</Location>
 
 const styles = {
   form: css({

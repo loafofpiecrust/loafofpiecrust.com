@@ -33,7 +33,7 @@ const theme = {
   },
   colors: {
     link: "coral",
-    background: color("mediumseagreen").darken(0.07).string(),
+    background: color("mediumseagreen").darken(0.06).string(),
     lightBackground: "snow",
     darkBackground: "darkslategray",
     lightText: "snow",

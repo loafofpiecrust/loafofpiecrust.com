@@ -1,25 +1,26 @@
 import React from "react"
 import { Link } from "gatsby"
 import { Location } from "@reach/router"
+import { css } from "@emotion/core"
+import styled from "@emotion/styled"
 
 import { NavBar } from "./navbar"
-import siteConfig from "config"
+import { siteMeta } from "config/metadata"
 import { mq, fullWidthClass } from "styles/theme"
 import { hideOnPrint } from "styles/global"
 import { marginX } from "styles/system/shortcuts"
-import { css } from "@emotion/core"
 
 export const Header = () => (
   <header css={styles.container}>
     <h1>
-      <Link to="/" css={styles.titleLink}>
-        {siteConfig.title}
+      <Link css={styles.siteLink} to="/">
+        {siteMeta.title}
       </Link>
     </h1>
 
-    <Location children={({ location }) => (
-      <NavBar items={siteConfig.navbar} activeUrl={location.pathname} />
-    )}/>
+    <Location>{({ location }) => (
+      <NavBar items={siteMeta.navbar} activeUrl={location.pathname} />
+    )}</Location>
   </header>
 )
 
@@ -33,9 +34,9 @@ const styles = {
       alignItems: ["center", "flex-start"],
       paddingTop: 4,
       paddingLeft: [3, 3, 4],
-    })
+    }),
   ),
-  titleLink: css(mq({
+  siteLink: css(mq({
     color: "lightText",
     textDecoration: "none",
     marginLeft: 3,

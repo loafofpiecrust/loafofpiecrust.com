@@ -1,15 +1,16 @@
-const componentWithMDXScope = require("gatsby-mdx/component-with-mdx-scope")
-const path = require("path")
-const { createFilePath } = require("gatsby-source-filesystem")
+import componentWithMDXScope from "gatsby-mdx/component-with-mdx-scope"
+import path from "path"
 
 const projectDir = path.dirname(__dirname)
 
 // TODO: Pull this out into a generic fileNodeAddSlug or something
-exports.onCreateNode = ({ node, getNode, actions }) => {
+export const onCreateNode = ({ node, getNode, actions }) => {
   const parent = getNode(node.parent)
   const pathInProject = "/" + path.relative(projectDir, parent.absolutePath)
     .replace(/\.[^/.]+$/, "")
-  
+
+  console.log(pathInProject)
+
   // Remove base-paths from the final URL
   const pathOnline = pathInProject.replace(/^(\/src)?\/(content|pages)/, "")
 
@@ -18,7 +19,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   if (!slug) {
     // Remove an initial number in the filename
     // As this is used purely for ordering
-    slug = path.basename(pathOnline)//.replace(/^(\d+)[\-_]/, "")
+    slug = path.basename(pathOnline) // .replace(/^(\d+)[\-_]/, "")
   }
 
   actions.createNodeField({
@@ -34,8 +35,8 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 }
 
 // basePath: string, sortBy: string[]
-exports.createPages = (basePath, sortBy, component) => async ({ graphql, actions }) => {
-  const sortParams = sortBy.map(field => field.replace(".", "___"))
+export const createPages = (basePath, sortBy, component) => async ({ graphql, actions }) => {
+  const sortParams = sortBy.map((field) => field.replace(".", "___"))
   const result = await graphql(`{
     allMdx(
       filter: { fields: { pathInProject: { regex: "^/\/${basePath}/" }}}
@@ -53,30 +54,28 @@ exports.createPages = (basePath, sortBy, component) => async ({ graphql, actions
     }
   }`)
   if (result.errors) {
-    console.log(result.errors)
+    console.error(result.errors)
     throw result.errors
   }
 
   const entries = result.data.allMdx.edges
 
-  for (let idx = 0; idx < entries.length; idx++) {
-    const { node } = entries[idx]
-    const prev = idx > 0 ? entries[idx - 1].node : null
-    const next = idx < entries.length - 1 ? entries[idx + 1].node : null
-
+  for (let i = 0; i < entries.length; i++) {
+    console.log("making page")
+    const { node } = entries[i]
 
     actions.createPage({
       path: node.fields.slug + "/",
       component: componentWithMDXScope(
         component,
-        node.code.scope
+        node.code.scope,
       ),
       context: {
-        next: next ? next.fields.slug : null,
-        previous: prev ? prev.fields.slug : null,
+        // next: next ? next.fields.slug : null,
+        // previous: prev ? prev.fields.slug : null,
         id: node.id,
         // frontmatter: node.frontmatter,
-      }
+      },
     })
   }
 }

@@ -1,8 +1,9 @@
-import React from "react"
+import React, { Component } from "react"
 import ReactAudioPlayer from "react-audio-player"
 import Axios from "axios"
+import { jsx as h } from "@emotion/core"
 
-export class SongPlayer extends React.Component<{
+export class SongPlayer extends Component<{
   title: string
   album?: string
   artist: string
@@ -18,7 +19,7 @@ export class SongPlayer extends React.Component<{
     const source = await parseStreams(
       this.props.title,
       this.props.artist,
-      this.props.album
+      this.props.album,
     )
     this.setState({
       source,
@@ -83,7 +84,7 @@ export class SongPlayer extends React.Component<{
 async function parseStreams(
   title: string,
   artist: string,
-  album?: string
+  album?: string,
 ): Promise<any> {
   const res = await Axios.get(
     "https://us-central1-turntable-3961c.cloudfunctions.net/parseStreamsFromYouTube",
@@ -93,7 +94,7 @@ async function parseStreams(
         album: album ? album.toLowerCase() : "",
         artist: artist.toLowerCase(),
       },
-    }
+    },
   )
   return res.data
 }

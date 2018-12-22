@@ -1,11 +1,11 @@
 import React from "react"
 import { Link } from "gatsby"
-import { css } from "@emotion/core"
+import { css, jsx as h } from "@emotion/core"
 import theme, { mq } from "styles/theme"
-import { contrastBackground } from "styles/system/shortcuts";
+import { contrastBackground, flex } from "styles/system/shortcuts"
 
 export const NavBar = (props: {
-  items: { url: string; label: string }[]
+  items: Array<{ url: string; label: string }>
   activeUrl: string
 }) => (
   <nav style={{ display: "flex" }}>
@@ -22,7 +22,9 @@ export const NavBar = (props: {
 
 const styles = {
   link: (isActive: boolean) => css(mq({
-    ...contrastBackground(isActive ? theme.colors.link : theme.colors.background),
+    ...contrastBackground(
+      isActive ? theme.colors.link : theme.colors.background,
+    ),
     // backgroundColor: isActive ? theme.colors.link : "transparent",
     // color: "lightText",
     padding: 3,

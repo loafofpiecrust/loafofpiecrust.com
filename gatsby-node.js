@@ -4,12 +4,9 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-const path = require("path")
-const fs = require("fs")
-const yaml = require("js-yaml")
-
+require("ts-node").register()
 const mdx = require("./gen/mdx")
-const cmsConfig = yaml.load(fs.readFileSync("./static/admin/config.yml"))
+const { collections } = require("./src/config/collections")
 
 // extra webpack config
 exports.onCreateWebpackConfig = ({ stage, actions }) => {
@@ -26,7 +23,7 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
 }
 
 // Register extra data for nodes
-exports.onCreateNode = params => {
+exports.onCreateNode = (params) => {
   const type = params.node.internal.type
   if (type === "Mdx") {
     mdx.onCreateNode(params)
@@ -34,18 +31,15 @@ exports.onCreateNode = params => {
 }
 
 // Create pages for relevant nodes
-exports.createPages = async params => {
+exports.createPages = async (params) => {
   // For each collection in the CMS, make pages for that folder.
-  for (const col of cmsConfig.collections) {
+  for (const col of collections) {
     if (col.component) {
-      console.log(`registering collection ${col.label}`)
       await mdx.createPages(
         col.folder,
-        col.sort_by,
+        col.sortBy,
         require.resolve(`./src/${col.component}`),
       )(params)
     }
   }
 }
-
-

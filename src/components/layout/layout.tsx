@@ -1,16 +1,17 @@
-import React from "react"
+import { css, Global, jsx as h } from "@emotion/core"
+import { MuiThemeProvider } from "@material-ui/core"
+import { ThemeProvider as EmotionTheme } from "emotion-theming"
+import React, { ReactElement, ReactNode } from "react"
 import Helmet from "react-helmet"
 
-import { Header } from "./header"
-import siteConfig from "config"
-import { Global, css } from "@emotion/core"
-import { ThemeProvider as EmotionTheme } from "emotion-theming"
+import { siteMeta } from "config/metadata"
 import { Footer } from "./footer"
-import { MuiThemeProvider, Paper } from "@material-ui/core"
-import materialTheme from "styles/material-theme"
-import theme, { mq } from "styles/theme"
+import { Header } from "./header"
+
 import { globalStyles } from "styles/global"
+import materialTheme from "styles/material-theme"
 import { marginX, paddingX, paddingY } from "styles/system/shortcuts"
+import theme, { mq } from "styles/theme"
 
 export const Layout = (props: {
   title?: string
@@ -18,10 +19,10 @@ export const Layout = (props: {
   unpadded?: boolean
 }) => <>
   <Helmet
-    title={(props.title ? `${props.title} - ` : "") + siteConfig.title}
+    title={(props.title ? `${props.title} - ` : "") + siteMeta.title}
     meta={[
-      { name: "description", content: siteConfig.description },
-      { name: "keywords", content: siteConfig.keywords.join(", ") },
+      { name: "description", content: siteMeta.description },
+      { name: "keywords", content: siteMeta.keywords.join(", ") },
     ]}
   >
     <html lang="en"/>
@@ -57,7 +58,7 @@ const styles = {
         backgroundColor: "lightBackground",
         borderRadius: 2,
       },
-    })
+    }),
   ),
 }
 

@@ -1,39 +1,41 @@
  import React from "react"
-import { Stage, Layer, Text, Arc, Wedge, Circle, Line, Group } from "react-konva"
-import { Project, projects } from "./projects-pie"
-import { Spring, animated } from "react-spring/dist/konva"
-import Victor from "victor"
-import { ContainerConfig } from "konva"
-import topCrust from "images/pie-fillings/top-crust2.svg"
-import outerCrust from "images/pie-fillings/basic-crust.svg"
+ import { Stage, Layer, Text, Arc, Wedge, Circle, Line, Group } from "react-konva"
+ import { Project, projects } from "./projects-pie"
+ import { Spring, animated } from "react-spring/dist/konva"
+ import Victor from "victor"
+ import { ContainerConfig } from "konva"
+ import topCrust from "images/pie-fillings/top-crust2.svg"
+ import outerCrust from "images/pie-fillings/basic-crust.svg"
 
-export class ProjectPie extends React.Component<{
+ export class ProjectPie extends React.Component<{
   width: number
   height: number
-  onSelect?: (Project) => void
+  onSelect?: (project: Project) => void
 }> {
   state = { selected: null }
 
   render() {
+    const props = this.props
     const radius = 200
     let currLines = 0
-    let totalLines = projects.reduce((acc, proj) => acc + proj.linesOfCode, 0)
+    const totalLines = projects.reduce((acc, proj) => acc + proj.linesOfCode, 0)
     return <Stage
-      width={this.props.width}
-      height={this.props.height}
+      width={props.width}
+      height={props.height}
     >
-      <Layer x={this.props.width / 2} y={this.props.height / 2}>
+      <Layer x={props.width / 2} y={props.height / 2}>
         <Circle radius={radius} fill={colors.pan} />
-        {projects.map(project => {
-          const slice = <PieSlice key={project.title}
+        {projects.map((project) => {
+          const slice = <PieSlice
+            key={project.title}
             project={project}
             startLineNumber={currLines}
             totalLines={totalLines}
             radius={radius}
             selected={project === this.state.selected}
             onClick={() => {
-              if (this.props.onSelect) {
-                this.props.onSelect(project)
+              if (props.onSelect) {
+                props.onSelect(project)
               }
               this.setState({ selected: project })
             }}
@@ -46,7 +48,7 @@ export class ProjectPie extends React.Component<{
   }
 }
 
-const PieSlice = (props: {
+ const PieSlice = (props: {
   project: Project
   startLineNumber: number
   totalLines: number
@@ -64,7 +66,7 @@ const PieSlice = (props: {
 
   const normalState = { jutDist: 0, crustOpacity: 1 }
   const selectedState = { jutDist: maxJutDist, crustOpacity: 0 }
-  
+
   let from
   let to
   if (selected) {
@@ -78,9 +80,9 @@ const PieSlice = (props: {
   // animate the offset!
   return (
     <Spring to={to}>
-      {props => {
+      {(anim) => {
         const middle = new Victor(1, 0).rotateDeg(middleAngle)
-        const offset = middle.clone().multiplyScalar(props.jutDist)
+        const offset = middle.clone().multiplyScalar(anim.jutDist)
         return <Group {...offset} onClick={onClick}>
           {/* Filling */}
           <Wedge
@@ -97,7 +99,7 @@ const PieSlice = (props: {
             radius={baseRadius}
             angle={angularWidth}
             rotation={startAngle}
-            opacity={props.crustOpacity}
+            opacity={anim.crustOpacity}
             fillPatternImage={image(topCrust)}
             fillPatternScale={{ x: 1.3, y: 1.3 }}
             fillPatternRepeat="repeat"
@@ -114,7 +116,7 @@ const PieSlice = (props: {
             <WhippedCream
               {...middle.clone().multiplyScalar(baseRadius / 2)}
               rotation={middleAngle}
-              opacity={props.crustOpacity}
+              opacity={anim.crustOpacity}
             />
           : null}
         </Group>
@@ -123,26 +125,27 @@ const PieSlice = (props: {
   )
 }
 
-const WhippedCream = (props: ContainerConfig) => {
+ const WhippedCream = (props: ContainerConfig) => {
   const r = 20
   return <Group {...props}>
     <Circle
       radius={r}
       fill="#fff2cd"
     />
-    <Line x={0} y={r/2}
-        points={spiralPoints(r, 12)}
-        stroke="#ffe7a1"
-        tension={5/9}
-        lineCap="round"
-        lineJoin="bevel"
-        strokeWidth={6}
-      />
+    <Line
+      x={0}
+      y={r / 2}
+      points={spiralPoints(r, 12)}
+      stroke="#ffe7a1"
+      tension={5 / 9}
+      lineCap="round"
+      lineJoin="bevel"
+      strokeWidth={6}
+    />
   </Group>
 }
 
-
-const colors = {
+ const colors = {
   // filling: "#e96a09",
   filling: "rebeccapurple",
   crust: "#fcc987",
@@ -150,8 +153,7 @@ const colors = {
   pan: "transparent",
 }
 
-
-function spiralPoints(radius: number, dist: number): number[] {
+ function spiralPoints(radius: number, dist: number): number[] {
   const points = []
   let top = { x: 0, y: 0 }
   let currRadius = 0
@@ -173,7 +175,7 @@ function spiralPoints(radius: number, dist: number): number[] {
   return points
 }
 
-function image(src: string, width?: number, height?: number) {
+ function image(src: string, width?: number, height?: number) {
   const i = new Image(width, height)
   i.src = src
   return i
