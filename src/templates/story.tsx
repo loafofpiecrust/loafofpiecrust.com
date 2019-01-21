@@ -1,5 +1,4 @@
-import React, { ReactNode, InputHTMLAttributes, ClassAttributes } from "react"
-import { jsx as h } from "@emotion/core"
+import React from "react"
 import { graphql } from "gatsby"
 import MDXRenderer from "gatsby-mdx/mdx-renderer"
 
@@ -11,7 +10,7 @@ export default ({
   data: { mdx },
   ...props
 }) => {
-  const firstHeading = mdx.headings && mdx.headings.length ? mdx.headings[0] : null
+  const firstHeading = (mdx.headings && mdx.headings.length) ? mdx.headings[0] : null
   const title = mdx.frontmatter.title || (firstHeading && firstHeading.value)
 
   let titleElem = null
@@ -37,7 +36,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
       }
-      headings { value }
+      headings { value, depth }
       code { body }
     }
   }

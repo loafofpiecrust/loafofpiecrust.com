@@ -9,8 +9,6 @@ export const onCreateNode = ({ node, getNode, actions }) => {
   const pathInProject = "/" + path.relative(projectDir, parent.absolutePath)
     .replace(/\.[^/.]+$/, "")
 
-  console.log(pathInProject)
-
   // Remove base-paths from the final URL
   const pathOnline = pathInProject.replace(/^(\/src)?\/(content|pages)/, "")
 
@@ -43,6 +41,8 @@ export const createPages = (basePath, sortBy, component) => async ({ graphql, ac
       sort: { fields: ${sortParams} }
     ) {
       edges {
+        next { fields { slug } }
+        previous { fields { slug } }
         node {
           id
           fields { slug }
@@ -54,15 +54,11 @@ export const createPages = (basePath, sortBy, component) => async ({ graphql, ac
     }
   }`)
   if (result.errors) {
-    console.error(result.errors)
     throw result.errors
   }
 
-  const entries = result.data.allMdx.edges
-
-  for (let i = 0; i < entries.length; i++) {
-    console.log("making page")
-    const { node } = entries[i]
+  for (const edge of result.data.allMdx.edges) {
+    const { node, next, previous } = edge
 
     actions.createPage({
       path: node.fields.slug + "/",
@@ -71,10 +67,9 @@ export const createPages = (basePath, sortBy, component) => async ({ graphql, ac
         node.code.scope,
       ),
       context: {
-        // next: next ? next.fields.slug : null,
-        // previous: prev ? prev.fields.slug : null,
+        next: next && next.fields.slug,
+        previous: previous && previous.fields.slug,
         id: node.id,
-        // frontmatter: node.frontmatter,
       },
     })
   }
