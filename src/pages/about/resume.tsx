@@ -15,7 +15,7 @@ export default () => <Layout unpadded title="Resume">
         {/* <span>275 Lamartine St #1, Jamaica Plain, MA 02130</span> */}
         <span>taylorsnead@gmail.com</span>
         <span>Cell: 504-442-0219</span>
-        <span><a href="/">loafofpiecrust.com</a></span>
+        <span><a href="https://loafofpiecrust.com">loafofpiecrust.com</a></span>
         <span>GitHub: <a href="https://github.com/loafofpiecrust">loafofpiecrust</a></span>
       </div>
     </div>
@@ -27,10 +27,11 @@ export default () => <Layout unpadded title="Resume">
         <SectionHeader>Education</SectionHeader>
         <div css={[flex.row, flex.justifyBetween]}>
           <p css={{ flex: 1 }}>
-            <b>Northeastern University</b> (Boston, MA)<br />
+            <b>Northeastern University</b> - Boston, MA<br />
             Candidate for Bachelor of Science<br />
             in Computer Science
           </p>
+          <p>GPA: 3.4</p>
         </div>
         <div>
           <i>
@@ -48,24 +49,34 @@ export default () => <Layout unpadded title="Resume">
       </LeftSection>
 
       <LeftSection>
+        <SectionHeader>Personal Projects</SectionHeader>
+        {personalProjects.map((proj) => (
+          <div css={flex.column} key={proj.title}>
+            <span><b>{proj.title}</b></span>
+            {proj.desc}
+          </div>
+        ))}
+      </LeftSection>
+
+      {/* <LeftSection>
         <SectionHeader>Freelance Projects</SectionHeader>
-        {freelanceProjects.map((proj) => (
+        {freelanceProjects.filter((j) => !j.hidden).map((proj) => (
           <div css={flex.column} key={proj.timeFrame}>
             <span><b>{proj.title}</b></span>
             <span><b>{proj.organization}</b> - {proj.location}</span>
             {proj.desc}
           </div>
         ))}
-      </LeftSection>
+      </LeftSection> */}
     </LeftColumn>
 
     <RightColumn>
       <RightSection>
-        <SectionHeader>Work Experience</SectionHeader>
+        <SectionHeader>Experience</SectionHeader>
         {workExperience.filter((j) => !j.hidden).map((job) => (
           <div css={flex.column} key={job.timeFrame}>
             <span>
-              <b>{job.position}</b>
+              <b>{job.title}</b>
               <i style={{ float: "right" }}>{job.timeFrame}</i>
             </span>
             <span>
@@ -77,32 +88,23 @@ export default () => <Layout unpadded title="Resume">
           </div>
         ))}
       </RightSection>
-
-      <RightSection>
-        <SectionHeader>Personal Projects</SectionHeader>
-        {personalProjects.map((proj) => (
-          <div css={flex.column} key={proj.title}>
-            <span><b>{proj.title}</b></span>
-            {proj.desc}
-          </div>
-        ))}
-      </RightSection>
     </RightColumn>
   </div>
 </Layout>
+
 
 const LeftColumn = styled("div")(
   flex.column,
   mq({
     flex: ["1 0 100%", 1],
-    marginRight: [2, 4]
+    marginRight: [2, 4],
   }),
 )
 
 const RightColumn = styled("div")(
   flex.column,
   mq({
-    flex: ["1 0", 1]
+    flex: ["1 0", 1],
   }),
 )
 
@@ -128,7 +130,7 @@ const SectionHeader = styled("h3")(mq({
   ...paddingX(inset),
   ...paddingY(verticalInset),
   ...contrastBackground(theme.colors.background),
-  boxShadow: theme.shadows[1],
+  // boxShadow: theme.shadows[1],
 }))
 
 const ResumeSection = (side: "left" | "right") => styled("section")(mq({
@@ -151,15 +153,17 @@ const courses: string[] = [
   "Algorithms & Data",
   "Programming Languages",
   "Computer Systems",
-  "Logic & Computation",
-  "Linear Algebra",
-  "Object-Oriented Design",
+  "Theory of Computation",
   "Embedded Design",
-  "Machine Structure & x86 Assembly",
+  "Object-Oriented Design",
+  "Linear Algebra",
+  "Machine Structure & Assembly",
+  "Linguistic Analysis",
+  "3D Fundamentals",
 ]
 
 const workExperience: Array<{
-  position: string
+  title: any
   organization: any
   location?: string
   timeFrame: string
@@ -167,56 +171,75 @@ const workExperience: Array<{
   hidden?: boolean
 }> = [
   {
-    position: "Software Developer",
-    organization: "Autodesk",
+    title: "Software Developer",
+    organization: <a href="https://www.autodesk.com">Autodesk</a>,
     location: "Boston, MA",
-    timeFrame: "7/2018 - 12/2018",
+    timeFrame: "July '18 — May '19",
     desc: <p>
-      Worked on the Autodesk cloud content delivery project,
-      pushing production code and
-      participating in major decision-making every day.
+      Work on cloud content project for Autodesk Revit in React and TypeScript.
+      Interact with remote services using JSON schemas for structured data.
+      Devise solution for representing content taxonomy mapping content into node graph.
+      Collaborate with UX designer on scalable Content Browser UI.
+      Present at quarterly check-in representing my team, and present our work for a customer demo.
+      Cooperate with another team on shared data management library.
     </p>,
   },
   {
-    position: "iOS Developer",
+    title: "iOS Developer",
     organization: <a href="https://roundware.org">Roundware</a>,
-    location: "Remote",
-    timeFrame: "12/2017 - Now",
+    location: "Boston, MA",
+    timeFrame: "Dec '17 — Now",
     desc: <p>
-      Integrate new server features into iOS Swift applications
-      that use location and gyroscope data.
+      Architect client-side audio mixing system to
+      decrease server load by >90% and facilitate more complex projects.
+      Use device location and gyroscope data to augment
+      audio experiences in a 3D environment.
     </p>,
   },
   {
-    position: "Laser Technician",
+    title: "Laser Technician",
     organization: "Northeastern University",
     location: "Boston, MA",
-    timeFrame: "Spring 2018",
+    timeFrame: "Jan '18 — May '18",
     desc: <p>
       Operate Makerspace laser cutters and assist students
-      with fabrication projects.
+      with fabrication projects in various mediums, including paper, wood, and acrylic.
+      Proficient in using hand and power tools.
+    </p>,
+  },
+  {
+    title: <a href="https://paletteapp.city">City Palette</a>,
+    organization: <>Chloe Bass &amp; <a href="https://antenna.works">Antenna</a></>,
+    location: "New Orleans, LA",
+    timeFrame: "Oct '17 — Jan '18",
+    desc: <p>
+      Implement mobile app allowing users to name and publish
+      dominant colors from photos, geotagged to where the photo was taken.
+
+      Developed natively for iOS (Swift) and Android (Kotlin, JVM),
+      storing published colors in a MongoDB instance.
     </p>,
   },
   {
     hidden: true,
-    position: "Research Assistant",
+    title: "Research Assistant",
     organization: "Northeastern University",
     location: "Boston, MA",
-    timeFrame: "1/2017 - 5/2017",
+    timeFrame: "Jan '17 — May '17",
     desc: <p>
       Edited and assembled footage and created digital stop-motion
       animation in the Adobe suite.
     </p>,
   },
   {
-    position: "Software Development Intern",
-    organization: "Gameloft",
+    title: "Software Developer",
+    organization: <a href="http://www.gameloft.com/en/">Gameloft</a>,
     location: "New Orleans, LA",
-    timeFrame: "1/2015 - 8/2015",
+    timeFrame: "Jan '15 — Aug '15",
     desc: <p>
       Implemented and tested user interfaces in C++ and
-      Scaleform as a main member of the programming team for a
-      mobile game project.
+      Scaleform for a mobile game.
+      Introduced to basic AGILE methodology on 8-person team.
     </p>,
   },
 ]
@@ -227,13 +250,27 @@ const personalProjects: Array<{
   desc: any
 }> = [
   {
-    title: <a href="/projects/turntable">Turntable</a>,
+    title: <><a href="https://loafofpiecrust.com/projects/turntable">Turntable</a> (Android, Kotlin)</>,
     desc: <p>
-      Music player for Android that allows users to sync their
-      listening sessions over the internet, playing the music from
-      accessible free sources: the device itself, YouTube, and hopefully more.
+      Mobile music player allowing users to share synced listening sessions,
+      so two people across the Earth from each other can listen to
+      the same song, album, or playlist together.<br/>
+      Allows user search on several music databases to facilitate discovery.
+      Handles local files and includes free music streaming.
     </p>,
   },
+  {
+    title: "Hobbies",
+    desc: <p>
+      Sewing, Accordion, Global Travel, Linguistics, Woodworking, Cooking &amp; Baking
+    </p>,
+  },
+  {
+    title: "Community Service",
+    desc: <p>
+      Volunteer weekly at Boston Building Resources, assembling fixtures and preparing donations for display.
+    </p>,
+  }
 ]
 
 const freelanceProjects: Array<{
@@ -242,26 +279,28 @@ const freelanceProjects: Array<{
   location: string
   timeFrame?: string
   desc: any
+  hidden?: boolean
 }> = [
   {
     title: <a href="https://paletteapp.city">City Palette</a>,
     organization: "Chloe Bass & Antenna",
     location: "New Orleans, LA",
-    timeFrame: "10/2017 - 1/2018",
+    timeFrame: "Oct '17 — Jan '18",
     desc: <p>
       Mobile app that allows users to name and publish
       dominant colors from photos, geotagged to where the photo was taken. Developed on my own, natively for both iOS
       (Swift) and Android (Java and Kotlin), using a
-      MongoDB instance to track colors and palettes.
+      MongoDB instance to store submitted colors.
     </p>,
   },
   {
+    hidden: true,
     title: <a href="https://antenna.works">Antenna.works</a>,
     organization: "Antenna",
     location: "New Orleans, LA",
-    timeFrame: "8/2016 - 10/2016",
+    timeFrame: "8/16 — 10/16",
     desc: <p>
-      Built the new website for Antena, "antenna.works."
+      Built the new website for Antenna, "antenna.works."
       Reorganized and integrated the MySQL database from
       their old website.
     </p>,
@@ -270,7 +309,7 @@ const freelanceProjects: Array<{
     title: "You Belong Here",
     organization: "Tavares Strachan & Antenna",
     location: "New Orleans, LA",
-    timeFrame: "9/2014 - 2/2015",
+    timeFrame: "9/14 — 2/15",
     desc: <p>
       Mobile app in JavaScript/Cordova that maps stories of
       belonging through photos and videos on Instagram. Wrote
