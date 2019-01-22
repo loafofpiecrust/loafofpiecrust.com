@@ -46,7 +46,7 @@ const theme = {
 }
 
 theme.mediaQueries = theme.breakpoints.map((w) => 
-  w === "40em" ? `@media print, (min-width: ${w})` : `@media(min-width: ${w})`
+  w === "52em" ? `@media print, (min-width: ${w})` : `@media(min-width: ${w})`
 )
 const mqBase = facepaint(theme.mediaQueries)
 export const mq = (style: Interpolation) =>
