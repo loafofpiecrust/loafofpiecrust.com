@@ -12,9 +12,9 @@ export const globalStyles = css({
   body: {
     "@media screen": {
       backgroundColor: theme.colors.background,
+      color: theme.colors.darkText,
     },
     fontFamily: theme.fonts.body,
-    color: theme.colors.darkText,
   },
   "h1,h2,h3,h4,h5,header": {
     fontFamily: theme.fonts.header,

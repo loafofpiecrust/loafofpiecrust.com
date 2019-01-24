@@ -16,7 +16,7 @@ const theme = {
   transitionTime: "160ms",
   contentPadding: [4, 4, 5],
   fullWidth: ["100%", 600, 800, 960],
-  space: [0, 4, 8, 16, 32, 48, 64, 128],
+  space: [0, 4, 8, 16, 36, 48, 64, 128],
   breakpoints: ["40em", "52em", "64em"],
   mediaQueries: [],
   fontWeights: {
@@ -26,8 +26,8 @@ const theme = {
   shadows: ["none", `0 2px 16px ${gray(75)}`],
   fonts: {
     body: "Cabin",
-    sans: "Cabin",
     header: "Arvo",
+    sans: "Cabin",
     serif: "Arvo",
     mono: "PT Mono",
   },
