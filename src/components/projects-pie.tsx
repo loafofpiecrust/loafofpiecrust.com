@@ -4,17 +4,15 @@ import blueberry from "images/pie-fillings/blueberry.svg"
 
 export const projects: Project[] = [
   {
-    linesOfCode: 750,
-    title: "You Belong Here",
-    url:
-      "https://play.google.com/store/apps/details?id=com.youbelonghere.ybh&hl=en",
+    title: "Turntable",
+    linesOfCode: 10824,
+    url: "/projects/turntable",
+    filling: cherry,
     desc: <p>
-      Mobile app that tracks stories of belonging (in New Orleans) via
-      photos and videos hosted on Instagram and mapped out.
-      Its release was Kicked off with videos from Speed Levitch
-      and a barge on the Mississippi River that read "You Belong Here".
+      Two people on distant reaches of the Earth from one another
+      can listen to the same album at the same time,
+      rhythms marching as one (with slight latency).
     </p>,
-    filling: blueberry,
   },
   {
     title: "City Palette",
@@ -34,15 +32,17 @@ export const projects: Project[] = [
     filling: blueberry,
   },
   {
-    title: "Turntable",
-    linesOfCode: 10824,
-    url: "/projects/turntable",
-    filling: cherry,
+    linesOfCode: 750,
+    title: "You Belong Here",
+    url:
+      "https://play.google.com/store/apps/details?id=com.youbelonghere.ybh&hl=en",
     desc: <p>
-      Two people on distant reaches of the Earth from one another
-      can listen to the same album at the same time,
-      rhythms marching as one (with slight latency).
+      Mobile app that tracks stories of belonging (in New Orleans) via
+      photos and videos hosted on Instagram and mapped out.
+      Its release was Kicked off with videos from Speed Levitch
+      and a barge on the Mississippi River that read "You Belong Here".
     </p>,
+    filling: blueberry,
   },
 ]
 
