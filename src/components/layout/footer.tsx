@@ -11,7 +11,7 @@ export const Footer = () => (
     <span>Powered by MAGIC</span>
     <span css={{ textAlign: "right" }}>
       Made with
-      <b css={{ color: "red" }}> ❤ </b>
+      <b css={{ color: theme.colors.link }}> ❤ </b>
       in New Orleans
     </span>
   </footer>

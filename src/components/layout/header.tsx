@@ -6,7 +6,7 @@ import styled from "@emotion/styled"
 
 import { NavBar } from "./navbar"
 import { siteMeta } from "config/metadata"
-import { mq, fullWidthClass } from "styles/theme"
+import theme, { mq, fullWidthClass } from "styles/theme"
 import { hideOnPrint } from "styles/global"
 import { marginX } from "styles/system/shortcuts"
 
@@ -37,7 +37,7 @@ const styles = {
     }),
   ),
   siteLink: css(mq({
-    color: "lightText",
+    color: theme.colors.lightText,
     textDecoration: "none",
     marginLeft: 3,
   })),
