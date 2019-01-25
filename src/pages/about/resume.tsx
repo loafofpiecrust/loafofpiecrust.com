@@ -18,7 +18,7 @@ export default () => <Layout unpadded title="Resume">
 
       <div css={[flex.column, flex.alignEnd]}>
         <span>Boston, MA 02130</span>
-        <span>snead.t@husky.neu.edu</span>
+        <span>taylorsnead@gmail.com</span>
         <span>Cell: 504-442-0219</span>
         <span><a href="https://loafofpiecrust.com">loafofpiecrust.com</a></span>
         <span>GitHub: <a href="https://github.com/loafofpiecrust">loafofpiecrust</a></span>
