@@ -3,7 +3,6 @@ import Layout from "components/layout/layout"
 import styled from "@emotion/styled"
 import theme, { mq } from "styles/theme"
 import { flex, paddingX, paddingY, contrastBackground } from "styles/system/shortcuts"
-import css from "@emotion/css";
 
 export default () => <Layout unpadded title="Resume">
   <ResumeHeader>
@@ -286,8 +285,8 @@ const skills: Array<{
   {
     title: "Technical Proficiencies",
     desc: <p>
-      Kotlin, Rust, Swift, C++, Java, C#, JS, x86 Assembly,
-      LaTeX, HTML/CSS, React,
+      Kotlin, Rust, Swift, C/C++, Java, C#, JS, x86 Assembly,
+      LaTeX, HTML/CSS, React, Node.js,
       Linux, Git, OpenGL,
       MongoDB, AWS, Firebase, Adobe suite,
       Splunk
