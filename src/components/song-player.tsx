@@ -1,83 +1,75 @@
-import React, { Component } from "react"
+import React, { Component, useState } from "react"
 import ReactAudioPlayer from "react-audio-player"
 import Axios from "axios"
-import { jsx as h } from "@emotion/core"
 
-export class SongPlayer extends Component<{
+export const SongPlayer = (props: {
   title: string
   album?: string
   artist: string
   autoPlay?: boolean
   hideTitle?: boolean
-}> {
-  state = {
-    currentSong: null,
-    source: null,
+}) => {
+  const [currentSong, setSong] = useState(null)
+  const [source, setSource] = useState(null)
+
+  if (!props.title || !props.artist) {
+    return null
   }
 
-  async fetchSource() {
-    const source = await parseStreams(
-      this.props.title,
-      this.props.artist,
-      this.props.album,
-    )
-    this.setState({
-      source,
-      currentSong: this.props,
-    })
-  }
+  return (
+    <div>
+      <Title/>
+      <Player/>
+    </div>
+  )
 
-  isLoaded() {
-    return this.state.source && this.props === this.state.currentSong
-  }
-
-  render() {
-    if (!this.props.title || !this.props.artist) {
-      return null
-    }
-
-    let player
-    if (this.isLoaded()) {
-      const source = this.state.source
+  function Player(): any {
+    if (isLoaded()) {
       const stream = source.highQuality || source.lowQuality
       if (stream) {
-        player = (
+        return (
           <ReactAudioPlayer
             controls
-            autoPlay={this.props.autoPlay}
+            autoPlay={props.autoPlay}
             src={stream.url}
             style={{ width: "100%" }}
           />
         )
       } else {
-        player = "Not found"
+        return "Not found"
       }
     } else {
-      this.fetchSource()
-      player = "Loading..."
+      fetchSource()
+      return "Loading..."
     }
+  }
 
-    let title = null
-    const hideTitle = this.props.hideTitle || true
+  function Title(): any {
+    const hideTitle = props.hideTitle || true
     if (!hideTitle) {
-      let albumBit = ""
-      if (this.props.album) {
-        albumBit = ` (${this.props.album})`
-      }
-      title = (
+      const albumBit = props.album ? ` (${props.album})` : ""
+      return (
         <h3 style={{ marginBottom: 8 }}>
-          {this.props.title} by {this.props.artist}
+          {props.title} by {props.artist}
           {albumBit}
         </h3>
       )
     }
+    return null
+  }
 
-    return (
-      <div>
-        {title}
-        {player}
-      </div>
+  async function fetchSource() {
+    const newSource = await parseStreams(
+      props.title,
+      props.artist,
+      props.album,
     )
+    setSong(props)
+    setSource(newSource)
+  }
+
+  function isLoaded() {
+    return source && props === currentSong
   }
 }
 
@@ -87,7 +79,7 @@ async function parseStreams(
   album?: string,
 ): Promise<any> {
   const res = await Axios.get(
-    "https://us-central1-turntable-3961c.cloudfunctions.net/parseStreamsFromYouTube",
+    "https://d9fh049y3b.execute-api.us-east-2.amazonaws.com/prod/findSongOnYouTube",
     {
       params: {
         title: title.toLowerCase(),

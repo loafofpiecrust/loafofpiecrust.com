@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import MDXRenderer from "gatsby-mdx/mdx-renderer"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import Layout from "components/layout/layout"
 import { flex } from "styles/system/shortcuts"
@@ -21,7 +21,7 @@ export default ({
   return <Layout title={title}>
     <article>
       {titleElem}
-      <MDXRenderer {...props}>{mdx.code.body}</MDXRenderer>
+      <MDXRenderer {...props}>{mdx.body}</MDXRenderer>
     </article>
     <nav css={[flex.row, flex.justifyBetween]}>
       <a href={pageContext.previous}>Previous</a>
@@ -37,7 +37,14 @@ export const pageQuery = graphql`
         title
       }
       headings { value, depth }
-      code { body }
+      body
     }
   }
 `
+
+// export default ({ children, pageContext, ...props }) => {
+//   console.log("stories layout!!")
+//   console.log(pageContext)
+//   console.log(props)
+//   return <Layout title={pageContext.frontmatter.title}>{children}</Layout>
+// }

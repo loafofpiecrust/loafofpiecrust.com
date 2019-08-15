@@ -1,60 +1,54 @@
- import React from "react"
- import { Stage, Layer, Text, Arc, Wedge, Circle, Line, Group } from "react-konva"
- import { Project, projects } from "./projects-pie"
- import { Spring, animated } from "react-spring/dist/konva"
- import Victor from "victor"
- import { ContainerConfig } from "konva"
- import topCrust from "images/pie-fillings/top-crust2.svg"
- import outerCrust from "images/pie-fillings/basic-crust.svg"
+import React, { useState } from "react"
+import { Stage, Layer, Text, Arc, Wedge, Circle, Line, Group } from "react-konva"
+import { Project, projects } from "./projects-pie"
+import { Spring, animated } from "react-spring/dist/konva"
+import Victor from "victor"
+import { ContainerConfig } from "konva"
+import topCrust from "images/pie-fillings/top-crust2.svg"
+import outerCrust from "images/pie-fillings/basic-crust.svg"
 
- export class ProjectPie extends React.Component<{
+export const ProjectPie = (props: {
   width: number
   height: number
   onSelect?: (project: Project) => void
-}> {
-  state = { selected: null }
+}) => {
+  const [selectedProject, selectProject] = useState(null)
 
-  render() {
-    const props = this.props
-    const radius = 200
-    let currLines = 0
-    const totalLines = projects.reduce((acc, proj) => acc + proj.linesOfCode, 0)
-    return <Stage
-      width={props.width}
-      height={props.height}
-    >
-      <Layer x={props.width / 2} y={props.height / 2}>
-        <Circle radius={radius} fill={colors.pan} />
-        {projects.map((project) => {
-          const slice = <PieSlice
-            key={project.title}
-            project={project}
-            startLineNumber={currLines}
-            totalLines={totalLines}
-            radius={radius}
-            selected={project === this.state.selected}
-            onClick={() => {
-              if (props.onSelect) {
-                props.onSelect(project)
-              }
-              this.setState({ selected: project })
-            }}
-          />
-          currLines += project.linesOfCode
-          return slice
-        })}
-      </Layer>
-    </Stage>
-  }
+  const radius = 200
+  let currLines = 0
+  const totalLines = projects.reduce((acc, proj) => acc + proj.linesOfCode, 0)
+  return <Stage width={props.width} height={props.height}>
+    <Layer x={props.width / 2} y={props.height / 2}>
+      <Circle radius={radius} fill={colors.pan} />
+      {projects.map((project) => {
+        const slice = <PieSlice
+          key={project.title}
+          project={project}
+          startLineNumber={currLines}
+          totalLines={totalLines}
+          radius={radius}
+          selected={project === selectedProject}
+          onClick={() => {
+            if (props.onSelect) {
+              props.onSelect(project)
+            }
+            selectProject(project)
+          }}
+        />
+        currLines += project.linesOfCode
+        return slice
+      })}
+    </Layer>
+  </Stage>
 }
 
- const PieSlice = (props: {
+const PieSlice = (props: {
   project: Project
   startLineNumber: number
   totalLines: number
   radius: number
   selected?: boolean
-  onClick?: (Event) => void
+  onClick?: (evt) => void
 }) => {
   const { onClick, selected, project } = props
   const maxJutDist = 50
@@ -125,7 +119,7 @@
   )
 }
 
- const WhippedCream = (props: ContainerConfig) => {
+const WhippedCream = (props: ContainerConfig) => {
   const r = 20
   return <Group {...props}>
     <Circle
@@ -145,7 +139,7 @@
   </Group>
 }
 
- const colors = {
+const colors = {
   // filling: "#e96a09",
   filling: "rebeccapurple",
   crust: "#fcc987",
@@ -153,7 +147,7 @@
   pan: "transparent",
 }
 
- function spiralPoints(radius: number, dist: number): number[] {
+function spiralPoints(radius: number, dist: number): number[] {
   const points = []
   let top = { x: 0, y: 0 }
   let currRadius = 0
@@ -175,7 +169,7 @@
   return points
 }
 
- function image(src: string, width?: number, height?: number) {
+function image(src: string, width?: number, height?: number) {
   const i = new Image(width, height)
   i.src = src
   return i

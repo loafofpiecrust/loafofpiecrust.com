@@ -22,8 +22,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: "loafofpiecrust.com",
-        short_name: "loafofpiecrust",
+        // name: "loafofpiecrust.com",
+        name: siteMeta.siteUrl,
+        short_name: siteMeta.title,
         start_url: "/",
         background_color: "#663399",
         theme_color: "#663399",
@@ -41,13 +42,14 @@ module.exports = {
 
     // sources
     {
-      resolve: "gatsby-mdx",
+      resolve: "gatsby-plugin-mdx",
       options: {
         extensions: [".mdx", ".md"],
         defaultLayouts: {
+          stories: require.resolve("./src/templates/story"),
           default: require.resolve("./src/templates/page"),
         },
-        mdPlugins: [
+        remarkPlugins: [
           require("remark-attr"),
           require("remark-breaks"),
           require("remark-emoji"),

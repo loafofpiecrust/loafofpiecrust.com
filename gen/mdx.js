@@ -1,10 +1,10 @@
-import componentWithMDXScope from "gatsby-mdx/component-with-mdx-scope"
 import path from "path"
 
 const projectDir = path.dirname(__dirname)
 
 // TODO: Pull this out into a generic fileNodeAddSlug or something
 export const onCreateNode = ({ node, getNode, actions }) => {
+  // TODO: clean up this logic?
   const parent = getNode(node.parent)
   const pathInProject = "/" + path.relative(projectDir, parent.absolutePath)
     .replace(/\.[^/.]+$/, "")
@@ -46,9 +46,6 @@ export const createPages = (basePath, sortBy, component) => async ({ graphql, ac
         node {
           id
           fields { slug }
-          code {
-            scope
-          }
         }
       }
     }
@@ -62,10 +59,7 @@ export const createPages = (basePath, sortBy, component) => async ({ graphql, ac
 
     actions.createPage({
       path: node.fields.slug + "/",
-      component: componentWithMDXScope(
-        component,
-        node.code.scope,
-      ),
+      component,
       context: {
         next: next && next.fields.slug,
         previous: previous && previous.fields.slug,

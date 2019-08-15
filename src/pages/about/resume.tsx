@@ -3,6 +3,7 @@ import Layout from "components/layout/layout"
 import styled from "@emotion/styled"
 import theme, { mq } from "styles/theme"
 import { flex, paddingX, paddingY, contrastBackground } from "styles/system/shortcuts"
+import { siteMeta } from "config/metadata"
 
 export default () => <Layout unpadded title="Resume">
   <ResumeHeader>
@@ -20,7 +21,7 @@ export default () => <Layout unpadded title="Resume">
         <span>Boston, MA 02130</span>
         <span>taylorsnead@gmail.com</span>
         <span>Cell: 504-442-0219</span>
-        <span><a href="https://loafofpiecrust.com">loafofpiecrust.com</a></span>
+        <span><a href={siteMeta.siteUrl}>loafofpiecrust.com</a></span>
         <span>GitHub: <a href="https://github.com/loafofpiecrust">loafofpiecrust</a></span>
       </div>
     </div>
@@ -40,7 +41,7 @@ export default () => <Layout unpadded title="Resume">
             in Computer Science
           </div>
           <i css={{ textAlign: "right" }}>
-            GPA: 3.4<br/>
+            GPA: 3.3<br/>
             Graduation: 2021
           </i>
         </div>
@@ -314,7 +315,7 @@ const personalProjects: Array<{
   hidden?: boolean
 }> = [
   {
-    title: <><a href="https://loafofpiecrust.com/projects/turntable">Turntable</a> (Android, Kotlin)</>,
+    title: <><a href="/projects/turntable">Turntable</a> (Android, Kotlin)</>,
     desc: <p>
       Mobile music player allowing users across the Earth from each other to listen to an album or playlist together.
       Facilitates discovery by allowing users to search several music databases in one place.

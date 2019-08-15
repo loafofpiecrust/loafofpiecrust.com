@@ -8,15 +8,16 @@ export const NavBar = (props: {
   items: Array<{ url: string; label: string }>
   activeUrl: string
 }) => (
-  <nav style={{ display: "flex" }}>
-    {props.items.map((item) => {
-      const isActive = props.activeUrl.startsWith(item.url)
-      return (
-        <Link key={item.url} to={item.url} css={styles.link(isActive)}>
-          {item.label}
-        </Link>
-      )
-    })}
+  <nav css={{ display: "flex" }}>
+    {props.items.map((item) => (
+      <Link
+        to={item.url}
+        key={item.url}
+        css={styles.link(props.activeUrl.startsWith(item.url))}
+      >
+        {item.label}
+      </Link>
+    ))}
   </nav>
 )
 

@@ -2,8 +2,6 @@ import React from "react"
 import { Link } from "gatsby"
 import { Location } from "@reach/router"
 import { css } from "@emotion/core"
-import styled from "@emotion/styled"
-
 import { NavBar } from "./navbar"
 import { siteMeta } from "config/metadata"
 import theme, { mq, fullWidthClass } from "styles/theme"
@@ -18,9 +16,11 @@ export const Header = () => (
       </Link>
     </h1>
 
-    <Location>{({ location }) => (
-      <NavBar items={siteMeta.navbar} activeUrl={location.pathname} />
-    )}</Location>
+    <Location>
+      {({ location }) => (
+        <NavBar items={siteMeta.navbar} activeUrl={location.pathname} />
+      )}
+    </Location>
   </header>
 )
 

@@ -1,7 +1,7 @@
-import { css, Global, jsx as h } from "@emotion/core"
+import { css, Global } from "@emotion/core"
 import { MuiThemeProvider } from "@material-ui/core"
 import { ThemeProvider as EmotionTheme } from "emotion-theming"
-import React, { ReactElement, ReactNode } from "react"
+import React from "react"
 import Helmet from "react-helmet"
 
 import { siteMeta } from "config/metadata"
