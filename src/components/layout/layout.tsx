@@ -30,18 +30,12 @@ export const Layout = (props: {
 
   <EmotionTheme theme={theme}>
     <Header />
-  </EmotionTheme>
-
-  <MuiThemeProvider theme={materialTheme}>
-    <EmotionTheme theme={theme}>
+    <MuiThemeProvider theme={materialTheme}>
       <main css={styles.content(props.unpadded)}>
         <Global styles={globalStyles} />
         {props.children}
       </main>
-    </EmotionTheme>
-  </MuiThemeProvider>
-
-  <EmotionTheme theme={theme}>
+    </MuiThemeProvider>
     <Footer />
   </EmotionTheme>
 </>

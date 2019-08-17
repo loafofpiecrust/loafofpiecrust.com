@@ -1,7 +1,4 @@
 {
-  "include": [
-    "./src/**/*"
-  ],
   "exclude": [
     "node_modules"
   ],
@@ -21,7 +18,7 @@
       ]
     },
     "jsx": "react",
-    "target": "es5",
+    "target": "es6",
     "allowJs": true,
     "module": "commonjs",
     "esModuleInterop": true,

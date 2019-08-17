@@ -1,30 +1,28 @@
-import React, { FormEvent } from "react"
-import { Layout } from "components/layout/layout"
+import React, { FormEvent, useState } from "react"
+import { globalHistory, navigate } from "@reach/router"
 import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
 import { css } from "@emotion/core"
+import useQueryString from "@trevorblades/use-query-string"
 import { SongPlayer } from "components/song-player"
-import QueryString from "query-string"
-import { navigate } from "gatsby"
-import { Location } from "@reach/router"
 
-let shouldAutoplay = false
 
-export default () => <Location>{({ location }) => {
-  const query = QueryString.parse(location.search)
+export default () => {
+  const [query, setQuery] = useQueryString(globalHistory.location, navigate)
   let title = query.title || ""
   let album = query.album || ""
   let artist = query.artist || ""
 
+  const [shouldAutoplay, setAutoplay] = useState(false)
+
   const play = async (evt: FormEvent) => {
     evt.preventDefault()
-    const newQuery = QueryString.stringify({
+    setAutoplay(true)
+    setQuery({
       title,
       artist,
       album: album || undefined,
     })
-    shouldAutoplay = true
-    navigate(`${location.pathname}?${newQuery}`, { replace: true })
   }
 
   return <>
@@ -76,7 +74,7 @@ export default () => <Location>{({ location }) => {
       </Button>
     </form>
   </>
-}}</Location>
+}
 
 const styles = {
   form: css({

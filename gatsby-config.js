@@ -3,17 +3,13 @@ require("ts-node").register()
 const { collections } = require("./src/config/collections")
 const { siteMeta } = require("./src/config/metadata")
 
-function folderNamed(name, path) {
-  return {
-    resolve: `gatsby-source-filesystem`,
-    options: {
-      name,
-      path: `${__dirname}/${path || name}`,
-    },
-  }
-}
-
-const folders = (...names) => names.map(name => folderNamed(name))
+const folderNamed = (name, path) => ({
+  resolve: `gatsby-source-filesystem`,
+  options: {
+    name,
+    path: `${__dirname}/${path || name}`,
+  },
+})
 
 module.exports = {
   siteMetadata: siteMeta,
@@ -82,7 +78,6 @@ module.exports = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     "gatsby-plugin-typescript",
-    "gatsby-plugin-sass",
     "gatsby-transformer-yaml",
     "gatsby-plugin-catch-links",
 

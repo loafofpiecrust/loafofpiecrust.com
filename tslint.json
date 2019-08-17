@@ -10,10 +10,7 @@
       true,
       {
         "multiline": {
-          // "arrays": "always",
           "exports": "always",
-          // "functions": "always",
-          // "objects": "always",
           "typeLiterals": "never"
         },
         "singleline": "never"

@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Stage, Layer, Text, Arc, Wedge, Circle, Line, Group } from "react-konva"
 import { Project, projects } from "./projects-pie"
-import { Spring, animated } from "react-spring/dist/konva"
+// import { Spring, animated } from "react-spring"
 import Victor from "victor"
 import { ContainerConfig } from "konva"
 import topCrust from "images/pie-fillings/top-crust2.svg"
@@ -71,52 +71,54 @@ const PieSlice = (props: {
     to = normalState
   }
 
+  // TODO: Use spring hooks if we still want this component
   // animate the offset!
-  return (
-    <Spring to={to}>
-      {(anim) => {
-        const middle = new Victor(1, 0).rotateDeg(middleAngle)
-        const offset = middle.clone().multiplyScalar(anim.jutDist)
-        return <Group {...offset} onClick={onClick}>
-          {/* Filling */}
-          <Wedge
-            radius={baseRadius}
-            angle={angularWidth}
-            rotation={startAngle}
-            fillPatternImage={image(project.filling)}
-            fillPatternScale={{ x: 0.38, y: 0.38 }}
-            fillPatternRepeat="repeat"
-            fillPatternRotation={middleAngle}
-          />
-          {/* Top crust */}
-          <Wedge
-            radius={baseRadius}
-            angle={angularWidth}
-            rotation={startAngle}
-            opacity={anim.crustOpacity}
-            fillPatternImage={image(topCrust)}
-            fillPatternScale={{ x: 1.3, y: 1.3 }}
-            fillPatternRepeat="repeat"
-          />
-          {/* Outer crust */}
-          <Arc
-            outerRadius={baseRadius + (crustThickness / 2)}
-            innerRadius={baseRadius - (crustThickness / 2)}
-            angle={angularWidth}
-            rotation={startAngle}
-            fill={colors.crust}
-          />
-          {angularWidth > 35 ?
-            <WhippedCream
-              {...middle.clone().multiplyScalar(baseRadius / 2)}
-              rotation={middleAngle}
-              opacity={anim.crustOpacity}
-            />
-          : null}
-        </Group>
-      }}
-    </Spring>
-  )
+  // return (
+  //   <Spring to={to}>
+  //     {(anim) => {
+  //       const middle = new Victor(1, 0).rotateDeg(middleAngle)
+  //       const offset = middle.clone().multiplyScalar(anim.jutDist)
+  //       return <Group {...offset} onClick={onClick}>
+  //         {/* Filling */}
+  //         <Wedge
+  //           radius={baseRadius}
+  //           angle={angularWidth}
+  //           rotation={startAngle}
+  //           fillPatternImage={image(project.filling)}
+  //           fillPatternScale={{ x: 0.38, y: 0.38 }}
+  //           fillPatternRepeat="repeat"
+  //           fillPatternRotation={middleAngle}
+  //         />
+  //         {/* Top crust */}
+  //         <Wedge
+  //           radius={baseRadius}
+  //           angle={angularWidth}
+  //           rotation={startAngle}
+  //           opacity={anim.crustOpacity}
+  //           fillPatternImage={image(topCrust)}
+  //           fillPatternScale={{ x: 1.3, y: 1.3 }}
+  //           fillPatternRepeat="repeat"
+  //         />
+  //         {/* Outer crust */}
+  //         <Arc
+  //           outerRadius={baseRadius + (crustThickness / 2)}
+  //           innerRadius={baseRadius - (crustThickness / 2)}
+  //           angle={angularWidth}
+  //           rotation={startAngle}
+  //           fill={colors.crust}
+  //         />
+  //         {angularWidth > 35 ?
+  //           <WhippedCream
+  //             {...middle.clone().multiplyScalar(baseRadius / 2)}
+  //             rotation={middleAngle}
+  //             opacity={anim.crustOpacity}
+  //           />
+  //         : null}
+  //       </Group>
+  //     }}
+  //   </Spring>
+  // )
+  return null
 }
 
 const WhippedCream = (props: ContainerConfig) => {

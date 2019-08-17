@@ -35,7 +35,7 @@ export const onCreateNode = ({ node, getNode, actions }) => {
 // basePath: string, sortBy: string[]
 export const createPages = (basePath, sortBy, component) => async ({ graphql, actions }) => {
   const sortParams = sortBy.map((field) => field.replace(".", "___"))
-  const result = await graphql(`{
+  const { data, errors } = await graphql(`{
     allMdx(
       filter: { fields: { pathInProject: { regex: "^/\/${basePath}/" }}}
       sort: { fields: ${sortParams} }
@@ -50,16 +50,16 @@ export const createPages = (basePath, sortBy, component) => async ({ graphql, ac
       }
     }
   }`)
-  if (result.errors) {
-    throw result.errors
+  if (errors) {
+    throw errors
   }
 
-  for (const edge of result.data.allMdx.edges) {
+  for (const edge of data.allMdx.edges) {
     const { node, next, previous } = edge
 
     actions.createPage({
-      path: node.fields.slug + "/",
       component,
+      path: node.fields.slug + "/",
       context: {
         next: next && next.fields.slug,
         previous: previous && previous.fields.slug,
