@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import { css, jsx as h } from "@emotion/core"
+import { css } from "@emotion/core"
 import theme, { mq } from "styles/theme"
 import { contrastBackground, flex } from "styles/system/shortcuts"
 

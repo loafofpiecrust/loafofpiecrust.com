@@ -2,10 +2,6 @@
 # Sashimi
 -----------
 
-
-Hi Greetings my friend yo
-
-
 We're not sure where it came from, or even really what it was. We knew that it sat in our yard and that it was very lazy. We knew that it consumed large amounts of liquid and flattened the ever-greenening grass. All we could do was watch its descension. I'm beginning to think that it might have motives beyond what it had previously seemed to have: nothing. It rambles around making very purple noises. I think it might be sad.
 
 ***. . .***

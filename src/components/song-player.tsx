@@ -24,7 +24,8 @@ export const SongPlayer = (props: {
   )
 
   function Player(): any {
-    if (isLoaded()) {
+    const isLoaded = source && props === currentSong
+    if (isLoaded) {
       const stream = source.highQuality || source.lowQuality
       if (stream) {
         return (
@@ -40,7 +41,7 @@ export const SongPlayer = (props: {
       }
     } else {
       fetchSource()
-      return "Loading..."
+      return `Loading '${props.title}'...`
     }
   }
 
@@ -66,10 +67,6 @@ export const SongPlayer = (props: {
     )
     setSong(props)
     setSource(newSource)
-  }
-
-  function isLoaded() {
-    return source && props === currentSong
   }
 }
 
