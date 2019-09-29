@@ -1,3 +1,4 @@
+import { Theme } from "styles/theme";
 
 const themeMappings = [
   { keys: ["color", "backgroundColor", "background", "borderColor"], themeKey: "colors" },
@@ -11,7 +12,7 @@ const themeMappings = [
   return acc
 }, {})
 
-function mapTheme(theme, style) {
+function mapTheme(theme: Theme, style) {
   Object.entries(style).forEach(([key, value]) => {
     const themePart = theme[themeMappings[key] || "space"]
     if (themePart && !Array.isArray(themePart)) {
@@ -39,6 +40,6 @@ function mapTheme(theme, style) {
   return style
 }
 
-export function themed(theme, style) {
+export function themed(theme: Theme, style) {
   return mapTheme(theme, style)
 }

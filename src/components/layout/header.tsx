@@ -7,7 +7,7 @@ import { siteMeta } from "config/metadata"
 import theme, { mq, fullWidthClass } from "styles/theme"
 import { hideOnPrint } from "styles/global"
 import { marginX } from "styles/system/shortcuts"
-import { useLocation } from "components/use-location";
+import { useLocation } from "components/use-location"
 
 export const Header = () => (
   <header css={styles.container}>

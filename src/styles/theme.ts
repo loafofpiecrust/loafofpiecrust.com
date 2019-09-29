@@ -1,7 +1,6 @@
 import facepaint from "facepaint"
 import { css } from "@emotion/core"
 import { themed } from "./system/theming"
-import { expandShortcuts, CSSShortcuts } from "./system/shortcuts"
 import { CSSProperties, CSSPropertiesWithMultiValues, Interpolation } from "@emotion/serialize"
 import gray from "gray-percentage"
 import color from "color"
@@ -40,10 +39,12 @@ const theme = {
     darkText: color("darkslategray").darken(0.5).fade(0.15).string(),
     teal: "rgb(0, 190, 166)",
   },
-  from(key: string, values: any[]): any {
+  from: (key: string, values: any[]) => {
     return values.map((x) => theme[key][x])
   },
 }
+
+export type Theme = typeof theme
 
 theme.mediaQueries = theme.breakpoints.map((w) => 
   w === "52em" ? `@media print, (min-width: ${w})` : `@media(min-width: ${w})`

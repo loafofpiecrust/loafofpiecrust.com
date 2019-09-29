@@ -1,7 +1,6 @@
 {
   "presets": [
     ["@babel/preset-typescript", { "extensions": ".tsx" }],
-    "gatsby", 
-    "@emotion/css-prop"
+    "gatsby"
   ]
 }

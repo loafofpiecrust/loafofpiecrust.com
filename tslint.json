@@ -38,7 +38,7 @@
     "jsx-no-lambda": false,
     "no-consecutive-blank-lines": false,
     "object-literal-sort-keys": [
-      true,
+      false,
       "shorthand-first",
       "match-declaration-order"
     ],

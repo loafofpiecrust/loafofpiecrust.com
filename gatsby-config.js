@@ -80,6 +80,7 @@ module.exports = {
     "gatsby-plugin-typescript",
     "gatsby-transformer-yaml",
     "gatsby-plugin-catch-links",
+    "gatsby-plugin-emotion",
 
     // styling
     {

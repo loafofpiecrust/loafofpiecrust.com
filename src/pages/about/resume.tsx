@@ -1,12 +1,13 @@
 import React from "react"
 import Layout from "components/layout/layout"
 import styled from "@emotion/styled"
+import { css } from "@emotion/core"
 import theme, { mq } from "styles/theme"
 import { flex, paddingX, paddingY, contrastBackground } from "styles/system/shortcuts"
 import { siteMeta } from "config/metadata"
 
 export default () => <Layout unpadded title="Resume">
-  <ResumeHeader>
+  <div css={ResumeHeader}>
     <div css={[flex.row, flex.alignCenter]}>
       <header css={{ flex: 1 }}>
         <h1 css={{ margin: 0 }}>
@@ -25,12 +26,12 @@ export default () => <Layout unpadded title="Resume">
         <span>GitHub: <a href="https://github.com/loafofpiecrust">loafofpiecrust</a></span>
       </div>
     </div>
-  </ResumeHeader>
+  </div>
 
   <div css={[flex.row, flex.wrap]}>
-    <LeftColumn>
+    <div css={LeftColumn}>
       <LeftSection>
-        <SectionHeader>Education</SectionHeader>
+        <h3 css={SectionHeader}>Education</h3>
         <div css={[flex.row, flex.justifyBetween, flex.wrap]}>
           <header css={{ flexGrow: 1 }}>
             <b>Northeastern University</b> &ndash; Boston, MA<br />
@@ -38,10 +39,11 @@ export default () => <Layout unpadded title="Resume">
 
           <div css={{ flexGrow: 1 }}>
             Candidate for Bachelor of Science<br />
-            in Computer Science
+            in Computer Science<br />
+            Minor in Linguistics
           </div>
           <i css={{ textAlign: "right" }}>
-            GPA: 3.3<br/>
+            GPA: 3.4<br/>
             Graduation: 2021
           </i>
         </div>
@@ -58,7 +60,7 @@ export default () => <Layout unpadded title="Resume">
       </LeftSection>
 
       <LeftSection>
-        <SectionHeader>Skills</SectionHeader>
+        <h3 css={SectionHeader}>Skills</h3>
         {skills.map((item) => (
           <div css={flex.column} key={item.title}>
             <header><b>{item.title}</b></header>
@@ -68,7 +70,7 @@ export default () => <Layout unpadded title="Resume">
       </LeftSection>
 
       <LeftSection>
-        <SectionHeader>Personal Projects</SectionHeader>
+        <h3 css={SectionHeader}>Personal Projects</h3>
         {personalProjects.filter((x) => !x.hidden).map((proj) => (
           <div css={flex.column} key={proj.title}>
             <header><b>{proj.title}</b></header>
@@ -76,11 +78,11 @@ export default () => <Layout unpadded title="Resume">
           </div>
         ))}
       </LeftSection>
-    </LeftColumn>
+    </div>
 
-    <RightColumn>
+    <div css={RightColumn}>
       <RightSection>
-        <SectionHeader>Work Experience</SectionHeader>
+        <h3 css={SectionHeader}>Work Experience</h3>
         {workExperience.filter((j) => !j.hidden).map((job) => (
           <div css={flex.column} key={job.timeFrame}>
             <header>
@@ -96,7 +98,7 @@ export default () => <Layout unpadded title="Resume">
           </div>
         ))}
       </RightSection>
-    </RightColumn>
+    </div>
   </div>
 
   <h4 css={{ ...paddingX(20), paddingBottom: 20, textAlign: "center" }}>
@@ -104,7 +106,7 @@ export default () => <Layout unpadded title="Resume">
   </h4>
 </Layout>
 
-const LeftColumn = styled("div")(
+const LeftColumn = css(
   flex.column,
   mq({
     flex: ["1 0 100%", 1],
@@ -112,7 +114,7 @@ const LeftColumn = styled("div")(
   }),
 )
 
-const RightColumn = styled("div")(
+const RightColumn = css(
   flex.column,
   mq({
     flex: ["1 0", 1],
@@ -122,7 +124,7 @@ const RightColumn = styled("div")(
 const inset = [3, 4, 5]
 const verticalInset = 3
 
-const coloredLink = (activeColor) => ({
+const coloredLink = (activeColor) => css({
   borderColor: activeColor,
   "&:hover": {
     color: activeColor,
@@ -132,14 +134,14 @@ const coloredLink = (activeColor) => ({
   },
 })
 
-const cleanLink = {
+const cleanLink = css({
   borderBottom: "none",
   "&:hover": {
     color: "initial",
   },
-}
+})
 
-const ResumeHeader = styled("div")(mq({
+const ResumeHeader = css(mq({
   ...paddingX(inset),
   ...paddingY(26),
   ...contrastBackground(theme.colors.link),
@@ -149,7 +151,7 @@ const ResumeHeader = styled("div")(mq({
   fontFamily: theme.fonts.header,
 }))
 
-const SectionHeader = styled("h3")(mq({
+const SectionHeader = css(mq({
   ...paddingX(inset),
   ...paddingY(verticalInset),
   ...contrastBackground(theme.colors.background),
@@ -197,10 +199,23 @@ const workExperience: Array<{
   hidden?: boolean
 }> = [
   {
+    title: "Software Engineer",
+    organization: "PlacePass",
+    location: "Boston, MA",
+    timeFrame: "July '19 – Present",
+    desc: <p>
+      Rebuild search results pages in React.
+      Use terraform to provision cloud infrastructure for backend services.
+      Improve GraphQL search service in Go, part of tech stack transition.
+      Learn ML basics and improve Tensorflow models for product
+      categorization.
+    </p>
+  },
+  {
     title: "Software Developer",
     organization: "Autodesk",
     location: "Boston, MA",
-    timeFrame: "July '18 – Present",
+    timeFrame: "July '18 – April '19",
     desc: <p>
       Build cloud content browser for Autodesk Revit in React and Typescript, on team of six.
       Devise solution for representing content taxonomy with node graph.
@@ -266,7 +281,7 @@ const workExperience: Array<{
     </p>,
   },
   {
-    hidden: false,
+    hidden: true,
     title: "You Belong Here",
     organization: "T. Strachan & Antenna",
     location: "New Orleans, LA",
@@ -286,11 +301,10 @@ const skills: Array<{
   {
     title: "Technical Proficiencies",
     desc: <p>
-      Kotlin, Rust, Swift, C/C++, Java, C#, JS, x86 Assembly,
+      Kotlin, Rust, Swift, C++, Go, Java, JS, x86 Assembly,
       LaTeX, HTML/CSS, React, Node.js,
-      Linux, Git, OpenGL,
-      MongoDB, AWS, Firebase, Adobe suite,
-      Splunk
+      Linux, Git, OpenGL, Terraform,
+      MongoDB, AWS, Firebase, Adobe suite
     </p>
   },
   {

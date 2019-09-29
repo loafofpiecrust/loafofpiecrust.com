@@ -1,17 +1,14 @@
-import React from "react"
 import styled from "@emotion/styled"
 import Layout from "components/layout/layout"
+import e from "react-hyperscript"
 
-export default () => (
-  <Layout>
-    <BigP>
-      I'm a <b>Software Developer.</b>
-    </BigP>
-    <BigP>
-      I specialize in <b>creative forms of communication</b>.
-    </BigP>
-  </Layout>
-)
+export default () => e(Layout, [
+  e(BigP, ["I'm a ", e("b", "Software Developer.")]),
+  e(BigP, [
+    "I specialize in",
+    e("b", "creative forms of communication.")
+  ])
+])
 
 const BigP = styled.p({
   fontSize: 32,

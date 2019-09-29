@@ -1,8 +1,7 @@
 import React from "react"
 import Progress from "rc-progress"
 import { size } from "styles/system/shortcuts"
-import styled from "@emotion/styled"
-import { css, jsx as h } from "@emotion/core"
+import { css } from "@emotion/core"
 
 export const SkillMeter = (props: {
   format: (value: number) => string
@@ -11,7 +10,7 @@ export const SkillMeter = (props: {
   color?: string
 }) => <div>
   <h4 css={styles.title}>{props.title}</h4>
-  <Container>
+  <div css={styles.container}>
     <Progress.Circle
       css={size(100)}
       percent={props.value * 100}
@@ -22,8 +21,8 @@ export const SkillMeter = (props: {
       strokeColor={props.color || "#2db7f5"}
       strokeLinecap="square"
     />
-    <DescBox>{props.format(props.value)}</DescBox>
-  </Container>
+    <span css={styles.desc}>{props.format(props.value)}</span>
+  </div>
 </div>
 
 const styles = {
@@ -31,24 +30,22 @@ const styles = {
     width: "initial",
     textAlign: "center",
   }),
+  container: css({
+    position: "relative",
+    display: "flex",
+    flexFlow: "column nowrap",
+    justifyContent: "center",
+    width: "fit-content",
+  }),
+  desc: css({
+    display: "flex",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    textAlign: "center",
+    justifyContent: "center",
+    alignItems: "center",
+  })
 }
-
-const Container = styled("div")({
-  position: "relative",
-  display: "flex",
-  flexFlow: "column nowrap",
-  justifyContent: "center",
-  width: "fit-content",
-})
-
-const DescBox = styled("span")({
-  display: "flex",
-  position: "absolute",
-  top: 0,
-  left: 0,
-  width: "100%",
-  height: "100%",
-  textAlign: "center",
-  justifyContent: "center",
-  alignItems: "center",
-})
