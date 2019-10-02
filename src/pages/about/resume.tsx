@@ -14,7 +14,7 @@ export default () => <Layout unpadded title="Resume">
           Taylor Snead
         </h1>
         <i css={{ margin: 0 }}>
-          Available July &ndash; December 2019
+          Available July &ndash; December 2020
         </i>
       </header>
 
@@ -212,16 +212,15 @@ const workExperience: Array<{
     </p>
   },
   {
-    title: "Software Developer",
+    title: "Software Engineer",
     organization: "Autodesk",
     location: "Boston, MA",
     timeFrame: "July '18 – April '19",
     desc: <p>
-      Build cloud content browser for Autodesk Revit in React and Typescript, on team of six.
+      Build cloud content browser for Autodesk Revit in React and Typescript.
       Devise solution for representing content taxonomy with node graph.
       Collaborate with UX designer on responsive UI.
-      Cooperate with another team on shared data management library.
-      Presented at quarterly company check-in and customer demo representing my team.
+      Presented at quarterly company check-in representing my team.
     </p>,
   },
   {
@@ -230,9 +229,11 @@ const workExperience: Array<{
     location: "Boston, MA",
     timeFrame: "Jan '18 – Present",
     desc: <p>
-      Architect client-side audio mixing system to
-      decrease server load by >90% and facilitate more complex projects.
-      Augment audio experiences in 3D environments using device location and gyroscope.
+      Mobile app where users share their stories by voice,
+      so that others walking around in the same space hear the voices of
+      past visitors in stereo, literally walking in their footsteps.
+      Rebuild the iOS framework to facilitate complex projects
+      with decreased audio and network latency.
     </p>,
   },
   {
@@ -269,6 +270,7 @@ const workExperience: Array<{
     </p>,
   },
   {
+    hidden: true,
     title: "Software Developer",
     organization: "Gameloft",
     location: "New Orleans, LA",
@@ -281,7 +283,7 @@ const workExperience: Array<{
     </p>,
   },
   {
-    hidden: true,
+    hidden: false,
     title: "You Belong Here",
     organization: "T. Strachan & Antenna",
     location: "New Orleans, LA",
@@ -310,12 +312,13 @@ const skills: Array<{
   {
     title: "Hobbies",
     desc: <div>
-      Linguistics,
-      Global Travel,
+      Mandarin,
+      Travel,
       Sewing,
-      Playing Accordion,
+      Accordion,
       Baking,
-      Woodworking
+      Woodworking,
+      Biking
       <br/>
       Volunteer weekly at Boston Building Resources.
     </div>,
