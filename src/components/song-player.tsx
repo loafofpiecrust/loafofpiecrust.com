@@ -1,6 +1,7 @@
-import React, { Component, useState } from "react"
+import React from "react"
 import ReactAudioPlayer from "react-audio-player"
 import Axios from "axios"
+import { useAsync } from "react-async-hook"
 
 export const SongPlayer = (props: {
   title: string
@@ -9,11 +10,17 @@ export const SongPlayer = (props: {
   autoPlay?: boolean
   hideTitle?: boolean
 }) => {
-  const [currentSong, setSong] = useState(null)
-  const [source, setSource] = useState(null)
-
   if (!props.title || !props.artist) {
     return null
+  }
+
+  const { result: source, loading, error } = useAsync(
+    parseStreams,
+    [props.title, props.artist, props.album]
+  )
+
+  if (loading) {
+    return `Loading '${props.title}'...`
   }
 
   return (
@@ -24,24 +31,18 @@ export const SongPlayer = (props: {
   )
 
   function Player(): any {
-    const isLoaded = source && props === currentSong
-    if (isLoaded) {
-      const stream = source.highQuality || source.lowQuality
-      if (stream) {
-        return (
-          <ReactAudioPlayer
-            controls
-            autoPlay={props.autoPlay}
-            src={stream.url}
-            style={{ width: "100%" }}
-          />
-        )
-      } else {
-        return "Not found"
-      }
+    const stream = source.highQuality || source.lowQuality
+    if (stream && !error) {
+      return (
+        <ReactAudioPlayer
+          controls
+          autoPlay={props.autoPlay}
+          src={stream.url}
+          style={{ width: "100%" }}
+        />
+      )
     } else {
-      fetchSource()
-      return `Loading '${props.title}'...`
+      return "Not found"
     }
   }
 
@@ -57,16 +58,6 @@ export const SongPlayer = (props: {
       )
     }
     return null
-  }
-
-  async function fetchSource() {
-    const newSource = await parseStreams(
-      props.title,
-      props.artist,
-      props.album,
-    )
-    setSong(props)
-    setSource(newSource)
   }
 }
 
