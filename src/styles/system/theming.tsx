@@ -1,4 +1,4 @@
-import { Theme } from "styles/theme";
+import { Theme } from "styles/theme"
 
 const themeMappings = [
   { keys: ["color", "backgroundColor", "background", "borderColor"], themeKey: "colors" },

@@ -2,7 +2,8 @@ import { css } from "@emotion/core"
 
 import color from "color"
 import theme from "./theme"
-import { contrastBackground } from "./system/shortcuts";
+import { contrastBackground } from "./system/shortcuts"
+import typography from "./typography"
 
 export const globalStyles = css({
   html: {
@@ -23,7 +24,7 @@ export const globalStyles = css({
     },
     "&:only-child": {
       marginBottom: 0,
-    }
+    },
   },
   "@page": {
     size: "auto",
@@ -46,18 +47,18 @@ export const globalStyles = css({
     backgroundColor: "lavenderblush",
     color: color(theme.colors.darkText).fade(0.1).string(),
   },
-  code: {
+  ":not(pre) code": {
     border: `1px solid ${theme.colors.link}`,
     padding: 5,
     borderRadius: 3,
     ...contrastBackground("seashell"),
     "&.dark": contrastBackground(theme.colors.darkText),
-  }
-})
+  },
+}, typography.createStyles())
 
 
 export const hideOnPrint = css({
   "@media print": {
     display: "none",
-  }
+  },
 })

@@ -2,11 +2,6 @@ import { css, Interpolation } from "@emotion/core"
 import color from "color"
 import theme from "styles/theme"
 
-export interface CSSShortcuts {
-  px?: any,
-  py?: any,
-}
-
 const shortcuts = {
   px: ["paddingLeft", "paddingRight"],
   py: ["paddingTop", "paddingBottom"],

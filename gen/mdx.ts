@@ -1,9 +1,10 @@
 import path from "path"
+import { CreateNodeArgs, CreatePagesArgs } from "gatsby"
 
 const projectDir = path.dirname(__dirname)
 
 // TODO: Pull this out into a generic fileNodeAddSlug or something
-export const onCreateNode = ({ node, getNode, actions }) => {
+export const onCreateNode = ({ node, getNode, actions }: CreateNodeArgs) => {
   // TODO: clean up this logic?
   const parent = getNode(node.parent)
   const pathInProject = "/" + path.relative(projectDir, parent.absolutePath)
@@ -13,7 +14,7 @@ export const onCreateNode = ({ node, getNode, actions }) => {
   const pathOnline = pathInProject.replace(/^(\/src)?\/(content|pages)/, "")
 
   // If content specifies 'slug', use that for the last part of generated path
-  let slug = node.frontmatter.slug
+  let slug = node.frontmatter["slug"]
   if (!slug) {
     // Remove an initial number in the filename
     // As this is used purely for ordering
@@ -33,12 +34,20 @@ export const onCreateNode = ({ node, getNode, actions }) => {
 }
 
 // basePath: string, sortBy: string[]
-export const createPages = (basePath, sortBy, component) => async ({ graphql, actions }) => {
-  const sortParams = sortBy.map((field) => field.replace(".", "___"))
+export const createPages = (
+  pattern: string,
+  sortBy: string[],
+  component: string,
+) => async ({ graphql, actions }: CreatePagesArgs) => {
+  let sortQuery = ""
+  if (sortBy && sortBy.length) {
+    const sortParams = sortBy.map((f) => f.replace(".", "___"))
+    sortQuery = `sort: { fields: [${sortParams}] }`
+  }
   const { data, errors } = await graphql(`{
     allMdx(
-      filter: { fields: { pathInProject: { regex: "^/\/${basePath}/" }}}
-      sort: { fields: ${sortParams} }
+      filter: { fields: { pathInProject: { glob: "/${pattern}" }}}
+      ${sortQuery}
     ) {
       edges {
         next { fields { slug } }

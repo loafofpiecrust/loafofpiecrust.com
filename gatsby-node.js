@@ -36,7 +36,7 @@ exports.createPages = async (params) => {
   for (const col of collections) {
     if (col.component) {
       await mdx.createPages(
-        col.folder,
+        `${col.folder}/**`,
         col.sortBy,
         require.resolve(`./src/${col.component}`),
       )(params)

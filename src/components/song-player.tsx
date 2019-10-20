@@ -4,11 +4,11 @@ import Axios from "axios"
 import { useAsync } from "react-async-hook"
 
 export const SongPlayer = (props: {
-  title: string
-  album?: string
-  artist: string
-  autoPlay?: boolean
-  hideTitle?: boolean
+  title: string;
+  album?: string;
+  artist: string;
+  autoPlay?: boolean;
+  hideTitle?: boolean;
 }) => {
   if (!props.title || !props.artist) {
     return null
@@ -20,7 +20,7 @@ export const SongPlayer = (props: {
   )
 
   if (loading) {
-    return `Loading '${props.title}'...`
+    return <>{`Loading '${props.title}'...`}</>
   }
 
   return (

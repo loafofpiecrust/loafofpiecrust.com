@@ -47,11 +47,11 @@ export const projects: Project[] = [
 ]
 
 export interface Project {
-  url: string
-  linesOfCode: number
-  title: string
-  desc?: string | any
-  crust?: any
-  creme?: any
-  filling?: any
+  url: string;
+  linesOfCode: number;
+  title: string;
+  desc?: string | any;
+  crust?: any;
+  creme?: any;
+  filling?: any;
 }

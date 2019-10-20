@@ -1,6 +1,0 @@
-{
-  "presets": [
-    ["@babel/preset-typescript", { "extensions": ".tsx" }],
-    "gatsby"
-  ]
-}

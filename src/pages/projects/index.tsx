@@ -5,7 +5,7 @@ import { projects } from "components/projects-pie"
 export default () => (
   <Layout title="Projects">
     {projects.map((project) => (
-      <section>
+      <section key={project.title}>
         <h3><a href={project.url}>{project.title}</a></h3>
         {project.desc}
       </section>

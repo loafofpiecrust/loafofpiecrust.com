@@ -8,9 +8,9 @@ import topCrust from "images/pie-fillings/top-crust2.svg"
 import outerCrust from "images/pie-fillings/basic-crust.svg"
 
 export const ProjectPie = (props: {
-  width: number
-  height: number
-  onSelect?: (project: Project) => void
+  width: number;
+  height: number;
+  onSelect?: (project: Project) => void;
 }) => {
   const [selectedProject, selectProject] = useState(null)
 
@@ -43,12 +43,12 @@ export const ProjectPie = (props: {
 }
 
 const PieSlice = (props: {
-  project: Project
-  startLineNumber: number
-  totalLines: number
-  radius: number
-  selected?: boolean
-  onClick?: (evt) => void
+  project: Project;
+  startLineNumber: number;
+  totalLines: number;
+  radius: number;
+  selected?: boolean;
+  onClick?: (evt) => void;
 }) => {
   const { onClick, selected, project } = props
   const maxJutDist = 50

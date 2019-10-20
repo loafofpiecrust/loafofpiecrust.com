@@ -14,10 +14,12 @@ import { marginX, paddingX, paddingY } from "styles/system/shortcuts"
 import theme, { mq } from "styles/theme"
 
 export const Layout = (props: {
-  title?: string
-  children: any
-  unpadded?: boolean
+  title?: string;
+  children?: any;
+  unpadded?: boolean;
 }) => <>
+  <Global styles={globalStyles} />
+
   <Helmet
     title={(props.title ? `${props.title} - ` : "") + siteMeta.title}
     meta={[
@@ -32,7 +34,6 @@ export const Layout = (props: {
     <Header />
     <MuiThemeProvider theme={materialTheme}>
       <main css={styles.content(props.unpadded)}>
-        <Global styles={globalStyles} />
         {props.children}
       </main>
     </MuiThemeProvider>

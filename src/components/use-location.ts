@@ -7,7 +7,7 @@ export const useLocation = () => useSubscription(
   useMemo(
     () => ({
       getCurrentValue: () => globalHistory.location,
-      subscribe: (callback) => globalHistory.listen(callback)
+      subscribe: (callback) => globalHistory.listen(callback),
     }),
     []
   )

@@ -5,8 +5,8 @@ import theme, { mq } from "styles/theme"
 import { contrastBackground, flex } from "styles/system/shortcuts"
 
 export const NavBar = (props: {
-  items: Array<{ url: string; label: string }>
-  activeUrl: string
+  items: Array<{ url: string; label: string }>;
+  activeUrl: string;
 }) => (
   <nav css={{ display: "flex" }}>
     {props.items.map((item) => (

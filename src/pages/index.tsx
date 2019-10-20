@@ -6,8 +6,8 @@ export default () => e(Layout, [
   e(BigP, ["I'm a ", e("b", "Software Developer.")]),
   e(BigP, [
     "I specialize in",
-    e("b", "creative forms of communication.")
-  ])
+    e("b", "creative forms of communication."),
+  ]),
 ])
 
 const BigP = styled.p({

@@ -4,10 +4,10 @@ import { size } from "styles/system/shortcuts"
 import { css } from "@emotion/core"
 
 export const SkillMeter = (props: {
-  format: (value: number) => string
-  value: number
-  title: string
-  color?: string
+  format: (value: number) => string;
+  value: number;
+  title: string;
+  color?: string;
 }) => <div>
   <h4 css={styles.title}>{props.title}</h4>
   <div css={styles.container}>
@@ -47,5 +47,5 @@ const styles = {
     textAlign: "center",
     justifyContent: "center",
     alignItems: "center",
-  })
+  }),
 }
