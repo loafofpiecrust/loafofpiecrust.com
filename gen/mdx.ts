@@ -1,79 +1,81 @@
-import path from "path"
-import { CreateNodeArgs, CreatePagesArgs } from "gatsby"
+import {CreateNodeArgs, CreatePagesArgs} from "gatsby"
+import graphql from "graphql-tag"
 
-const projectDir = path.dirname(__dirname)
-
-// TODO: Pull this out into a generic fileNodeAddSlug or something
-export const onCreateNode = ({ node, getNode, actions }: CreateNodeArgs) => {
-  // TODO: clean up this logic?
+export const onCreateNode = ({node, getNode, actions}: CreateNodeArgs) => {
   const parent = getNode(node.parent)
-  const pathInProject = "/" + path.relative(projectDir, parent.absolutePath)
-    .replace(/\.[^/.]+$/, "")
+  const collection = parent.sourceInstanceName
 
-  // Remove base-paths from the final URL
-  const pathOnline = pathInProject.replace(/^(\/src)?\/(content|pages)/, "")
-
-  // If content specifies 'slug', use that for the last part of generated path
-  let slug = node.frontmatter["slug"]
-  if (!slug) {
-    // Remove an initial number in the filename
-    // As this is used purely for ordering
-    slug = path.basename(pathOnline) // .replace(/^(\d+)[\-_]/, "")
+  let relPath: string = parent.relativeDirectory
+  if (relPath.length > 0) {
+    relPath += "/"
   }
 
+  actions.createNodeField({node, name: "collection", value: collection})
   actions.createNodeField({
     node,
     name: "slug",
-    value: path.join(path.dirname(pathOnline), slug),
-  })
-  actions.createNodeField({
-    node,
-    name: "pathInProject",
-    value: pathInProject,
+    // Gives us something like: /blog/2019/10/filename
+    value: `/${collection}/${relPath}${parent.name}`,
   })
 }
 
-// basePath: string, sortBy: string[]
 export const createPages = (
-  pattern: string,
+  collection: string,
   sortBy: string[],
   component: string,
-) => async ({ graphql, actions }: CreatePagesArgs) => {
-  let sortQuery = ""
+) => async ({graphql, actions}: CreatePagesArgs) => {
+  let finalSort = null
   if (sortBy && sortBy.length) {
     const sortParams = sortBy.map((f) => f.replace(".", "___"))
-    sortQuery = `sort: { fields: [${sortParams}] }`
+    finalSort = {fields: sortParams}
   }
-  const { data, errors } = await graphql(`{
-    allMdx(
-      filter: { fields: { pathInProject: { glob: "/${pattern}" }}}
-      ${sortQuery}
-    ) {
-      edges {
-        next { fields { slug } }
-        previous { fields { slug } }
-        node {
-          id
-          fields { slug }
-        }
-      }
-    }
-  }`)
+
+  const {data, errors} = await graphql(AllMdx.loc.source.body, {
+    collection,
+    sortBy: finalSort,
+  })
   if (errors) {
     throw errors
   }
 
   for (const edge of data.allMdx.edges) {
-    const { node, next, previous } = edge
+    const {node, next, previous} = edge
 
+    const context: MdxContext = {
+      next: next && next.fields.slug,
+      prev: previous && previous.fields.slug,
+      id: node.id,
+    }
+    
     actions.createPage({
       component,
       path: node.fields.slug + "/",
-      context: {
-        next: next && next.fields.slug,
-        previous: previous && previous.fields.slug,
-        id: node.id,
-      },
+      context,
     })
   }
+}
+
+const AllMdx = graphql`query AllMdx(
+  $collection: String!,
+  $sortBy: MdxSortInput,
+) {
+  allMdx(
+    filter: {fields: {collection: {eq: $collection}}},
+    sort: $sortBy,
+  ) {
+    edges {
+      next { fields { slug } }
+      previous { fields { slug } }
+      node {
+        id
+        fields { slug }
+      }
+    }
+  }
+}`
+
+export interface MdxContext {
+  next: string;
+  prev: string;
+  id: string;
 }

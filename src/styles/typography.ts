@@ -1,13 +1,12 @@
 import Typography from "typography"
-import gray from "gray-percentage"
 import theme from "./theme"
 
 const paddingY = (value: number | string) => (
-  { paddingTop: value, paddingBottom: value }
+  {paddingTop: value, paddingBottom: value}
 )
 
 const marginX = (value: number | string) => (
-  { marginRight: value, marginLeft: value }
+  {marginRight: value, marginLeft: value}
 )
 
 export default new Typography({
@@ -21,22 +20,27 @@ export default new Typography({
   //   { name: "Merriweather", styles: ["400", "400i", "700", "700i"] },
   //   { name: "PT Mono", styles: ["400", "700"] },
   // ],
-  headerFontFamily: ["Arvo", "sans-serif"],
-  bodyFontFamily: ["Cabin", "serif"],
+  headerFontFamily: [theme.fonts.header, "sans-serif"],
+  bodyFontFamily: [theme.fonts.body, "serif"],
+  headerLineHeight: 1.2,
   // headerColor: gray(10),
   // bodyColor: gray(20),
   headerWeight: 700,
   bodyWeight: 400,
   boldWeight: 700,
-  // headerFontFamily: ['Josefin Sans', 'sans'],
-  overrideStyles: ({ adjustFontSizeTo, scale, rhythm }, options) => ({
+  overrideStyles: ({adjustFontSizeTo, scale, rhythm}, options) => ({
     "header,footer": {
       fontFamily: options.headerFontFamily.join(","),
     },
     "h1,h2,h3,h4,h5,h6": {
-      lineHeight: 1.2,
       marginTop: rhythm(1.5),
       marginBottom: rhythm(0.5),
+    },
+    ":last-child": {
+      marginBottom: 0,
+    },
+    "section:not(:last-child)": {
+      marginBottom: rhythm(options.blockMarginBottom),
     },
     // Blockquote styles.
     blockquote: {
@@ -60,9 +64,9 @@ export default new Typography({
     },
     code: {
       ...scale(-0.15),
-      // fontFamily: theme.fonts.mono,
+      fontFamily: theme.fonts.mono,
     },
-    [`@media(max-width: ${theme.breakpoints[0]})`]: {
+    [theme.mediaQueries[0]]: {
       blockquote: {
         borderLeftWidth: rhythm(3 / 16),
         paddingLeft: rhythm(9 / 16),

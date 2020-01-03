@@ -1,5 +1,10 @@
 schema: .cache/schema.json
+documents: ./{src,gen}/**/*.{tsx,ts,js}
 generates:
-  ./src/types.d.ts:
+  ./src/graphql-types.d.ts:
     plugins:
       - typescript
+      - typescript-operations
+    config:
+      namingConvention:
+        enumValues: keep

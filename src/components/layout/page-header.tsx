@@ -1,24 +1,27 @@
-import React from "react"
-import theme, { mq } from "styles/theme"
-import { contrastBackground, paddingX, paddingY } from "styles/system/shortcuts"
-import Layout from "./layout"
-import { css, jsx as h } from "@emotion/core"
+import theme, {mq} from "styles/theme"
+import {contrastBackground, paddingX, paddingY} from "styles/system/shortcuts"
+import Layout, {LayoutProps} from "./layout"
+import {css} from "@emotion/core"
+import h from "components/markup"
+import {ReactChild} from "react"
 
-export const PageHeader = ({ header, children, ...props }) => (
-  <Layout unpadded {...props}>
-    <header css={styles.heading}>{header}</header>
-    <div css={styles.content}>{children}</div>
-  </Layout>
+export const PageHeader = (props: {
+  header: ReactChild;
+} & LayoutProps) => (
+  h(Layout, {unpadded: true, ...props}, [
+    props.header && h("header", {
+      css: [style.heading, style.content],
+    }, props.header),
+    h("div", {css: style.content}, props.children),
+  ])
 )
 
-const styles = {
+const style = {
   heading: css(mq({
     ...contrastBackground(theme.colors.link),
-    ...paddingX(theme.contentPadding),
-    ...paddingY(theme.space[4]),
   })),
   content: css(mq({
     ...paddingX(theme.contentPadding),
-    ...paddingY(theme.space[4]),
+    ...paddingY(4),
   })),
 }

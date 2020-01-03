@@ -1,4 +1,4 @@
-import { css, Interpolation } from "@emotion/core"
+import {css, Interpolation} from "@emotion/core"
 import color from "color"
 import theme from "styles/theme"
 
@@ -25,26 +25,26 @@ export const expandShortcuts = (style: Interpolation): Interpolation => {
 }
 
 export const paddingX = (value: number | string | any[]) => (
-  { paddingRight: value, paddingLeft: value }
+  {paddingRight: value, paddingLeft: value}
 )
 export const paddingY = (value: number | string | any[]) => (
-  { paddingTop: value, paddingBottom: value }
+  {paddingTop: value, paddingBottom: value}
 )
 
 export const marginX = (value: number | string | any[]) => (
-  { marginRight: value, marginLeft: value }
+  {marginRight: value, marginLeft: value}
 )
 export const marginY = (value: number | string | any[]) => (
-  { marginTop: value, marginBottom: value }
+  {marginTop: value, marginBottom: value}
 )
 
 export const size = (value: number | string | any[]) => (
-  { width: value, height: value }
+  {width: value, height: value}
 )
 
 export const contrastBackground = (value: string) => {
   const bg = color(value)
-  const fg = bg.isDark() ? theme.colors.lightText : theme.colors.darkText
+  const fg = bg.isDark() ? theme.colors.lightText : "inherit"
   return {
     backgroundColor: value,
     color: fg,
@@ -54,7 +54,7 @@ export const contrastBackground = (value: string) => {
 export const fillParent = css(size("100%"))
 
 export const flex = {
-  box: css({ display: "flex" }),
+  box: css({display: "flex"}),
   column: css({
     display: "flex",
     flexDirection: "column",
@@ -63,13 +63,13 @@ export const flex = {
     display: "flex",
     flexDirection: "row",
   }),
-  wrap: css({ flexWrap: "wrap" }),
-  alignCenter: css({ alignItems: "center" }),
-  alignEnd: css({ alignItems: "flex-end" }),
-  justifyBetween: css({ justifyContent: "space-between" }),
-  justifyAround: css({ justifyContent: "space-around" }),
+  wrap: css({flexWrap: "wrap"}),
+  alignCenter: css({alignItems: "center"}),
+  alignEnd: css({alignItems: "flex-end"}),
+  justifyBetween: css({justifyContent: "space-between"}),
+  justifyAround: css({justifyContent: "space-around"}),
 }
 
 export const grid = {
-  box: css({ display: "grid" }),
+  box: css({display: "grid"}),
 }

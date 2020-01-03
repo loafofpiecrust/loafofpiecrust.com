@@ -1,9 +1,7 @@
-import React, { useState } from "react"
-import { Stage, Layer, Text, Arc, Wedge, Circle, Line, Group } from "react-konva"
-import { Project, projects } from "./projects-pie"
-// import { Spring, animated } from "react-spring"
-import Victor from "victor"
-import { ContainerConfig } from "konva"
+import React, {useState} from "react"
+import {Stage, Layer, Text, Arc, Wedge, Circle, Line, Group} from "react-konva"
+import {Project, projects} from "./projects-pie"
+import {ContainerConfig} from "konva"
 import topCrust from "images/pie-fillings/top-crust2.svg"
 import outerCrust from "images/pie-fillings/basic-crust.svg"
 
@@ -50,7 +48,7 @@ const PieSlice = (props: {
   selected?: boolean;
   onClick?: (evt) => void;
 }) => {
-  const { onClick, selected, project } = props
+  const {onClick, selected, project} = props
   const maxJutDist = 50
   const crustThickness = 15
   const baseRadius = props.radius
@@ -58,8 +56,8 @@ const PieSlice = (props: {
   const startAngle = (props.startLineNumber / props.totalLines) * 360
   const middleAngle = (startAngle * 2 + angularWidth) / 2
 
-  const normalState = { jutDist: 0, crustOpacity: 1 }
-  const selectedState = { jutDist: maxJutDist, crustOpacity: 0 }
+  const normalState = {jutDist: 0, crustOpacity: 1}
+  const selectedState = {jutDist: maxJutDist, crustOpacity: 0}
 
   let from
   let to
@@ -151,7 +149,7 @@ const colors = {
 
 function spiralPoints(radius: number, dist: number): number[] {
   const points = []
-  let top = { x: 0, y: 0 }
+  let top = {x: 0, y: 0}
   let currRadius = 0
 
   while (currRadius < radius) {

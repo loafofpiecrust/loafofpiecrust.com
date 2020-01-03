@@ -1,11 +1,19 @@
-import { css } from "@emotion/core"
+import {css} from "@emotion/core"
 
 import color from "color"
 import theme from "./theme"
-import { contrastBackground } from "./system/shortcuts"
+import {contrastBackground} from "./system/shortcuts"
 import typography from "./typography"
 
+import "typeface-arvo"
+import "typeface-cabin"
+
 export const globalStyles = css({
+  // Most pages work great without JS,
+  // so don't show the message asking for it.
+  "#gatsby-noscript": {
+    display: "none",
+  },
   html: {
     height: "100%",
     width: "100%",
@@ -30,7 +38,7 @@ export const globalStyles = css({
     size: "auto",
     margin: 0,
   },
-  "main a": {
+  "main a, footer a": {
     color: "inherit",
     textDecoration: "none",
     borderBottom: `2px dashed ${theme.colors.link}`,
@@ -49,7 +57,7 @@ export const globalStyles = css({
   },
   ":not(pre) code": {
     border: `1px solid ${theme.colors.link}`,
-    padding: 5,
+    padding: "2px 4px",
     borderRadius: 3,
     ...contrastBackground("seashell"),
     "&.dark": contrastBackground(theme.colors.darkText),

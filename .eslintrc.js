@@ -1,5 +1,3 @@
-const path = require("path")
-
 module.exports = {
   extends: [
     "eslint:recommended",
@@ -14,11 +12,11 @@ module.exports = {
       "error",
       {
         env: "relay",
-        schemaJsonFilepath: path.resolve(__dirname, "./.cache/schema.json"),
+        schemaJsonFilepath: `${__dirname}/.cache/schema.json`,
         tagName: "graphql",
       },
     ],
-    semi: ["error", "never"],
+    "semi": ["error", "never"],
     "comma-dangle": ["error", "always-multiline"],
     "react/prop-types": "off",
     "react/display-name": "off",
@@ -26,6 +24,7 @@ module.exports = {
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/no-var-requires": "warn",
     "@typescript-eslint/camelcase": "warn",
+    "object-curly-spacing": ["warn", "never"],
   },
   plugins: [
     "graphql",

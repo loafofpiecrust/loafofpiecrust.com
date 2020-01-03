@@ -6,10 +6,10 @@
 
 require("ts-node").register()
 const mdx = require("./gen/mdx")
-const { collections } = require("./src/config/collections")
+const collections = require("./src/content/collections").default
 
 // extra webpack config
-exports.onCreateWebpackConfig = ({ stage, actions }) => {
+exports.onCreateWebpackConfig = ({actions}) => {
   actions.setWebpackConfig({
     resolve: {
       modules: [
@@ -34,9 +34,9 @@ exports.onCreateNode = (params) => {
 exports.createPages = async (params) => {
   // For each collection in the CMS, make pages for that folder.
   for (const col of collections) {
-    if (col.component) {
+    if (col.component && col.type === "mdx") {
       await mdx.createPages(
-        `${col.folder}/**`,
+        col.name,
         col.sortBy,
         require.resolve(`./src/${col.component}`),
       )(params)

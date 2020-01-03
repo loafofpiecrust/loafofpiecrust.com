@@ -1,15 +1,18 @@
 import styled from "@emotion/styled"
 import Layout from "components/layout/layout"
-import e from "react-hyperscript"
+import h from "components/markup"
+import {css} from "@emotion/core"
 
-export default () => e(Layout, [
-  e(BigP, ["I'm a ", e("b", "Software Developer.")]),
-  e(BigP, [
-    "I specialize in",
-    e("b", "creative forms of communication."),
+export default () => h(Layout, {title: ""}, [
+  h.p({css: style.big}, ["I'm a ", h.b("Software Developer.")]),
+  h.p({css: style.big}, [
+    "I specialize in ",
+    h.b("creative forms of communication."),
   ]),
 ])
 
-const BigP = styled.p({
-  fontSize: 32,
-})
+const style = {
+  big: css({
+    fontSize: 32,
+  }),
+}

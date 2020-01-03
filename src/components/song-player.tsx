@@ -1,7 +1,8 @@
 import React from "react"
 import ReactAudioPlayer from "react-audio-player"
 import Axios from "axios"
-import { useAsync } from "react-async-hook"
+import {useAsync} from "react-async-hook"
+import h from "components/markup"
 
 export const SongPlayer = (props: {
   title: string;
@@ -14,33 +15,29 @@ export const SongPlayer = (props: {
     return null
   }
 
-  const { result: source, loading, error } = useAsync(
+  const {result: source, loading, error} = useAsync(
     parseStreams,
     [props.title, props.artist, props.album]
   )
 
   if (loading) {
-    return <>{`Loading '${props.title}'...`}</>
+    return h.frag(`Loading '${props.title}'...`)
   }
 
-  return (
-    <div>
-      <Title/>
-      <Player/>
-    </div>
-  )
+  return h.div([
+    Title(),
+    Player(),
+  ])
 
   function Player(): any {
     const stream = source.highQuality || source.lowQuality
     if (stream && !error) {
-      return (
-        <ReactAudioPlayer
-          controls
-          autoPlay={props.autoPlay}
-          src={stream.url}
-          style={{ width: "100%" }}
-        />
-      )
+      return h(ReactAudioPlayer, {
+        controls: true,
+        autoPlay: props.autoPlay,
+        src: stream.url,
+        css: {width: "100%"},
+      })
     } else {
       return "Not found"
     }
@@ -50,12 +47,10 @@ export const SongPlayer = (props: {
     const hideTitle = props.hideTitle || true
     if (!hideTitle) {
       const albumBit = props.album ? ` (${props.album})` : ""
-      return (
-        <h3 style={{ marginBottom: 8 }}>
-          {props.title} by {props.artist}
-          {albumBit}
-        </h3>
-      )
+      return h.h3({css: {marginBottom: 0}}, [
+        props.title, " by ", props.artist,
+        albumBit,
+      ])
     }
     return null
   }

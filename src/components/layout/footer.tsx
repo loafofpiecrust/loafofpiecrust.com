@@ -1,36 +1,38 @@
 import React from "react"
-import { css } from "@emotion/core"
+import {css} from "@emotion/core"
 
-import { fullWidthClass, Theme } from "styles/theme"
-import { hideOnPrint } from "styles/global"
-import { paddingX, paddingY, marginX } from "styles/system/shortcuts"
+import theme, {mq} from "styles/theme"
+import {hideOnPrint} from "styles/global"
+import h from "components/markup"
 
 export const Footer = () => (
-  <footer css={styles.container}>
-    <span>Powered by MAGIC</span>
-    <span css={{ textAlign: "right" }}>
-      Made with
-      <span css={styles.heart}> ❤ </span>
-      in New Orleans
-    </span>
-  </footer>
+  h.footer({css: style.container}, [
+    h.a(
+      {href: "https://github.com/loafofpiecrust/loafofpiecrust.com"},
+      "Powered by MAGIC",
+    ),
+    h.span({css: {textAlign: "right"}}, [
+      "Made with",
+      h.span({css: style.hearty}, " ❤ "),
+      "in New Orleans",
+    ]),
+  ])
 )
 
-const styles = {
-  container: (theme: Theme) => css(
+const style = {
+  container: css(
     hideOnPrint,
-    fullWidthClass,
-    paddingX(theme.space[4]),
-    paddingY(theme.space[4]),
-    marginX("auto"),
-    {
+    mq({
+      padding: 4,
+      margin: "auto",
+      width: theme.fullWidth,
       display: "flex",
       justifyContent: "space-between",
       color: theme.colors.lightText,
       fontWeight: "bold",
-    },
+    }),
   ),
-  heart: (theme: Theme) => css({
+  hearty: css({
     fontWeight: "bold",
     color: theme.colors.link,
   }),

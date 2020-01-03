@@ -1,45 +1,33 @@
-import { Theme } from "styles/theme"
+import {Theme} from "styles/theme"
 
-const themeMappings = [
-  { keys: ["color", "backgroundColor", "background", "borderColor"], themeKey: "colors" },
-  { keys: ["boxShadow"], themeKey: "shadows" },
-  { keys: ["borderRadius", "borderTopRightRadius", "borderTopLeftRadius"], themeKey: "radii" },
-  { keys: ["flex", "flex-grow", "flex-shrink"], themeKey: " " },
-].reduce((acc, mapping) => {
-  for (const propKey of mapping.keys) {
-    acc[propKey] = mapping.themeKey
+type PartialRecord<K extends keyof any, T> = {
+  [P in K]?: T;
+}
+
+const themeMappings: PartialRecord<keyof Theme, string[]> = {
+  colors: ["color", "backgroundColor", "background", "borderColor"],
+  radii: ["borderRadius", "borderTopRightRadius", "borderTopLeftRadius"],
+  shadows: ["boxShadow"],
+}
+
+const mapTheme = (theme: Theme, themePart: any, value: any) => {
+  if (Array.isArray(value)) {
+    return value.map(v => mapTheme(theme, themePart, v))
+  } else if (themePart && ((typeof value === "number" && value < themePart.length) || typeof value === "string")) {
+    const t = themePart[value]
+    return typeof t !== "undefined" ? t : value
+  } else if (typeof value === "object") {
+    const result = value
+    Object.entries(value).map(([key, value]) => {
+      const themePart = theme[themeMappings[key] || "space"]
+      result[key] = mapTheme(theme, themePart, value)
+    })
+    return result
+  } else {
+    return value
   }
-  return acc
-}, {})
-
-function mapTheme(theme: Theme, style) {
-  Object.entries(style).forEach(([key, value]) => {
-    const themePart = theme[themeMappings[key] || "space"]
-    if (themePart && !Array.isArray(themePart)) {
-      // keys are strings
-      if (typeof value === "string") {
-        const themedVal = themePart[value]
-        if (themedVal) {
-          style[key] = themedVal
-        }
-      }
-    } else if (Array.isArray(value)) {
-      style[key] = value.map(v => {
-        if (themePart && Number.isInteger(v) && v < 10) {
-          return themePart[v]
-        } else {
-          return v
-        }
-      })
-    } else if (themePart && typeof value === "number" && value < themePart.length && value >= 1) {
-      style[key] = themePart[value] || value
-    } else if (typeof value === "object") {
-      style[key] = mapTheme(theme, value)
-    }
-  })
-  return style
 }
 
 export function themed(theme: Theme, style) {
-  return mapTheme(theme, style)
+  return mapTheme(theme, null, style)
 }

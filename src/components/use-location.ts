@@ -1,9 +1,9 @@
 
-import { globalHistory } from "@reach/router"
-import { useSubscription } from "use-subscription"
-import { useMemo } from "react"
+import {globalHistory} from "@reach/router"
+import {useSubscription} from "use-subscription"
+import {useMemo} from "react"
 
-export const useLocation = () => useSubscription(
+export const useLocation = (): Location => useSubscription(
   useMemo(
     () => ({
       getCurrentValue: () => globalHistory.location,

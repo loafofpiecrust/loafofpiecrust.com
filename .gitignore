@@ -5,5 +5,5 @@ yarn-error.log
 
 # Build directory
 .cache/
-/public
+/public/
 .DS_Store
