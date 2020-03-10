@@ -4,6 +4,15 @@ import blueberry from "images/pie-fillings/blueberry.svg"
 
 export const projects: Project[] = [
   {
+    title: "Sandwich",
+    url: "/projects/sandwich",
+    linesOfCode: 0,
+    desc: <p>
+      Machines in a room talking to each other about sandwiches.
+      Over time, they collectively develop their language to describe more complex relationships to these sandwiches.
+    </p>
+  },
+  {
     title: "Turntable",
     linesOfCode: 10824,
     url: "/projects/turntable",
@@ -43,7 +52,7 @@ export const projects: Project[] = [
       and a barge on the Mississippi River that read "You Belong Here".
     </p>,
     filling: blueberry,
-  },
+  }
 ]
 
 export interface Project {
