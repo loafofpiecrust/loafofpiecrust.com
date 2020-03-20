@@ -23,7 +23,7 @@ export default () => (
 
         h.div({ css: [flex.column, flex.alignEnd] }, [
           h.span("Boston, MA 02130"),
-          h.span("taylorsnead@gmail.com"),
+          h.span("snead.t@northeastern.edu"),
           h.span("Cell: 504-442-0219"),
           h.span({}, h.a({ href: siteMeta.siteUrl }, "loafofpiecrust.com")),
           h.span([
