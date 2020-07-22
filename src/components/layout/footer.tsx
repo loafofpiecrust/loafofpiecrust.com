@@ -13,7 +13,7 @@ export const Footer = () => (
     ),
     h.span({css: {textAlign: "right"}}, [
       "Made with",
-      h.span({css: style.hearty}, " ❤ "),
+      h.span({role: "img", "aria-label": "love", css: style.hearty}, " ❤ "),
       "in New Orleans",
     ]),
   ])
@@ -28,7 +28,7 @@ const style = {
       width: theme.fullWidth,
       display: "flex",
       justifyContent: "space-between",
-      color: theme.colors.lightText,
+      color: theme.colors.darkText,
       fontWeight: "bold",
     }),
   ),

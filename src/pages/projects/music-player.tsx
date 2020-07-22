@@ -3,7 +3,7 @@ import { globalHistory, navigate } from "@reach/router"
 import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
 import { css } from "@emotion/core"
-import useQueryString from "@trevorblades/use-query-string"
+import useQueryString from "use-query-string"
 import { SongPlayer } from "components/song-player"
 
 

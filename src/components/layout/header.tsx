@@ -33,7 +33,7 @@ const style = {
     }),
   ),
   siteLink: css(mq({
-    color: theme.colors.lightText,
+    color: theme.colors.darkText,
     textDecoration: "none",
     marginLeft: [0, 3],
   })),

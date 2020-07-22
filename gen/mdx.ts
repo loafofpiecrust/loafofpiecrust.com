@@ -3,9 +3,8 @@ import graphql from "graphql-tag"
 
 export const onCreateNode = ({node, getNode, actions}: CreateNodeArgs) => {
   const parent = getNode(node.parent)
-  const collection = parent.sourceInstanceName
-
-  let relPath: string = parent.relativeDirectory
+  const collection = parent["sourceInstanceName"]
+  let relPath = parent["relativeDirectory"] as string
   if (relPath.length > 0) {
     relPath += "/"
   }
@@ -38,7 +37,7 @@ export const createPages = (
     throw errors
   }
 
-  for (const edge of data.allMdx.edges) {
+  for (const edge of (data as any).allMdx.edges) {
     const {node, next, previous} = edge
 
     const context: MdxContext = {

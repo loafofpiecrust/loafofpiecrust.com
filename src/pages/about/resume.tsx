@@ -18,7 +18,7 @@ export default () => (
       h(ResumeHeader, [
         h.div({ css: { flex: 1 } }, [
           h.h1({ css: { margin: 0 } }, "Taylor Snead"),
-          h.i({ css: { margin: 0 } }, "Available July – December 2020"),
+          // h.i({ css: { margin: 0 } }, "Available July – December 2020"),
         ]),
 
         h.div({ css: [flex.column, flex.alignEnd] }, [
@@ -134,10 +134,25 @@ const ResumeContents = styled.article(mq({
     "btmleft right"
     "bottom bottom"
   `,
+  "@media print": {
+    fontSize: "0.78rem",
+    h1: {
+      fontSize: "1.4rem",
+    },
+    h3: {
+      fontSize: "1rem",
+    },
+    h4: {
+      fontSize: "0.78rem",
+    }
+  }
 }))
 
 const inset = [3, 4, 5]
 const verticalInset = 3
+const printInset = {
+  "@media print": paddingX(4),
+}
 
 const coloredLink = (activeColor: string) => css({
   borderColor: activeColor,
@@ -157,13 +172,15 @@ const ResumeHeader = styled.header(mq({
   marginBottom: 16,
   fontFamily: theme.fonts.header,
   ...paddingX(inset),
+  ...printInset,
   ...paddingY(24),
   ...contrastBackground(theme.colors.link),
-  a: coloredLink("navy"),
+  a: coloredLink(theme.colors.background),
 }))
 
 const SectionHeader = styled.h3(mq({
   ...paddingX(inset),
+  ...printInset,
   ...paddingY(verticalInset),
   ...contrastBackground(theme.colors.background),
 }))
@@ -175,6 +192,10 @@ const ResumeSection = (side: "left" | "right") =>
       "& > *": {
         paddingLeft: side === "left" ? inset : 2,
         paddingRight: side === "left" ? 2 : inset,
+        "@media print": {
+          paddingLeft: side === "left" ? 4 : 2,
+          paddingRight: side === "left" ? 2 : 4,
+        }
       },
       h3: {
         textAlign: side,
@@ -193,14 +214,13 @@ const RightSection = styled(ResumeSection("right"))({
 })
 
 const courses: string[] = [
-  "Linguistic Analysis (on Tibetan)",
-  "Linguistics Research Seminar (on Cherokee)",
+  "Networks & Distributed Systems",
+  "Algorithms & Data",
+  /* "Syntax", */
   "Natural Language Processing",
-  "Syntax",
+  "Embedded Design",
   /* "Software Development", */
   "Programming Languages",
-  "Algorithms & Data",
-  "Embedded Design",
   /* "Object-Oriented Design", */
   "Linear Algebra",
   "Theory of Computation",
@@ -210,6 +230,8 @@ const courses: string[] = [
   /* "Physics 1 & 2", */
   // "Intro to Linguistics",
   "3D Fundamentals",
+  "Linguistic Analysis (on Tibetan)",
+  "Linguistics Research Seminar (on Cherokee)",
 ]
 
 const workExperience: Array<{
@@ -346,7 +368,7 @@ const personalProjects: Array<{
   hidden?: boolean;
 }> = [
     {
-      title: "Sandwich (In Progress)",
+      title: "Sandwich",
       desc: <p>
         A group of machines develop a language for them to communicate about sandwiches with each other.
         An exploration of language variation over space and time, informed by linguistic study.
