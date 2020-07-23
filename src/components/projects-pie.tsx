@@ -4,13 +4,21 @@ import blueberry from "images/pie-fillings/blueberry.svg"
 
 export const projects: Project[] = [
   {
+    title: "In Event of Moon Disaster",
+    url: "https://moondisaster.org",
+    desc: <p>
+      In July 1969, much of the world celebrated “one giant leap for mankind.” Fifty years later, nothing is quite so straightforward.
+
+In Event of Moon Disaster illustrates the possibilities of deepfake technologies by reimagining this seminal event. What if the Apollo 11 mission had gone wrong and the astronauts had not been able to return home? A contingency speech for this possibility was prepared for, but never delivered by, President Nixon – until now.
+    </p>,
+  },
+  {
     title: "Sandwich",
     url: "/projects/sandwich",
-    linesOfCode: 0,
     desc: <p>
       Machines in a room talking to each other about sandwiches.
       Over time, they collectively develop their language to describe more complex relationships to these sandwiches.
-    </p>
+    </p>,
   },
   {
     title: "Turntable",
@@ -25,7 +33,7 @@ export const projects: Project[] = [
   },
   {
     title: "City Palette",
-    url: "http://paletteapp.city",
+    url: "https://paletteapp.city",
     desc: <p>
       Mobile app that allows users to take dominant colors from a photo
       to name and publish them for nearby users to check out:
@@ -57,7 +65,7 @@ export const projects: Project[] = [
 
 export interface Project {
   url: string;
-  linesOfCode: number;
+  linesOfCode?: number;
   title: string;
   desc?: string | any;
   crust?: any;
