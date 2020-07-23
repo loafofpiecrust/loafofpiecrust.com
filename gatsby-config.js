@@ -23,7 +23,6 @@ module.exports = {
     "gatsby-plugin-sitemap",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-netlify",
-    "gatsby-plugin-netlify-cache",
     {
       resolve: "gatsby-plugin-extract-schema",
       options: {
