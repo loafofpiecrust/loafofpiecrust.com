@@ -44,7 +44,7 @@ export const size = (value: number | string | any[]) => (
 
 export const contrastBackground = (value: string) => {
   const bg = color(value)
-  const fg = bg.isDark() ? theme.colors.lightText : theme.colors.darkText
+  const fg = bg.isDark() ? theme.colors.lightText : "inherit"
   return {
     backgroundColor: value,
     color: fg,

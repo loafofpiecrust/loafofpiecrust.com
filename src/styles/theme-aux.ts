@@ -22,7 +22,7 @@ const theme = {
     header: "Arvo",
     sans: "Cabin",
     serif: "Arvo",
-    mono: "\"SF Mono\",Consolas,Menlo,\"monospace\",monospace",
+    mono: `"SF Mono",Consolas,Menlo,"monospace",monospace`,
   },
   colors: {
     // link: "coral",
@@ -35,7 +35,7 @@ const theme = {
     darkBackground: "darkslategray",
     lightText: "snow",
     // darkText: color("darkslategray").darken(0.5).fade(0.15).string(),
-    darkText: color("#679b9b").darken(0.6).string(),
+    darkText: color("#679b9b").darken(0.7).string(),
     teal: "rgb(0, 190, 166)",
   },
 }

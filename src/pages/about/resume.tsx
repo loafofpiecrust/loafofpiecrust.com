@@ -92,7 +92,7 @@ export default () => (
           .filter((j) => !j.hidden)
           .map((job) =>
             h(JobSection, { key: job.timeFrame }, [
-              h.b([job.title]),
+              h.h4([job.title]),
               h.i([job.timeFrame]),
               h.span({ css: { gridArea: "byline" } }, [
                 h.b([job.organization]),
@@ -432,7 +432,7 @@ const freelanceProjects: {
           photos, geotagged to where the photo was taken. Developed on my own,
           natively for both iOS (Swift) and Android (Java and Kotlin), using a
           MongoDB instance to store submitted colors.
-      </p>
+        </p>
       ),
     },
     {
@@ -445,7 +445,7 @@ const freelanceProjects: {
         <p>
           Built the new website for Antenna, "antenna.works." Reorganized and
           integrated the MySQL database from their old website.
-      </p>
+        </p>
       ),
     },
     {
@@ -458,7 +458,7 @@ const freelanceProjects: {
           Mobile app in JavaScript/Cordova that maps stories of belonging through
           photos and videos on Instagram. Wrote companion software that tracked a
           barge involved in the project.
-      </p>
+        </p>
       ),
     },
   ]

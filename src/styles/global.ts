@@ -8,7 +8,7 @@ import typography from "./typography"
 import "typeface-arvo"
 import "typeface-cabin"
 
-export const globalStyles = css({
+export const globalStyles = css(typography.createStyles(), {
   // Most pages work great without JS,
   // so don't show the message asking for it.
   "#gatsby-noscript": {
@@ -24,6 +24,7 @@ export const globalStyles = css({
       color: theme.colors.darkText,
     },
     fontFamily: theme.fonts.body,
+    color: "black",
   },
   "h1,h2,h3,h4,h5,header": {
     fontFamily: theme.fonts.header,
@@ -62,7 +63,7 @@ export const globalStyles = css({
     ...contrastBackground("seashell"),
     "&.dark": contrastBackground(theme.colors.darkText),
   },
-}, typography.createStyles())
+})
 
 
 export const hideOnPrint = css({
