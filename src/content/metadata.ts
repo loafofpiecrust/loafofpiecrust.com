@@ -7,6 +7,6 @@ export default {
     {url: "/projects", label: "projects"},
     {url: "/blog", label: "blog"},
     {url: "/about", label: "about"},
-    // {url: "/about/resume", label: "resume"},
+    {url: "/resume", label: "resume"},
   ],
 }

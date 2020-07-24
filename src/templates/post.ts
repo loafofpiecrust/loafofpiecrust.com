@@ -41,7 +41,7 @@ export default ({
 
     hasNav && h.nav({css: [flex.row, flex.justifyBetween]}, [
       pageContext.prev && h.a({href: pageContext.prev}, "Older"),
-      pageContext.next && h.a({href: pageContext.next}, "Older"),
+      pageContext.next && h.a({href: pageContext.next}, "Newer"),
     ]),
   ])
 }

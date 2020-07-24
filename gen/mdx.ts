@@ -41,8 +41,8 @@ export const createPages = (
     const {node, next, previous} = edge
 
     const context: MdxContext = {
-      next: next && next.fields.slug,
-      prev: previous && previous.fields.slug,
+      next: next && !next.frontmatter.draft && next.fields.slug,
+      prev: previous && !previous.frontmatter.draft && previous.fields.slug,
       id: node.id,
     }
     
@@ -59,12 +59,19 @@ const AllMdx = graphql`query AllMdx(
   $sortBy: MdxSortInput,
 ) {
   allMdx(
-    filter: {fields: {collection: {eq: $collection}}},
+filter: {fields: {collection: {eq: $collection}}},
     sort: $sortBy,
   ) {
     edges {
-      next { fields { slug } }
-      previous { fields { slug } }
+      next {
+fields { slug }
+frontmatter { draft }
+}
+      previous {
+fields { slug }
+frontmatter { draft }
+
+}
       node {
         id
         fields { slug }

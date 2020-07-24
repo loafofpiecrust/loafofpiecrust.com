@@ -2,6 +2,7 @@
 title: If err != nil
 date: 2020-01-02
 series: Language Design
+draft: false
 ---
 
 ## Introduction
