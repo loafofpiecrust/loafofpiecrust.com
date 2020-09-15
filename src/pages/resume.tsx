@@ -236,24 +236,25 @@ const RightSection = styled(ResumeSection("right"))({
 });
 
 const courses: string[] = [
-  // "Topics in Type Systems",
-  "Networks & Distributed Systems",
+  "Human Computer Interaction",
   "Algorithms & Data",
+  "Networks & Distributed Systems",
+  "Linear Algebra",
   /* "Syntax", */
   "Natural Language Processing",
   "Embedded Design",
   /* "Software Development", */
   "Programming Languages",
   /* "Object-Oriented Design", */
-  "Linear Algebra",
   "Theory of Computation",
-  "Biostatistics",
+  // "Biostatistics",
   /* "Machine Structure & x86 Assembly", */
   "Computer Systems",
   /* "Physics 1 & 2", */
   // "Intro to Linguistics",
   "3D Fundamentals",
   "Linguistic Analysis (on Tibetan)",
+  "Syntax",
   "Linguistics Research Seminar (on Cherokee)",
 ];
 
