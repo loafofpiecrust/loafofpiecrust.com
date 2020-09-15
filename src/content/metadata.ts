@@ -4,9 +4,9 @@ export default {
   description: "Something or another",
   keywords: ["programming", "code", "design"],
   navbar: [
-    {url: "/projects", label: "projects"},
-    {url: "/blog", label: "blog"},
-    {url: "/about", label: "about"},
-    {url: "/resume", label: "resume"},
+    { url: "/projects", label: "projects" },
+    { url: "/blog", label: "blog" },
+    // {url: "/about", label: "about"},
+    { url: "/resume", label: "resume" },
   ],
-}
+};
