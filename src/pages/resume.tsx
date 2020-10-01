@@ -267,10 +267,27 @@ const workExperience: Array<{
   hidden?: boolean;
 }> = [
   {
+    title: "Research Assistant",
+    organization: "Northeastern University",
+    location: "Boston, MA",
+    timeFrame: "July – Dec '20",
+    desc: (
+      <>
+        Work with the{" "}
+        <a href="https://dailp.northeastern.edu">
+          Digital Archive of American Indian Languages Preservation and
+          Perserverance
+        </a>{" "}
+        to build a lexical database and web interface for exploring Cherokee
+        language texts and learning materials.
+      </>
+    ),
+  },
+  {
     title: "Software Engineer",
     organization: "PlacePass",
     location: "Boston, MA",
-    timeFrame: "July '19 – December '19",
+    timeFrame: "July – December '19",
     desc: `
           Rebuild search results pages in React. Use terraform to provision cloud
           infrastructure for backend services. Improve product search with GraphQL in Go.
@@ -296,9 +313,8 @@ const workExperience: Array<{
     timeFrame: "Jan '18 – Nov '19",
     desc: `
           Mobile app where users share their stories by voice, so that others
-          walking around in the same space hear voices of past visitors,
-          literally walking in their footsteps. Rebuild the iOS framework
-          to facilitate complex projects with decreased latency.
+          walking around in the same space hear voices of past visitors, walking
+          in their footsteps.
       `,
   },
   {
@@ -310,6 +326,7 @@ const workExperience: Array<{
           Operated Makerspace laser cutters and assisted students with fabrication
           projects in various mediums including paper, wood, and acrylic.
       `,
+    hidden: true,
   },
   {
     title: <a href="https://paletteapp.city">City Palette</a>,
