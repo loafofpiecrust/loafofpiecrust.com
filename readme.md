@@ -1,9 +1,9 @@
-
-# [loafofpiecrust.com](https://loafofpiecrust.com)
+# [snead.xyz](https://snead.xyz)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/56862afd-cd75-42c9-9fe7-dc84440fdf2a/deploy-status)](https://app.netlify.com/sites/loafofpiecrust/deploys)
 
 ## Build stack
+
 - `gen`: Generates nodes and pages for particular content sources. Currently provides:
   - `mdx`: builds slugs and pages for all markdown files using the `mdx` renderer.
 - `src`: Provides all the content and components that need to be processed before publish.

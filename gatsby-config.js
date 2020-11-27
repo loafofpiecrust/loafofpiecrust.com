@@ -1,7 +1,7 @@
-require("ts-node").register()
-const siteMeta = require("./src/content/metadata").default
-const collections = require("./src/content/collections").default
-const theme = require("./src/styles/theme-aux").default
+require("ts-node").register();
+const siteMeta = require("./src/content/metadata").default;
+const collections = require("./src/content/collections").default;
+const theme = require("./src/styles/theme-aux").default;
 
 module.exports = {
   siteMetadata: siteMeta,
@@ -10,7 +10,6 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        // name: "loafofpiecrust.com",
         name: siteMeta.siteUrl,
         short_name: siteMeta.title,
         start_url: "/",
@@ -43,9 +42,7 @@ module.exports = {
           require("remark-emoji"),
           // require("remark-normalize-headings"),
         ],
-        rehypePlugins: [
-          require("rehype-highlight"),
-        ],
+        rehypePlugins: [require("rehype-highlight")],
         gatsbyRemarkPlugins: [
           {
             resolve: "gatsby-remark-smartypants",
@@ -60,15 +57,15 @@ module.exports = {
     // register content folders
     {
       resolve: "gatsby-source-filesystem",
-      options: {name: "images", path: "./src/images"},
+      options: { name: "images", path: "./src/images" },
     },
     {
       resolve: "gatsby-source-filesystem",
-      options: {name: "pages", path: "./src/pages"},
+      options: { name: "pages", path: "./src/pages" },
     },
-    ...collections.map(({name, path}) => ({
+    ...collections.map(({ name, path }) => ({
       resolve: "gatsby-source-filesystem",
-      options: {name, path},
+      options: { name, path },
     })),
 
     // transforms
@@ -81,4 +78,4 @@ module.exports = {
     // other
     "gatsby-plugin-no-sourcemaps",
   ],
-}
+};

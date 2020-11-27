@@ -1,12 +1,12 @@
 export default {
-  siteUrl: "https://loafofpiecrust.com",
-  title: "loafofpiecrust",
-  description: "Something or another",
-  keywords: ["programming", "code", "design"],
+  siteUrl: "https://snead.xyz",
+  title: "Taylor Snead",
+  description: `Software engineer and linguist working with language change and
+     creative forms of communication`,
+  keywords: ["software", "engineer", "linguist", "design", "taylor", "snead"],
   navbar: [
     { url: "/projects", label: "projects" },
     { url: "/blog", label: "blog" },
-    // {url: "/about", label: "about"},
     { url: "/resume", label: "resume" },
   ],
 };
