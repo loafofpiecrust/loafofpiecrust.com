@@ -3,8 +3,9 @@ module.exports = {
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    // "prettier/@typescript-eslint",
-    // "plugin:prettier/recommended",
+    "prettier",
+    "prettier/react",
+    "prettier/@typescript-eslint",
   ],
   parser: "@typescript-eslint/parser",
   rules: {
@@ -16,21 +17,14 @@ module.exports = {
         tagName: "graphql",
       },
     ],
-    "semi": ["error", "never"],
-    "comma-dangle": ["error", "always-multiline"],
     "react/prop-types": "off",
     "react/display-name": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/no-var-requires": "warn",
     "@typescript-eslint/camelcase": "warn",
-    "object-curly-spacing": ["warn", "never"],
   },
-  plugins: [
-    "graphql",
-    "react",
-    "@typescript-eslint"
-  ],
+  plugins: ["graphql", "react", "@typescript-eslint"],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -49,5 +43,5 @@ module.exports = {
     commonjs: true,
     es6: true,
     node: true,
-  }
+  },
 }

@@ -5,8 +5,8 @@ export default {
      creative forms of communication`,
   keywords: ["software", "engineer", "linguist", "design", "taylor", "snead"],
   navbar: [
-    { url: "/projects", label: "projects" },
-    { url: "/blog", label: "blog" },
-    { url: "/resume", label: "resume" },
+    {url: "/projects", label: "projects"},
+    {url: "/blog", label: "blog"},
+    {url: "/resume", label: "resume"},
   ],
-};
+}

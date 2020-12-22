@@ -6,47 +6,51 @@ import topCrust from "images/pie-fillings/top-crust2.svg"
 import outerCrust from "images/pie-fillings/basic-crust.svg"
 
 export const ProjectPie = (props: {
-  width: number;
-  height: number;
-  onSelect?: (project: Project) => void;
+  width: number
+  height: number
+  onSelect?: (project: Project) => void
 }) => {
   const [selectedProject, selectProject] = useState(null)
 
   const radius = 200
   let currLines = 0
   const totalLines = projects.reduce((acc, proj) => acc + proj.linesOfCode, 0)
-  return <Stage width={props.width} height={props.height}>
-    <Layer x={props.width / 2} y={props.height / 2}>
-      <Circle radius={radius} fill={colors.pan} />
-      {projects.map((project) => {
-        const slice = <PieSlice
-          key={project.title}
-          project={project}
-          startLineNumber={currLines}
-          totalLines={totalLines}
-          radius={radius}
-          selected={project === selectedProject}
-          onClick={() => {
-            if (props.onSelect) {
-              props.onSelect(project)
-            }
-            selectProject(project)
-          }}
-        />
-        currLines += project.linesOfCode
-        return slice
-      })}
-    </Layer>
-  </Stage>
+  return (
+    <Stage width={props.width} height={props.height}>
+      <Layer x={props.width / 2} y={props.height / 2}>
+        <Circle radius={radius} fill={colors.pan} />
+        {projects.map((project) => {
+          const slice = (
+            <PieSlice
+              key={project.title}
+              project={project}
+              startLineNumber={currLines}
+              totalLines={totalLines}
+              radius={radius}
+              selected={project === selectedProject}
+              onClick={() => {
+                if (props.onSelect) {
+                  props.onSelect(project)
+                }
+                selectProject(project)
+              }}
+            />
+          )
+          currLines += project.linesOfCode
+          return slice
+        })}
+      </Layer>
+    </Stage>
+  )
 }
 
 const PieSlice = (props: {
-  project: Project;
-  startLineNumber: number;
-  totalLines: number;
-  radius: number;
-  selected?: boolean;
-  onClick?: (evt) => void;
+  project: Project
+  startLineNumber: number
+  totalLines: number
+  radius: number
+  selected?: boolean
+  onClick?: (evt) => void
 }) => {
   const {onClick, selected, project} = props
   const maxJutDist = 50
@@ -121,22 +125,21 @@ const PieSlice = (props: {
 
 const WhippedCream = (props: ContainerConfig) => {
   const r = 20
-  return <Group {...props}>
-    <Circle
-      radius={r}
-      fill="#fff2cd"
-    />
-    <Line
-      x={0}
-      y={r / 2}
-      points={spiralPoints(r, 12)}
-      stroke="#ffe7a1"
-      tension={5 / 9}
-      lineCap="round"
-      lineJoin="bevel"
-      strokeWidth={6}
-    />
-  </Group>
+  return (
+    <Group {...props}>
+      <Circle radius={r} fill="#fff2cd" />
+      <Line
+        x={0}
+        y={r / 2}
+        points={spiralPoints(r, 12)}
+        stroke="#ffe7a1"
+        tension={5 / 9}
+        lineCap="round"
+        lineJoin="bevel"
+        strokeWidth={6}
+      />
+    </Group>
+  )
 }
 
 const colors = {
@@ -160,7 +163,7 @@ function spiralPoints(radius: number, dist: number): number[] {
 
     points.push(top.x, top.y)
     points.push(top.x - currRadius, top.y + currRadius)
-    points.push(top.x, top.y + (currRadius * 2))
+    points.push(top.x, top.y + currRadius * 2)
     points.push(top.x + currRadius, top.y + currRadius)
 
     currRadius = Math.abs(top.y)

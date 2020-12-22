@@ -1,13 +1,15 @@
 import Typography from "typography"
 import theme from "./theme"
 
-const paddingY = (value: number | string) => (
-  {paddingTop: value, paddingBottom: value}
-)
+const paddingY = (value: number | string) => ({
+  paddingTop: value,
+  paddingBottom: value,
+})
 
-const marginX = (value: number | string) => (
-  {marginRight: value, marginLeft: value}
-)
+const marginX = (value: number | string) => ({
+  marginRight: value,
+  marginLeft: value,
+})
 
 export default new Typography({
   baseFontSize: "18px",
@@ -45,7 +47,7 @@ export default new Typography({
     // Blockquote styles.
     blockquote: {
       ...scale(1 / 5),
-      ...paddingY(rhythm(6/16)),
+      ...paddingY(rhythm(6 / 16)),
       ...marginX(0),
       borderLeftWidth: rhythm(6 / 16),
       paddingLeft: rhythm(10 / 16),

@@ -5,11 +5,11 @@ import theme, {mq} from "styles/theme"
 import {hideOnPrint} from "styles/global"
 import h from "components/markup"
 
-export const Footer = () => (
+export const Footer = () =>
   h.footer({css: style.container}, [
     h.a(
       {href: "https://github.com/loafofpiecrust/loafofpiecrust.com"},
-      "Powered by MAGIC",
+      "Powered by MAGIC"
     ),
     h.span({css: {textAlign: "right"}}, [
       "Made with",
@@ -17,7 +17,6 @@ export const Footer = () => (
       "in New Orleans",
     ]),
   ])
-)
 
 const style = {
   container: css(
@@ -30,7 +29,7 @@ const style = {
       justifyContent: "space-between",
       color: theme.colors.darkText,
       fontWeight: "bold",
-    }),
+    })
   ),
   hearty: css({
     fontWeight: "bold",

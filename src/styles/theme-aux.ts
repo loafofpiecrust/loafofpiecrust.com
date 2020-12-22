@@ -3,7 +3,7 @@ import color from "color"
 
 const theme = {
   pageWidth: 960,
-  transitionTime:  "160ms",
+  transitionTime: "160ms",
   contentPadding: [4, 4, 5],
   fullWidth: ["100%", 600, 800, 960],
   space: [0, 4, 8, 16, 36, 48, 64, 128],

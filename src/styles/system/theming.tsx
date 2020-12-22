@@ -1,7 +1,7 @@
 import {Theme} from "styles/theme"
 
 type PartialRecord<K extends keyof any, T> = {
-  [P in K]?: T;
+  [P in K]?: T
 }
 
 const themeMappings: PartialRecord<keyof Theme, string[]> = {
@@ -12,8 +12,12 @@ const themeMappings: PartialRecord<keyof Theme, string[]> = {
 
 const mapTheme = (theme: Theme, themePart: any, value: any) => {
   if (Array.isArray(value)) {
-    return value.map(v => mapTheme(theme, themePart, v))
-  } else if (themePart && ((typeof value === "number" && value < themePart.length) || typeof value === "string")) {
+    return value.map((v) => mapTheme(theme, themePart, v))
+  } else if (
+    themePart &&
+    ((typeof value === "number" && value < themePart.length) ||
+      typeof value === "string")
+  ) {
     const t = themePart[value]
     return typeof t !== "undefined" ? t : value
   } else if (typeof value === "object") {

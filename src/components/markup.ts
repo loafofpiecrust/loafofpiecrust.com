@@ -7,10 +7,20 @@ type Element = ReturnType<typeof jsx>
 type Props<P> = Omit<React.Attributes & P, "children">
 type Children = Args[2]
 
-
-function h(tag: keyof ReactHTML, propsOrChildren?: JSX.IntrinsicElements[typeof tag] | Children, children?: Children): Element
-function h<P>(comp: ComponentType<P>, propsOrChildren: Props<P>, children?: Children): React.ReactElement<P>
-function h<P>(comp: ComponentType<P>, propsOrChildren?: Children): React.ReactElement<P>
+function h(
+  tag: keyof ReactHTML,
+  propsOrChildren?: JSX.IntrinsicElements[typeof tag] | Children,
+  children?: Children
+): Element
+function h<P>(
+  comp: ComponentType<P>,
+  propsOrChildren: Props<P>,
+  children?: Children
+): React.ReactElement<P>
+function h<P>(
+  comp: ComponentType<P>,
+  propsOrChildren?: Children
+): React.ReactElement<P>
 function h<P>(comp: any, propsOrChildren?: any, children?: any): any {
   const secondIsArr = Array.isArray(propsOrChildren)
   if (!secondIsArr && typeof propsOrChildren === "object") {
@@ -29,10 +39,9 @@ function h<P>(comp: any, propsOrChildren?: any, children?: any): any {
 }
 
 const hh = (tag: keyof ReactHTML) => (
-  (props?: JSX.IntrinsicElements[typeof tag] | Children, children?: Children) => (
-    h(tag, props, children)
-  )
-)
+  props?: JSX.IntrinsicElements[typeof tag] | Children,
+  children?: Children
+) => h(tag, props, children)
 
 h.div = hh("div")
 h.section = hh("section")
@@ -58,11 +67,10 @@ h.h5 = hh("h5")
 h.i = hh("i")
 h.b = hh("b")
 
-h.frag = (...children: ReactNode[]) => createElement(React.Fragment, null, ...children)
+h.frag = (...children: ReactNode[]) =>
+  createElement(React.Fragment, null, ...children)
 
 export default h
-
-
 
 // Double paren version: h(elem)(props, children)
 

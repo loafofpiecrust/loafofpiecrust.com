@@ -1,56 +1,51 @@
-import React from "react";
-import Layout from "components/layout/layout";
-import styled from "@emotion/styled";
-import { css } from "@emotion/core";
-import theme, { mq } from "styles/theme";
+import React from "react"
+import Layout from "components/layout/layout"
+import styled from "@emotion/styled"
+import {css} from "@emotion/core"
+import theme, {mq} from "styles/theme"
 import {
   flex,
   paddingX,
   paddingY,
   contrastBackground,
-} from "styles/system/shortcuts";
-import siteMeta from "content/metadata";
-import h from "components/markup";
+} from "styles/system/shortcuts"
+import siteMeta from "content/metadata"
+import h from "components/markup"
 
 export default () =>
-  h(Layout, { unpadded: true, title: "Resume" }, [
+  h(Layout, {unpadded: true, title: "Resume"}, [
     h(ResumeContents, [
       h(ResumeHeader, [
-        h.div({ css: { flex: 1 } }, [
-          h.h1({ css: { margin: 0 } }, "Taylor Snead"),
-        ]),
+        h.div({css: {flex: 1}}, [h.h1({css: {margin: 0}}, "Taylor Snead")]),
 
-        h.div({ css: [flex.column, flex.alignEnd] }, [
+        h.div({css: [flex.column, flex.alignEnd]}, [
           h.span("Boston, MA 02130"),
           h.span("taylor@snead.xyz"),
           h.span("Cell: 504-442-0219"),
-          h.span({}, h.a({ href: siteMeta.siteUrl }, "snead.xyz")),
+          h.span({}, h.a({href: siteMeta.siteUrl}, "snead.xyz")),
           h.span([
             "GitHub: ",
-            h.a(
-              { href: "https://github.com/loafofpiecrust" },
-              "loafofpiecrust"
-            ),
+            h.a({href: "https://github.com/loafofpiecrust"}, "loafofpiecrust"),
           ]),
         ]),
       ]),
 
       h(LeftSection, [
         h(SectionHeader, "Education"),
-        h.div({ css: [flex.row, flex.justifyBetween, flex.wrap] }, [
-          h.header({ css: { flexGrow: 1 } }, [
+        h.div({css: [flex.row, flex.justifyBetween, flex.wrap]}, [
+          h.header({css: {flexGrow: 1}}, [
             h.b("Northeastern University"),
             " – Boston, MA",
           ]),
 
-          h.div({ css: { flexGrow: 1 } }, [
+          h.div({css: {flexGrow: 1}}, [
             "Candidate for Bachelor of Science",
             h.br(),
             "in Computer Science",
             h.br(),
             "Minor in Linguistics",
           ]),
-          h.i({ css: { textAlign: "right" } }, [
+          h.i({css: {textAlign: "right"}}, [
             "GPA: 3.5",
             h.br(),
             "Graduation: 2021",
@@ -63,10 +58,10 @@ export default () =>
           h.br(),
           h.i(null, h.b("Relevant Coursework:")),
           h.div(
-            { css: [flex.row, flex.wrap, flex.justifyBetween] },
+            {css: [flex.row, flex.wrap, flex.justifyBetween]},
             courses.map((name) =>
               h.span(
-                { key: name, css: { minWidth: 141, textAlign: "right" } },
+                {key: name, css: {minWidth: 141, textAlign: "right"}},
                 name
               )
             )
@@ -77,7 +72,7 @@ export default () =>
       h(LeftSection, [
         h(SectionHeader, "Skills"),
         skills.map((item) =>
-          h.section({ css: flex.column, key: item.title }, [
+          h.section({css: flex.column, key: item.title}, [
             h.h4(item.title),
             item.desc,
           ])
@@ -89,7 +84,7 @@ export default () =>
         personalProjects
           .filter((x) => !x.hidden)
           .map((proj) =>
-            h.section({ css: flex.column, key: proj.title }, [
+            h.section({css: flex.column, key: proj.title}, [
               h.h4([proj.title]),
               proj.desc,
             ])
@@ -101,14 +96,14 @@ export default () =>
         workExperience
           .filter((j) => !j.hidden)
           .map((job) =>
-            h(JobSection, { key: job.timeFrame }, [
+            h(JobSection, {key: job.timeFrame}, [
               h.h4([job.title]),
               h.i([job.timeFrame]),
-              h.span({ css: { gridArea: "byline" } }, [
+              h.span({css: {gridArea: "byline"}}, [
                 h.b([job.organization]),
                 job.location ? ` – ${job.location}` : null,
               ]),
-              h.p({ css: { gridArea: "main" } }, job.desc),
+              h.p({css: {gridArea: "main"}}, job.desc),
             ])
           ),
       ]),
@@ -117,13 +112,13 @@ export default () =>
         {
           css: [
             paddingX(20),
-            { paddingBottom: 20, textAlign: "center", gridArea: "bottom" },
+            {paddingBottom: 20, textAlign: "center", gridArea: "bottom"},
           ],
         },
         ["References Available Upon Request"]
       ),
     ]),
-  ]);
+  ])
 
 const JobSection = styled.section({
   display: "grid",
@@ -134,7 +129,7 @@ const JobSection = styled.section({
     "byline byline"
     "main main"
   `,
-});
+})
 
 const ResumeContents = styled.article(
   mq({
@@ -163,13 +158,13 @@ const ResumeContents = styled.article(
       },
     },
   })
-);
+)
 
-const inset = [3, 4, 5];
-const verticalInset = 3;
+const inset = [3, 4, 5]
+const verticalInset = 3
 const printInset = {
   "@media print": paddingX(4),
-};
+}
 
 const coloredLink = (activeColor: string) =>
   css({
@@ -180,7 +175,7 @@ const coloredLink = (activeColor: string) =>
     "@media print": {
       borderBottom: "none",
     },
-  });
+  })
 
 const ResumeHeader = styled.header(
   mq({
@@ -196,7 +191,7 @@ const ResumeHeader = styled.header(
     ...contrastBackground(theme.colors.link),
     a: coloredLink(theme.colors.background),
   })
-);
+)
 
 const SectionHeader = styled.h3(
   mq({
@@ -205,11 +200,11 @@ const SectionHeader = styled.h3(
     ...paddingY(verticalInset),
     ...contrastBackground(theme.colors.background),
   })
-);
+)
 
 const ResumeSection = (side: "left" | "right") =>
   styled.section(
-    { marginBottom: 30 },
+    {marginBottom: 30},
     mq({
       "& > *": {
         paddingLeft: side === "left" ? inset : 2,
@@ -228,12 +223,12 @@ const ResumeSection = (side: "left" | "right") =>
       },
       a: coloredLink(theme.colors.link),
     })
-  );
+  )
 
-const LeftSection = ResumeSection("left");
+const LeftSection = ResumeSection("left")
 const RightSection = styled(ResumeSection("right"))({
   gridArea: "right",
-});
+})
 
 const courses: string[] = [
   "Human Computer Interaction",
@@ -256,15 +251,15 @@ const courses: string[] = [
   "Linguistic Analysis (on Tibetan)",
   "Syntax",
   "Linguistics Research Seminar (on Cherokee)",
-];
+]
 
 const workExperience: Array<{
-  title: any;
-  organization: any;
-  location?: string;
-  timeFrame: string;
-  desc: any;
-  hidden?: boolean;
+  title: any
+  organization: any
+  location?: string
+  timeFrame: string
+  desc: any
+  hidden?: boolean
 }> = [
   {
     title: "Research Assistant",
@@ -375,12 +370,12 @@ const workExperience: Array<{
         APIs.
       `,
   },
-];
+]
 
 const skills: Array<{
-  title: any;
-  desc: any;
-  hidden?: boolean;
+  title: any
+  desc: any
+  hidden?: boolean
 }> = [
   {
     title: "Technical Proficiencies",
@@ -400,13 +395,13 @@ const skills: Array<{
       </div>
     ),
   },
-];
+]
 
 const personalProjects: Array<{
-  title: any;
-  subtitle?: string;
-  desc: any;
-  hidden?: boolean;
+  title: any
+  subtitle?: string
+  desc: any
+  hidden?: boolean
 }> = [
   {
     title: "Sandwich",
@@ -438,7 +433,7 @@ const personalProjects: Array<{
     desc: (
       <>
         <i>"I was just another virus... until I met you."</i>
-        <p css={{ marginBottom: 0 }}>
+        <p css={{marginBottom: 0}}>
           Benign virus that interacts with users through the OS UI and exhibits
           complex romantic feelings, which may or may not be reciprocated.
         </p>
@@ -455,15 +450,15 @@ const personalProjects: Array<{
       </div>
     ),
   },
-];
+]
 
 const freelanceProjects: {
-  title: any;
-  organization: any;
-  location: string;
-  timeFrame?: string;
-  desc: any;
-  hidden?: boolean;
+  title: any
+  organization: any
+  location: string
+  timeFrame?: string
+  desc: any
+  hidden?: boolean
 }[] = [
   {
     title: <a href="https://paletteapp.city">City Palette</a>,
@@ -505,4 +500,4 @@ const freelanceProjects: {
       </p>
     ),
   },
-];
+]

@@ -17,32 +17,41 @@ import h from "components/markup"
 export type LayoutProps = Parameters<typeof Layout>[0]
 
 export const Layout = (props: {
-  title?: string;
-  children?: any;
-  unpadded?: boolean;
-}) => h.frag(
-  h(Global, {styles: globalStyles}),
+  title?: string
+  children?: any
+  unpadded?: boolean
+}) =>
+  h.frag(
+    h(Global, {styles: globalStyles}),
 
-  h(Helmet, {
-    defaultTitle: siteMeta.title,
-    titleTemplate: "%s - " + siteMeta.title,
-  }, [
-    h("title", props.title),
-    h("meta", {name: "description", content: siteMeta.description}),
-    h("meta", {name: "keywords", content: siteMeta.keywords.join(", ")}),
-    h("html", {lang: "en"}),
-  ]),
+    h(
+      Helmet,
+      {
+        defaultTitle: siteMeta.title,
+        titleTemplate: "%s - " + siteMeta.title,
+      },
+      [
+        h("title", props.title),
+        h("meta", {name: "description", content: siteMeta.description}),
+        h("meta", {name: "keywords", content: siteMeta.keywords.join(", ")}),
+        h("html", {lang: "en"}),
+      ]
+    ),
 
-  h(EmotionTheme, {theme}, [
-    h(Header),
-    h(MuiThemeProvider, {theme: materialTheme}, [
-      h("main", {
-        css: [style.content, props.unpadded || style.padded],
-      }, props.children),
-    ]),
-    h(Footer),
-  ]),
-)
+    h(EmotionTheme, {theme}, [
+      h(Header),
+      h(MuiThemeProvider, {theme: materialTheme}, [
+        h(
+          "main",
+          {
+            css: [style.content, props.unpadded || style.padded],
+          },
+          props.children
+        ),
+      ]),
+      h(Footer),
+    ])
+  )
 
 const style = {
   content: css(
@@ -54,12 +63,14 @@ const style = {
         backgroundColor: theme.colors.lightBackground,
         borderRadius: 2,
       },
-    }),
+    })
   ),
-  padded: css(mq({
-    ...paddingY(4),
-    ...paddingX(theme.contentPadding),
-  })),
+  padded: css(
+    mq({
+      ...paddingY(4),
+      ...paddingX(theme.contentPadding),
+    })
+  ),
 }
 
 export default Layout

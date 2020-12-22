@@ -24,23 +24,28 @@ export const expandShortcuts = (style: Interpolation): Interpolation => {
   return result
 }
 
-export const paddingX = (value: number | string | any[]) => (
-  {paddingRight: value, paddingLeft: value}
-)
-export const paddingY = (value: number | string | any[]) => (
-  {paddingTop: value, paddingBottom: value}
-)
+export const paddingX = (value: number | string | any[]) => ({
+  paddingRight: value,
+  paddingLeft: value,
+})
+export const paddingY = (value: number | string | any[]) => ({
+  paddingTop: value,
+  paddingBottom: value,
+})
 
-export const marginX = (value: number | string | any[]) => (
-  {marginRight: value, marginLeft: value}
-)
-export const marginY = (value: number | string | any[]) => (
-  {marginTop: value, marginBottom: value}
-)
+export const marginX = (value: number | string | any[]) => ({
+  marginRight: value,
+  marginLeft: value,
+})
+export const marginY = (value: number | string | any[]) => ({
+  marginTop: value,
+  marginBottom: value,
+})
 
-export const size = (value: number | string | any[]) => (
-  {width: value, height: value}
-)
+export const size = (value: number | string | any[]) => ({
+  width: value,
+  height: value,
+})
 
 export const contrastBackground = (value: string) => {
   const bg = color(value)

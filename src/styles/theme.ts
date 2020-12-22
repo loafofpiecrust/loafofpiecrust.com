@@ -1,4 +1,3 @@
-
 import theme from "./theme-aux"
 import facepaint from "facepaint"
 import {css} from "@emotion/core"
@@ -12,7 +11,6 @@ export const themeFrom = (key: string, values: any[]) => {
 }
 
 const mqBase = facepaint(theme.mediaQueries)
-export const mq = (style: Interpolation) =>
-  mqBase(themed(theme, style))
+export const mq = (style: Interpolation) => mqBase(themed(theme, style))
 
 export default theme

@@ -65,7 +65,6 @@ export const globalStyles = css(typography.createStyles(), {
   },
 })
 
-
 export const hideOnPrint = css({
   "@media print": {
     display: "none",

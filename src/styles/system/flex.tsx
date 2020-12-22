@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
-import { marginX } from "./shortcuts"
+import {marginX} from "./shortcuts"
 
-export const Row = styled.div((props: { gap?: number }) => ({
+export const Row = styled.div((props: {gap?: number}) => ({
   display: "flex",
   flexDirection: "row",
   "& > *": {

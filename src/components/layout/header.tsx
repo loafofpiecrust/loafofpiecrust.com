@@ -9,13 +9,13 @@ import {hideOnPrint} from "styles/global"
 
 export const Header = () => {
   return h.header({css: style.container}, [
-    h.h1(null, 
-      h(Link, {to: "/", css: style.siteLink}, siteMeta.title)
+    h.h1(null, h(Link, {to: "/", css: style.siteLink}, siteMeta.title)),
+    h(Location, ({location}) =>
+      h(NavBar, {
+        items: siteMeta.navbar,
+        activeUrl: location.pathname,
+      })
     ),
-    h(Location, ({location}) => h(NavBar, {
-      items: siteMeta.navbar,
-      activeUrl: location.pathname,
-    })),
   ])
 }
 
@@ -30,11 +30,13 @@ const style = {
       alignItems: ["center", "flex-start"],
       paddingTop: 4,
       paddingLeft: [0, 3, 4],
-    }),
+    })
   ),
-  siteLink: css(mq({
-    color: theme.colors.darkText,
-    textDecoration: "none",
-    marginLeft: [0, 3],
-  })),
+  siteLink: css(
+    mq({
+      color: theme.colors.darkText,
+      textDecoration: "none",
+      marginLeft: [0, 3],
+    })
+  ),
 }
