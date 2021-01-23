@@ -232,25 +232,26 @@ const RightSection = styled(ResumeSection("right"))({
 
 const courses: string[] = [
   "Human Computer Interaction",
-  "Algorithms & Data",
-  "Networks & Distributed Systems",
-  "Linear Algebra",
-  /* "Syntax", */
+  "Compilers",
   "Natural Language Processing",
-  "Embedded Design",
-  /* "Software Development", */
+  "Morphology",
+  "Algorithms & Data",
   "Programming Languages",
+  "Software Development",
+  "Distributed Systems",
+  /* "Linear Algebra", */
+  /* "Embedded Design", */
   /* "Object-Oriented Design", */
   "Theory of Computation",
   // "Biostatistics",
   /* "Machine Structure & x86 Assembly", */
-  "Computer Systems",
+  /* "Computer Systems", */
   /* "Physics 1 & 2", */
   // "Intro to Linguistics",
   "3D Fundamentals",
-  "Linguistic Analysis (on Tibetan)",
+  "Linguistic Analysis (Tibetan)",
   "Syntax",
-  "Linguistics Research Seminar (on Cherokee)",
+  "Linguistics Research Seminar (Cherokee)",
 ]
 
 const workExperience: Array<{
@@ -265,7 +266,7 @@ const workExperience: Array<{
     title: "Research Assistant",
     organization: "Northeastern University",
     location: "Boston, MA",
-    timeFrame: "July – Dec '20",
+    timeFrame: "July '20 – Present",
     desc: (
       <>
         Work with the{" "}

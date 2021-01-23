@@ -38,7 +38,7 @@ exports.createPages = async (params) => {
       await mdx.createPages(
         col.name,
         col.sortBy,
-        require.resolve(`./src/${col.component}`),
+        require.resolve(`./src/${col.component.trim()}`)
       )(params)
     }
   }
